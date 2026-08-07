@@ -743,9 +743,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sandbox" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Sandbox 模式
+      这个插件解决什么问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装和启用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本配置
     </span>
   </a>
   
@@ -761,9 +779,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scheme" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      资源 Scheme
+      常见用法
     </span>
   </a>
   
@@ -1474,9 +1492,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sandbox" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Sandbox 模式
+      这个插件解决什么问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装和启用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本配置
     </span>
   </a>
   
@@ -1492,9 +1528,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scheme" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      资源 Scheme
+      常见用法
     </span>
   </a>
   
@@ -1521,40 +1557,50 @@
 
 <h1 id="_1">工作区插件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>包名：<code>koishi-plugin-yesimbot-workspace</code></p>
-<p>提供虚拟文件系统、Bash 沙箱和 Skill 加载能力。它把每个频道的 <code>workspace/</code> 暴露给 Agent，并把 <code>skillPaths</code> 下的技能挂载到沙箱。</p>
-<h2 id="sandbox">Sandbox 模式<a class="headerlink" href="#sandbox" title="Permanent link">&para;</a></h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">plugins</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">group:yesimbot</span><span class="p">:</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">yesimbot-workspace</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="nt">bash</span><span class="p">:</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sandbox</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="nt">cwd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/workspace</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="nt">timeoutMs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30000</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="nt">enableNetwork</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="nt">enablePython</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="nt">enableJavascript</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="nt">mounts</span><span class="p">:</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">            </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">            </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ro</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="nt">skillPaths</span><span class="p">:</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./skills</span>
+<h2 id="_2">这个插件解决什么问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>默认情况下，机器人只能聊天，不能碰文件。安装工作区插件后，你可以给机器人一个“工作目录”，让它：</p>
+<ul>
+<li>读取指定文件夹里的文件；</li>
+<li>生成和修改文件；</li>
+<li>在隔离环境里运行命令；</li>
+<li>加载你准备的技能文件。</li>
+</ul>
+<p>这适合处理文件、写代码、生成图表，或者把一些重复任务交给机器人。</p>
+<h2 id="_3">安装和启用<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>在 Koishi 插件市场安装 <code>koishi-plugin-yesimbot-workspace</code>，然后在插件配置页打开开关。</p>
+<h2 id="_4">基本配置<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">yesimbot-workspace</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">bash</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sandbox</span><span class="w">         </span><span class="c1"># 沙箱模式，不会直接操作宿主机</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">cwd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/workspace</span><span class="w">  </span><span class="c1"># 机器人在沙箱里的默认目录</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">timeoutMs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30000</span><span class="w">      </span><span class="c1"># 单条命令最多运行 30 秒</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">enableNetwork</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">  </span><span class="c1"># 是否允许沙箱联网</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">enablePython</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">   </span><span class="c1"># 是否允许运行 Python</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">enableJavascript</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># 是否允许运行 JavaScript</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">mounts</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data</span><span class="w">   </span><span class="c1"># 本机目录</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data</span><span class="w">    </span><span class="c1"># 沙箱里的路径</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ro</span><span class="w">         </span><span class="c1"># ro=只读，rw=可读写</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">skillPaths</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./skills</span><span class="w">           </span><span class="c1"># 技能文件目录</span>
 </span></code></pre></div>
-<p><code>mounts</code> 支持 <code>rw</code>、<code>ro</code>、<code>overlay</code>。<code>/skills/&lt;skill-name&gt;</code> 是保留挂载点。</p>
+<p>简单理解：</p>
+<ul>
+<li><code>cwd</code>：机器人在沙箱里的默认目录。</li>
+<li><code>timeoutMs</code>：单条命令最多运行多久。</li>
+<li><code>enableNetwork</code>：是否允许沙箱联网，默认关闭。</li>
+<li><code>mounts</code>：把你本机目录挂载进沙箱，<code>ro</code> 是只读，<code>rw</code> 是可读写。</li>
+<li><code>skillPaths</code>：你准备好的技能文件夹位置。</li>
+</ul>
 <h2 id="host">Host 模式<a class="headerlink" href="#host" title="Permanent link">&para;</a></h2>
-<p>Host 模式只在类 Unix 环境可用，需要显式 <code>allowedChannels</code>、<code>hostRoots</code> 和 <code>identity.uid/gid</code>。高风险调用会生成审批请求：</p>
-<ul>
-<li><code>yesimbot.workspace.approvals</code></li>
-<li><code>yesimbot.workspace.approve &lt;requestId&gt;</code></li>
-<li><code>yesimbot.workspace.reject &lt;requestId&gt;</code></li>
-</ul>
-<p>这些命令要求 authority ≥ 5。</p>
-<h2 id="scheme">资源 Scheme<a class="headerlink" href="#scheme" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>workspace:///relative/path</code>：频道工作区文件。</li>
-<li><code>skill://&lt;skill-name&gt;/&lt;relative-path&gt;</code>：技能文件。</li>
-</ul>
-<p>沙箱内部操作应使用 <code>/home/workspace/...</code> 路径，<code>bash</code> 不接受 <code>workspace://</code> 形式。</p>
+<p>如果你想让机器人直接操作宿主机，可以使用 Host 模式。它会受到更严格的频道白名单和目录白名单限制，高风险操作需要管理员审批。这个模式只推荐给有经验的用户。</p>
+<h2 id="_5">常见用法<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>安装并配置后，你可以让机器人做类似这样的事：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>读取工作区里的 notes.md，总结一下
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>运行一个 Python 脚本，把结果整理成表格
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>生成一张图表并发送到群里
+</span></code></pre></div>
+<p>机器人能否做到，取决于沙箱里启用了哪些能力，以及你挂载了哪些目录。</p>
 
 
 

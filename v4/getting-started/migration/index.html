@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#v3-v4" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -455,18 +455,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      主要变化
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      迁移步骤
+      一句话说明
     </span>
   </a>
   
@@ -475,7 +466,25 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      不再保留的假设
+      主要变化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      升级时要做的事
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      升级后没有自动迁移
     </span>
   </a>
   
@@ -1474,18 +1483,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      主要变化
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      迁移步骤
+      一句话说明
     </span>
   </a>
   
@@ -1494,7 +1494,25 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      不再保留的假设
+      主要变化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      升级时要做的事
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      升级后没有自动迁移
     </span>
   </a>
   
@@ -1519,61 +1537,61 @@
   
 
 
-<h1 id="v3-v4">从 v3 升级到 v4<a class="headerlink" href="#v3-v4" title="Permanent link">&para;</a></h1>
-<p>v4 是重写版本，旧的 v3 配置和旧版 Athena 配置不兼容。不要尝试把 <code>modelService</code>、<code>agentBehavior</code>、<code>capabilities</code> 原样搬到 v4。</p>
-<h2 id="_1">主要变化<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h1 id="_1">从旧版本升级<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>如果你以前用过 YesImBot v3 或更早版本，这个页面会告诉你 v4 有哪些重要变化。它不适合“直接照抄旧配置”，因为很多旧设置已经不存在了。</p>
+<h2 id="_2">一句话说明<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>v4 是重写版本，不是一次普通的版本更新。旧配置不能直接搬过来，机器人的人设、记忆、插件和模型配置都需要重新设置一遍。</p>
+<h2 id="_3">主要变化<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>v3 概念</th>
-<th>v4 对应</th>
+<th>旧版本</th>
+<th>v4</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>modelService.providers</code> / <code>modelGroups</code></td>
-<td>Provider 插件 + <code>chatModel</code> / <code>models.json</code></td>
+<td>核心插件里配置模型服务</td>
+<td>安装独立的模型服务插件</td>
 </tr>
 <tr>
-<td><code>agentBehavior.willingness</code> 四层模型</td>
-<td><code>will.engine</code> 下的 routing / willingness</td>
+<td>旧的模型组和任务分配</td>
+<td>直接在配置里选择聊天模型</td>
 </tr>
 <tr>
-<td><code>agentBehavior.arousal.allowedChannelGroups</code></td>
-<td><code>allowedChannels</code> 白名单</td>
+<td>旧版“允许频道”配置</td>
+<td>新的“允许响应的频道”白名单</td>
 </tr>
 <tr>
-<td><code>capabilities.memory</code> 核心记忆目录</td>
-<td><code>PERSONA.md</code>、<code>AGENTS.md</code> 与频道会话</td>
+<td>旧版核心记忆目录</td>
+<td>由 <code>PERSONA.md</code>、<code>AGENTS.md</code> 和会话文件负责</td>
 </tr>
 <tr>
-<td><code>WorldStateService</code> 摘要记忆</td>
-<td>JSONL 会话压缩、归档和可选记忆插件</td>
+<td>旧版世界状态摘要</td>
+<td>会话压缩、归档和可选记忆插件</td>
 </tr>
 <tr>
-<td><code>ToolService</code> 扩展</td>
-<td>AgentPlugin 与 Provider/Translator 边界</td>
-</tr>
-<tr>
-<td><code>setup</code> / <code>conf.get</code> / <code>conf.set</code></td>
-<td>由 Koishi 配置页和 <code>yesimbot.session.*</code> 命令承担</td>
+<td>旧的扩展工具体系</td>
+<td>通过 Koishi 插件市场安装功能插件</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_2">迁移步骤<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_4">升级时要做的事<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ol>
-<li>备份 <code>PERSONA.md</code> 或旧的记忆文件内容。</li>
-<li>安装 <code>koishi-plugin-yesimbot</code> 和一个模型 Provider。</li>
-<li>配置 <code>chatModel</code> 与 <code>allowedChannels</code>。</li>
-<li>重新按需启用插件。</li>
-<li>用 <code>yesimbot.session.status</code> 观察会话，而不是依赖旧配置页。</li>
+<li>备份旧人设、旧记忆文件或旧配置内容。</li>
+<li>安装新版的 <code>koishi-plugin-yesimbot</code>。</li>
+<li>安装一个模型服务插件并填写 API Key。</li>
+<li>重新选择聊天模型。</li>
+<li>重新配置“允许响应的频道”。</li>
+<li>按需重新安装功能插件。</li>
 </ol>
-<h2 id="_3">不再保留的假设<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_5">升级后没有自动迁移<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
-<li>没有自动迁移旧 JSONL 或旧目录布局。</li>
-<li>不提供 dual read、alias 或 fallback。</li>
-<li>reset 只清理 <code>sessions/</code> 和 <code>assets</code>，不会清理 workspace 或插件数据。</li>
+<li>旧会话文件不会自动转换格式。</li>
+<li>旧目录布局不会被读取。</li>
+<li>重置会话只会清空当前频道的新会话和资源，不会恢复旧版本数据。</li>
 </ul>
+<p>如果你还保留旧文件，建议先备份到其他地方，不要指望 v4 自动读取。</p>
 
 
 

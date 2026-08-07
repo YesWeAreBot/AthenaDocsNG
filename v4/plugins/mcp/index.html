@@ -768,7 +768,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      配置
+      这个插件解决什么问题
     </span>
   </a>
   
@@ -777,7 +777,34 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      媒体处理
+      举个例子
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装和配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      工具名
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意事项
     </span>
   </a>
   
@@ -1467,7 +1494,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      配置
+      这个插件解决什么问题
     </span>
   </a>
   
@@ -1476,7 +1503,34 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      媒体处理
+      举个例子
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装和配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      工具名
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意事项
     </span>
   </a>
   
@@ -1503,25 +1557,34 @@
 
 <h1 id="mcp">MCP 客户端<a class="headerlink" href="#mcp" title="Permanent link">&para;</a></h1>
 <p>包名：<code>koishi-plugin-yesimbot-mcp-client</code></p>
-<p>连接 MCP 服务器并把服务器工具注册为 Agent 工具。工具名会加服务器名前缀：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;server-name&gt;-&lt;tool-name&gt;
+<h2 id="_1">这个插件解决什么问题<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>MCP 是一种连接外部工具服务的协议。安装 MCP 客户端后，机器人可以调用别人已经写好的工具服务，而不需要每个工具都做成一个 Koishi 插件。</p>
+<h2 id="_2">举个例子<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>假设你有一个“天气查询服务”。把它配置成 MCP 服务器后，机器人就能调用“查天气”这个工具，而不需要你写代码。</p>
+<h2 id="_3">安装和配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>在插件市场安装 <code>koishi-plugin-yesimbot-mcp-client</code>，然后在配置里添加服务器：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">yesimbot-mcp-client</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">mcpServers</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">filesystem</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stdio</span><span class="w">        </span><span class="c1"># 通过本地命令启动</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npx</span><span class="w">       </span><span class="c1"># 要运行的命令</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="nt">args</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-y</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="err">@</span><span class="l l-Scalar l-Scalar-Plain">modelcontextprotocol/server-filesystem</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">remote</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span><span class="w">         </span><span class="c1"># 通过 HTTP 连接</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://example.com/mcp</span><span class="w">  </span><span class="c1"># 服务地址</span>
 </span></code></pre></div>
-<h2 id="_1">配置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">yesimbot-mcp-client</span><span class="p">:</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">mcpServers</span><span class="p">:</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">filesystem</span><span class="p">:</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stdio</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npx</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="nt">args</span><span class="p">:</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-y</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="err">@</span><span class="l l-Scalar l-Scalar-Plain">modelcontextprotocol/server-filesystem</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">remote</span><span class="p">:</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://example.com/mcp</span>
-</span></code></pre></div>
-<p>支持 <code>stdio</code>、<code>http</code>、<code>sse</code> 三种 transport。</p>
-<h2 id="_2">媒体处理<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>MCP 返回的图片会写入频道 ArtifactStore，并转换成 <code>artifact://</code> 引用。MCP 输出会被限制长度，防止工具结果无限膨胀。</p>
+<p>连接方式有三种：</p>
+<ul>
+<li><code>stdio</code>：启动一个本地命令作为服务。</li>
+<li><code>http</code>：连接远程 HTTP 服务。</li>
+<li><code>sse</code>：连接远程 SSE 服务。</li>
+</ul>
+<h2 id="_4">工具名<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>来自服务器的工具会加上服务器名前缀，避免不同服务器之间冲突。例如服务器叫 <code>filesystem</code>，里面的工具可能叫 <code>filesystem-read_file</code>。</p>
+<h2 id="_5">注意事项<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>MCP 返回的图片会被保存为本地资源，避免把大段数据直接塞进模型。返回内容也有长度限制，防止机器人一次处理过多数据。</p>
 
 
 

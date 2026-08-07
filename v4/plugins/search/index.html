@@ -835,6 +835,25 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      这个插件解决什么问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装和配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装和配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#tavily" class="md-nav__link">
     <span class="md-ellipsis">
       Tavily
@@ -842,11 +861,25 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#searxng" class="md-nav__link">
     <span class="md-ellipsis">
       SearXNG
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见用法
     </span>
   </a>
   
@@ -1465,6 +1498,25 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      这个插件解决什么问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装和配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装和配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#tavily" class="md-nav__link">
     <span class="md-ellipsis">
       Tavily
@@ -1472,11 +1524,25 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#searxng" class="md-nav__link">
     <span class="md-ellipsis">
       SearXNG
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见用法
     </span>
   </a>
   
@@ -1503,30 +1569,34 @@
 
 <h1 id="_1">搜索服务<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>包名：<code>koishi-plugin-yesimbot-search-service</code></p>
-<p>提供 Web 搜索与网页抓取工具。</p>
-<h2 id="tavily">Tavily<a class="headerlink" href="#tavily" title="Permanent link">&para;</a></h2>
+<h2 id="_2">这个插件解决什么问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>让机器人能联网搜索。没有搜索插件时，机器人只能依靠模型训练时学到的知识，无法回答“刚刚发生的事”或“某个网页现在的内容”。</p>
+<h2 id="_3">安装和配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>在插件市场安装 <code>koishi-plugin-yesimbot-search-service</code>。</p>
+<p>它支持两种搜索后端：</p>
+<h3 id="tavily">Tavily<a class="headerlink" href="#tavily" title="Permanent link">&para;</a></h3>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">yesimbot-search-service</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tavily</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tavily</span><span class="w">   </span><span class="c1"># 搜索后端</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">tavily</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">apiKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tvly-xxx</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">searchDepth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basic</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">apiKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tvly-xxx</span><span class="w">   </span><span class="c1"># Tavily API Key</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">searchDepth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basic</span><span class="w"> </span><span class="c1"># basic 更快，advanced 更详细</span>
 </span></code></pre></div>
-<h2 id="searxng">SearXNG<a class="headerlink" href="#searxng" title="Permanent link">&para;</a></h2>
+<h3 id="searxng">SearXNG<a class="headerlink" href="#searxng" title="Permanent link">&para;</a></h3>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">yesimbot-search-service</span><span class="p">:</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">searxng</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">searxng</span><span class="w">   </span><span class="c1"># 自建 SearXNG</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">searxng</span><span class="p">:</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://127.0.0.1:8888</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://127.0.0.1:8888</span><span class="w">  </span><span class="c1"># SearXNG 实例地址</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">engines</span><span class="p">:</span>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">google</span>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bing</span>
 </span></code></pre></div>
-<p>常用选项：</p>
-<ul>
-<li><code>defaultLimit</code> / <code>maxLimit</code></li>
-<li><code>timeoutMs</code></li>
-<li><code>blacklist</code></li>
-</ul>
-<p>插件会注册 <code>web_search</code>，支持抓取的 backend 还会注册 <code>web_scrape</code>。</p>
+<h2 id="_4">常见用法<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>配置完成后，你可以让机器人：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>帮我搜一下今天有什么新闻
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>查一下这个库的最新版本
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>打开这个网页，总结主要内容
+</span></code></pre></div>
+<p>如果后端支持抓取网页，机器人还会获得 <code>web_scrape</code> 能力，用来读取页面内容。</p>
 
 
 

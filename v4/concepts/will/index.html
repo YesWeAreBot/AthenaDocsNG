@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#will" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -553,36 +553,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#routing" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      routing 引擎（默认）
+      先理解两种行为
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#willingness" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      willingness 引擎
+      默认规则：只是最小启动配置
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      忙时行为
+      如果想让机器人更活跃
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#seam" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      插件扩展 seam
+      如果想按意愿值动态判断
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#willingness-will" class="md-nav__link">
+    <span class="md-ellipsis">
+      推荐做法：willingness + Will 策略插件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      机器人正在忙时
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      更细的控制
     </span>
   </a>
   
@@ -1483,36 +1510,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#routing" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      routing 引擎（默认）
+      先理解两种行为
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#willingness" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      willingness 引擎
+      默认规则：只是最小启动配置
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      忙时行为
+      如果想让机器人更活跃
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#seam" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      插件扩展 seam
+      如果想按意愿值动态判断
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#willingness-will" class="md-nav__link">
+    <span class="md-ellipsis">
+      推荐做法：willingness + Will 策略插件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      机器人正在忙时
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      更细的控制
     </span>
   </a>
   
@@ -1537,43 +1591,73 @@
   
 
 
-<h1 id="will">消息与 Will<a class="headerlink" href="#will" title="Permanent link">&para;</a></h1>
-<p>Will 决定一条消息进入 Agent 后是 <code>wait</code> 还是 <code>trigger</code>。它不是“模型自己决定要不要回”，而是 Runtime 在调用模型之前完成的固定判断。</p>
-<h2 id="routing">routing 引擎（默认）<a class="headerlink" href="#routing" title="Permanent link">&para;</a></h2>
+<h1 id="_1">机器人什么时候回复<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>这个页面讲“Will”，也就是机器人决定要不要回复的规则。</p>
+<h2 id="_2">先理解两种行为<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>每条消息进入机器人后，系统先做一个低成本判断：</p>
+<ul>
+<li><strong>触发回复</strong>：把消息交给模型，生成回复。</li>
+<li><strong>先观察</strong>：只把消息记下来，不调用模型。</li>
+</ul>
+<p>这个判断发生在调用模型之前，所以机器人不会对每条消息都花一次模型费用。</p>
+<h2 id="_3">默认规则：只是最小启动配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>默认配置长这样：</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">will</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">routing</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">direct</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trigger</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">mention</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trigger</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wait</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">routing</span><span class="w">   </span><span class="c1"># 使用固定规则，不靠模型判断</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">direct</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trigger</span><span class="w">   </span><span class="c1"># 私聊消息：触发回复</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">mention</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trigger</span><span class="w">  </span><span class="c1"># 群里被 @：触发回复</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wait</span><span class="w">       </span><span class="c1"># 群聊普通消息：先观察</span>
 </span></code></pre></div>
+<p>这三行已经覆盖了大多数场景：</p>
+<ol>
+<li>有人私聊机器人，机器人会回应。</li>
+<li>有人在群里 @ 机器人，机器人会回应。</li>
+<li>群里普通聊天，机器人先潜水，避免每句话都插嘴。</li>
+</ol>
+<p>这里需要说清楚一点：<code>group: wait</code> 的意思是“普通群聊消息不会交给模型”。机器人不会看到这些消息，也就谈不上主动参与。</p>
+<p>所以这个默认配置只适合：</p>
 <ul>
-<li><code>direct</code>：私聊消息。</li>
-<li><code>mention</code>：群聊中 @ 当前 Bot。</li>
-<li><code>group</code>：群聊普通消息。</li>
+<li>刚安装时做最小验证；</li>
+<li>你只希望机器人处理私聊和 @；</li>
+<li>你暂时不想让它进入普通群聊上下文。</li>
 </ul>
-<p>每个值只能是 <code>wait</code> 或 <code>trigger</code>。默认群聊普通消息不触发，避免机器人刷屏。</p>
-<h2 id="willingness">willingness 引擎<a class="headerlink" href="#willingness" title="Permanent link">&para;</a></h2>
+<p>如果你希望机器人像群友一样自然参与群聊，不要停留在 routing，建议使用下文推荐的 <code>willingness</code> + Will 策略插件。</p>
+<h2 id="_4">如果想让机器人更活跃<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>把群聊普通消息从 <code>wait</code> 改成 <code>trigger</code>：</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">will</span><span class="p">:</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">willingness</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">probabilityThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">55</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">decayHalfLifeSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">600</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">replyCost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">35</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">routing</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trigger</span><span class="w">   </span><span class="c1"># 普通群聊消息也会回复</span>
 </span></code></pre></div>
-<p>实现按消息增益、动态衰减和概率掷骰决定是否触发。它只保留三个面向用户的旋钮，不提供无限扩展的状态机。</p>
-<h2 id="_1">忙时行为<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>当频道已有活动 turn 时，新消息不会创建第二个模型流消费者：</p>
+<p>改完建议重启 Koishi。这样做之后，机器人可能在热闹的群里频繁发言，需要留意刷屏问题。</p>
+<p>不过，<code>group: trigger</code> 是对所有普通消息直接触发，仍然不够“自然”。更推荐的做法是使用意愿值，让机器人根据话题和节奏判断。</p>
+<h2 id="_5">如果想按意愿值动态判断<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>固定规则适合“明确要不要回”的场景。如果希望机器人根据话题热度和对话节奏自然决定，可以使用意愿值：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">will</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">willingness</span><span class="w">          </span><span class="c1"># 使用动态意愿值</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">probabilityThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">55</span><span class="w">     </span><span class="c1"># 意愿达到 55 后才可能回复</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">decayHalfLifeSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">600</span><span class="w">    </span><span class="c1"># 意愿值约 10 分钟衰减一半</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">replyCost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">35</span><span class="w">                </span><span class="c1"># 每次回复后扣除 35，避免连续刷屏</span>
+</span></code></pre></div>
+<p>可以这样理解：</p>
 <ul>
-<li><code>wait</code>：只进入历史。</li>
-<li><code>trigger</code> 且忙：join 当前 turn，在下一模型 step 或后续循环中进入上下文。</li>
-<li>主动事件 <code>trigger()</code> 忙时同样 join。</li>
+<li><code>probabilityThreshold</code> 越高，机器人越“高冷”。</li>
+<li><code>decayHalfLifeSeconds</code> 越短，兴趣消退越快。</li>
+<li><code>replyCost</code> 越大，机器人说完一次后越不容易立刻再说。</li>
 </ul>
-<h2 id="seam">插件扩展 seam<a class="headerlink" href="#seam" title="Permanent link">&para;</a></h2>
-<p>Core 暴露两组注册入口：</p>
+<h2 id="willingness-will">推荐做法：willingness + Will 策略插件<a class="headerlink" href="#willingness-will" title="Permanent link">&para;</a></h2>
+<p>想做出“平时潜水，但遇到感兴趣的话题会参与”的效果，推荐安装 <a href="../../plugins/will-policy/">Will 策略插件</a>，并把引擎设为 <code>willingness</code>。</p>
+<p>它比默认 routing 更接近自然群友：</p>
 <ul>
-<li><code>registerWillConfigContributor(contributor)</code>：按 <code>ChannelScope</code> 修改 Will 配置。</li>
-<li><code>registerWillEngineFactory(factory)</code>：按 scope 和 session 提供自定义 WillEngine。</li>
+<li>普通群聊消息会先积累“意愿”；</li>
+<li>命中关键词、被 @、私聊、引用或图片时，意愿会提高；</li>
+<li>只有意愿达到阈值才触发回复；</li>
+<li>每次回复后会消耗意愿，避免连续刷屏。</li>
 </ul>
-<p>没有插件注册时，Core 使用内置默认引擎。更多精细策略见<a href="../../plugins/will-policy/">Will 策略插件</a>。</p>
+<p>这样的行为不需要让每一条普通消息都直接触发模型，但机器人确实会“看到”群聊，并有机会自然加入。</p>
+<h2 id="_6">机器人正在忙时<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>如果机器人正在回复，新消息不会抢线。它会进入当前对话流程，等合适时机再被处理。这样不会出现同一个频道多个回复互相打架的情况。</p>
+<h2 id="_7">更细的控制<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>默认规则之外，还有 <a href="../../plugins/will-policy/">Will 策略插件</a>，可以按引用、图片、关键词、具体频道或用户来调整回复规则，也是当前推荐使用的方向。</p>
 
 
 

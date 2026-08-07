@@ -863,6 +863,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    角色卡
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -874,6 +887,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      这个插件解决什么问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装和配置
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1408,6 +1458,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      这个插件解决什么问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装和配置
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1427,12 +1503,15 @@
 
 <h1 id="_1">角色卡<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>包名：<code>koishi-plugin-yesimbot-roleplay</code></p>
-<p>从 PNG 角色卡加载角色扮演提示词。</p>
+<h2 id="_2">这个插件解决什么问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>让机器人使用一张 PNG 角色卡来扮演特定角色。角色卡里包含人设、性格和开场白，适合做角色扮演或设定固定人格。</p>
+<h2 id="_3">安装和配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>在插件市场安装 <code>koishi-plugin-yesimbot-roleplay</code>，然后指定角色卡文件：</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">yesimbot-roleplay</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">characterCard</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./characters/athena.png</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">useRandomGreeting</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">characterCard</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./characters/athena.png</span><span class="w"> </span><span class="c1"># PNG 角色卡路径</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">useRandomGreeting</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">               </span><span class="c1"># 是否随机选开场白</span>
 </span></code></pre></div>
-<p>插件读取角色卡并注册一个 <code>AgentPlugin</code>，向频道提示词注入角色设定与开场白。</p>
+<p>启用后，机器人会在当前频道按角色卡表现。</p>
 
 
 

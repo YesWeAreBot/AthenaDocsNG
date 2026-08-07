@@ -814,7 +814,34 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      配置
+      这个插件解决什么问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      举个例子
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装和配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意
     </span>
   </a>
   
@@ -1458,7 +1485,34 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      配置
+      这个插件解决什么问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      举个例子
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装和配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意
     </span>
   </a>
   
@@ -1485,20 +1539,25 @@
 
 <h1 id="_1">全局脑<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>包名：<code>koishi-plugin-yesimbot-global-brain</code></p>
-<p>让同一个 Bot 在多个群聊和私聊之间共享值得保留的知识、问题与经验。某个会话写入的内容会持久化到全局脑，其他会话按需读取，并自行判断是否回复、转发或吸收。</p>
-<h2 id="_2">配置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">这个插件解决什么问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>全局脑让同一个 Bot 在多个群和私聊之间共享知识。某个频道里学到的重要内容，可以保存到全局脑，之后其他频道按需读取。</p>
+<h2 id="_3">举个例子<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>机器人在 A 群里学会了“这个项目每周五发版”。之后在 B 群里提到项目计划时，机器人可以结合这条经验来回应。</p>
+<h2 id="_4">安装和配置<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>在插件市场安装 <code>koishi-plugin-yesimbot-global-brain</code>。基本配置：</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">yesimbot-global-brain</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">shareImmediately</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">storageDir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">maxDigestThreads</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">maxDigestReplies</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">maxDigestContentLength</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">shareImmediately</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">  </span><span class="c1"># 是否允许主动唤起其他频道</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">storageDir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">           </span><span class="c1"># 留空使用默认目录</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">maxDigestThreads</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">      </span><span class="c1"># 每次最多摘要几个新内容</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">maxDigestReplies</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">      </span><span class="c1"># 每次最多摘要几个回复线程</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">maxDigestContentLength</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span><span class="w"> </span><span class="c1"># 摘要里每条内容最多多少字</span>
 </span></code></pre></div>
 <ul>
-<li><code>storageDir</code> 留空时使用 <code>&lt;baseDir&gt;/global-brain</code>。</li>
-<li><code>shareImmediately</code> 允许工具在请求时向其他 session 发起一次触发。</li>
+<li><code>storageDir</code> 留空时使用默认目录。</li>
+<li><code>shareImmediately</code> 允许插件在写入内容后主动唤起其他频道。</li>
 </ul>
-<p>插件提供 <code>brain_*</code> 工具，并在每个 turn 前注入摘要。</p>
+<h2 id="_5">注意<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>全局脑不是“所有聊天记录自动共享”，而是按值得保留的内容写入和读取。机器人会自己判断哪些内容需要进入全局脑。</p>
 
 
 

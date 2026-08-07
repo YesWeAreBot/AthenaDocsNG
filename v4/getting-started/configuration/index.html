@@ -434,7 +434,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      最小配置
+      聊天模型
     </span>
   </a>
   
@@ -443,7 +443,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      关键行为
+      允许响应的频道
     </span>
   </a>
   
@@ -451,6 +451,33 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      机器人什么时候回复
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assignee" class="md-nav__link">
+    <span class="md-ellipsis">
+      群聊里的 assignee
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改后要重启吗
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       图片输入
     </span>
@@ -1476,7 +1503,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      最小配置
+      聊天模型
     </span>
   </a>
   
@@ -1485,7 +1512,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      关键行为
+      允许响应的频道
     </span>
   </a>
   
@@ -1493,6 +1520,33 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      机器人什么时候回复
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assignee" class="md-nav__link">
+    <span class="md-ellipsis">
+      群聊里的 assignee
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改后要重启吗
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       图片输入
     </span>
@@ -1520,46 +1574,57 @@
 
 
 <h1 id="_1">基础配置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="_2">最小配置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">plugins</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">group:yesimbot</span><span class="p">:</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">yesimbot</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="nt">chatModel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai:gpt-4o</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="nt">allowedChannels</span><span class="p">:</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">onebot</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">          </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123456&quot;</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">~@yesimbot/koishi-plugin-provider-openai</span><span class="p">:</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">      </span><span class="nt">apiKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sk-xxxxxxxx</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="nt">chatModels</span><span class="p">:</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">          </span><span class="nt">toolCall</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">          </span><span class="nt">reasoning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<p>这个页面介绍 YesImBot 最常用的几项设置。完整字段表放在<a href="../../reference/configuration/">配置参考</a>，这里只讲大多数人会碰到的内容。</p>
+<h2 id="_2">聊天模型<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>聊天模型决定机器人用哪一个模型来思考。它由两部分组成，写法是“服务商:模型”，例如：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>openai:gpt-4o
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>deepseek:deepseek-v4-pro
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>google:gemini-2.5-pro
 </span></code></pre></div>
-<h2 id="_3">关键行为<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>allowedChannels</code> 默认拒绝所有频道。</li>
-<li>Runtime 在创建时快照模型、Will、提示词、工具和插件。</li>
-<li>Core 不提供 <code>reload()</code>；配置、模型或插件变化会在 Runtime 被替换后生效。</li>
-<li>shared 频道还需要 Koishi <code>channel.assignee</code> 与当前 Bot 匹配。</li>
-</ul>
-<h2 id="_4">图片输入<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>模型是否支持图片由 <code>models.json</code> 声明，<code>imageInput</code> 只控制全局开关和预算。</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;chat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&quot;openai:gpt-4o&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="nt">&quot;modalities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">}</span>
+<p>你不需要记住每个 ID。在 Koishi 控制台的 <code>yesimbot</code> 配置里，一般可以直接从下拉列表选择。</p>
+<h2 id="_3">允许响应的频道<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>“允许响应的频道”决定机器人能在哪里说话。默认情况下，列表是空的，也就是机器人不会接收任何频道消息。</p>
+<p>至少要添加一条规则。最简单的规则是：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">allowedChannels</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">onebot</span><span class="w">   </span><span class="c1"># 平台，例如 onebot、discord</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123456&quot;</span><span class="w"> </span><span class="c1"># 频道 ID</span>
 </span></code></pre></div>
-<p>启用后可以配置：</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">imageInput</span><span class="p">:</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">maxCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">maxBytesPerImage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5242880</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">maxTotalBytes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10485760</span>
+<p>想允许所有平台和所有频道，可以写：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">allowedChannels</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="w">   </span><span class="c1"># 不限平台</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="w">  </span><span class="c1"># 不限频道</span>
 </span></code></pre></div>
-<p>详细格式见<a href="../../reference/configuration/">配置参考</a>和<a href="../../concepts/model/">模型服务</a>。</p>
+<p><code>*</code> 表示“不限制”。正式使用时不建议直接放行所有频道。</p>
+<h2 id="_4">机器人什么时候回复<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>默认情况下，私聊和群聊 @ 会回复，群聊普通消息只会被记录，不会交给模型。</p>
+<p>如果你希望机器人自然参与群聊，推荐安装 <a href="../../plugins/will-policy/">Will 策略插件</a> 并使用 <code>willingness</code> 引擎。这样机器人会先“看到”群聊，根据关键词、引用、图片和意愿值决定是否加入，而不是机械地每一条都回。</p>
+<h2 id="assignee">群聊里的 assignee<a class="headerlink" href="#assignee" title="Permanent link">&para;</a></h2>
+<p>群聊频道还需要把 Koishi 的 assignee 设置为当前 Bot。否则即使 <code>allowedChannels</code> 配置正确，机器人也不会接收该频道消息。</p>
+<h2 id="_5">修改后要重启吗<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>如果你修改了模型、插件或主要配置，建议重启 Koishi。重启后新设置会完整生效。有些临时调试设置不会自动写入配置文件，重启后会丢失。</p>
+<h2 id="_6">图片输入<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>想让机器人看图，需要两个条件同时满足：</p>
+<ol>
+<li>模型本身支持图片。</li>
+<li>图片输入功能没有关闭。</li>
+</ol>
+<p>模型支持图片的信息写在 <code>models.json</code> 里。普通用户如果只做文本聊天，不需要修改这个文件。</p>
+<p>最小示例：</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;chat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">&quot;openai:gpt-4o&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="nt">&quot;modalities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>还可以限制图片数量、单张大小和总大小：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">imageInput</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">maxCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">maxBytesPerImage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5242880</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">maxTotalBytes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10485760</span>
+</span></code></pre></div>
+<p>更完整的说明见<a href="../../concepts/model/">模型服务</a>和<a href="../../reference/configuration/">配置参考</a>。</p>
 
 
 

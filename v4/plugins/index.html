@@ -729,18 +729,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#provider" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      模型 Provider
+      模型服务插件
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      安装后
+      安装方式
     </span>
   </a>
   
@@ -1483,18 +1483,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#provider" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      模型 Provider
+      模型服务插件
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      安装后
+      安装方式
     </span>
   </a>
   
@@ -1520,7 +1520,7 @@
 
 
 <h1 id="_1">插件总览<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>YesImBot v4 的插件通过 <code>ctx.yesimbot.registerChannelPlugin()</code> 向每个频道的 Agent 注入工具、提示词和生命周期行为。Provider 插件通过 <code>ctx.yesimbot.model.register()</code> 注册模型。</p>
+<p>插件是用来给机器人增加具体能力的。你可以只安装需要的部分，不需要一次装齐，也不需要写代码。</p>
 <h2 id="agent">Agent 能力插件<a class="headerlink" href="#agent" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1583,11 +1583,11 @@
 </tr>
 </tbody>
 </table>
-<h2 id="provider">模型 Provider<a class="headerlink" href="#provider" title="Permanent link">&para;</a></h2>
+<h2 id="_2">模型服务插件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Provider</th>
+<th>服务商</th>
 <th>包名</th>
 </tr>
 </thead>
@@ -1610,11 +1610,17 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_2">安装后<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>在 Koishi 控制台启用插件即可。每个插件会注册自己的 <code>AgentPlugin</code>，但不会修改 Core 的公开协议。</p>
+<h2 id="_3">安装方式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ol>
+<li>打开 Koishi 控制台的插件市场。</li>
+<li>搜索插件名，点击安装。</li>
+<li>安装完成后，在插件配置页面打开开关。</li>
+<li>按页面提示填写 API Key、文件路径等设置。</li>
+</ol>
+<p>大部分插件安装后立即对当前频道生效。修改模型或插件配置后，如果机器人没有马上变化，重启 Koishi 通常是最直接的解决方式。</p>
 <div class="admonition tip">
-<p class="admonition-title">插件存储</p>
-<p>受信任插件可以通过 <code>ctx.yesimbot.getStoragePath(scope)</code> 获得频道根目录，并自行选择 <code>workspace/</code> 等子目录。</p>
+<p class="admonition-title">插件可以克隆</p>
+<p>模型服务插件和 Will 策略插件是可复用、可克隆的。在 Koishi 插件列表里点击右键选择“克隆”，就可以用不同配置创建多个实例，并通过 Koishi 过滤器应用到不同频道或用户。</p>
 </div>
 
 

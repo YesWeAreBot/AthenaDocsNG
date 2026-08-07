@@ -647,7 +647,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      接口
+      一句话解释
     </span>
   </a>
   
@@ -656,25 +656,25 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      默认透传
+      内置支持
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#onebot" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      内置 OneBot
+      其他平台
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#translator" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Translator 的责任
+      给开发者
     </span>
   </a>
   
@@ -1485,7 +1485,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      接口
+      一句话解释
     </span>
   </a>
   
@@ -1494,25 +1494,25 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      默认透传
+      内置支持
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#onebot" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      内置 OneBot
+      其他平台
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#translator" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Translator 的责任
+      给开发者
     </span>
   </a>
   
@@ -1538,35 +1538,20 @@
 
 
 <h1 id="_1">平台接入<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>平台差异由 <code>PlatformTranslator</code> 处理。Translator 通过 <code>ctx.yesimbot.registerTranslator()</code> 注册。</p>
-<h2 id="_2">接口<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="language-typescript highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">PlatformTranslator</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nx">platform</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nx">translate</span><span class="p">(</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nx">base</span><span class="o">:</span><span class="w"> </span><span class="kt">RecordBase</span><span class="p">,</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nx">session</span><span class="o">:</span><span class="w"> </span><span class="kt">Session</span><span class="p">,</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nx">store</span><span class="o">:</span><span class="w"> </span><span class="kt">AssetStore</span><span class="p">,</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">MessageRecord</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">EventRecord</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
-</span></code></pre></div>
-<p>Translator 接收 live Session 和频道 <code>AssetStore</code>，返回最终 Message/Event record。返回 <code>null</code> 表示忽略该 Session。</p>
-<h2 id="_3">默认透传<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>如果没有精确或显式 <code>*</code> Translator，<code>message-created</code> 且 message ID 非空的 Session 会走默认透传。默认透传会调用 <code>persistElements</code> 持久化媒体，但不理解平台专属自定义事件。</p>
-<h2 id="onebot">内置 OneBot<a class="headerlink" href="#onebot" title="Permanent link">&para;</a></h2>
-<p>OneBot Translator 内置于 <code>koishi-plugin-yesimbot</code>：</p>
+<p>这个页面讲机器人怎样支持不同的聊天平台。</p>
+<h2 id="_2">一句话解释<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>不同平台的消息格式不一样。YesImBot 通过“平台接入层”把 OneBot、Discord 等平台的消息转成统一格式，之后机器人只需要处理一种内部格式。</p>
+<h2 id="_3">内置支持<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>YesImBot 核心内置了 OneBot 平台接入，常见能力包括：</p>
 <ul>
-<li>持久化 <code>img</code> 元素到频道 AssetStore；</li>
-<li>保留其他 Element 的结构；</li>
-<li>把 OneBot <code>notice.poke</code> 转换为 <code>notice.poke</code> EventRecord。</li>
+<li>接收 QQ/OneBot 消息；</li>
+<li>保存图片等媒体；</li>
+<li>把“拍一拍”等事件转成内部事件。</li>
 </ul>
-<h2 id="translator">Translator 的责任<a class="headerlink" href="#translator" title="Permanent link">&para;</a></h2>
-<ul>
-<li>决定平台输入如何变成 Canonical Message/Event；</li>
-<li>下载并持久化媒体字节；</li>
-<li>处理平台专属事件；</li>
-<li>不负责回复发送、频道存储或模型调用。</li>
-</ul>
-<p>Gateway 持有 live Session，并在 Translator 返回后负责被动回复。</p>
+<h2 id="_4">其他平台<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>如果 Koishi 支持某个平台，但没有专门的 YesImBot 接入，普通文本消息仍有可能直接工作。不过媒体、自定义事件等高级能力需要更完整的平台接入。</p>
+<h2 id="_5">给开发者<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>想给新平台写接入，可以看<a href="../../development/platform-translator/">开发指南里的 PlatformTranslator</a>。</p>
 
 
 

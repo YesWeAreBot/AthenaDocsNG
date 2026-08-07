@@ -386,6 +386,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      先认识三个名字
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       1. 安装核心插件
@@ -395,9 +404,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-provider" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 安装一个模型 Provider
+      2. 安装一个模型服务插件
     </span>
   </a>
   
@@ -406,7 +415,7 @@
         <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
-      3. 启用并填写配置
+      3. 在控制台里完成配置
     </span>
   </a>
   
@@ -415,7 +424,7 @@
         <li class="md-nav__item">
   <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
-      4. 验证
+      4. 验证是否成功
     </span>
   </a>
   
@@ -1483,6 +1492,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      先认识三个名字
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       1. 安装核心插件
@@ -1492,9 +1510,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-provider" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 安装一个模型 Provider
+      2. 安装一个模型服务插件
     </span>
   </a>
   
@@ -1503,7 +1521,7 @@
         <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
-      3. 启用并填写配置
+      3. 在控制台里完成配置
     </span>
   </a>
   
@@ -1512,7 +1530,7 @@
         <li class="md-nav__item">
   <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
-      4. 验证
+      4. 验证是否成功
     </span>
   </a>
   
@@ -1538,22 +1556,31 @@
 
 
 <h1 id="_1">快速开始<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>本页只覆盖让 YesImBot 在 Koishi 里跑起来的最小路径。更完整的配置项见<a href="../../reference/configuration/">配置参考</a>。</p>
+<p>这个页面是给第一次使用 YesImBot 的人看的。目标只有一个：让机器人能在 Koishi 里回复你。</p>
+<p>你不需要写代码。下面所有操作都能在 Koishi 控制台里完成；命令行安装只是给喜欢用终端的人准备的替代方式。</p>
+<h2 id="_2">先认识三个名字<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Koishi</strong>：机器人框架，相当于机器人运行的家。</li>
+<li><strong>插件市场</strong>：Koishi 控制台里安装插件的地方，类似手机应用商店。</li>
+<li><strong>模型服务插件</strong>：负责连接 OpenAI、Anthropic、DeepSeek 或 Google 的插件。机器人用哪个模型，由它决定。</li>
+</ul>
 <h2 id="1">1. 安装核心插件<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
-<p>在 Koishi 控制台的插件市场搜索 <code>koishi-plugin-yesimbot</code> 并安装，或在 Koishi 项目目录执行：</p>
+<p>打开 Koishi 控制台，进入“插件市场”，搜索 <code>koishi-plugin-yesimbot</code>，点击安装。</p>
+<p>如果喜欢命令行，也可以这样做：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>yarn<span class="w"> </span>add<span class="w"> </span>koishi-plugin-yesimbot
 </span></code></pre></div>
-<p>YesImBot 需要 Koishi 数据库服务，因此请确保你的 Koishi 已经配置 <code>database</code>。</p>
-<h2 id="2-provider">2. 安装一个模型 Provider<a class="headerlink" href="#2-provider" title="Permanent link">&para;</a></h2>
-<p>v4 不在核心插件里直接维护模型 API。你需要同时安装 Provider 插件，例如：</p>
+<p>YesImBot 需要一个数据库来保存聊天记录和频道信息。Koishi 默认项目一般已经配置好 SQLite，所以多数情况下你不需要额外设置。</p>
+<h2 id="2">2. 安装一个模型服务插件<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>YesImBot 本身不连接任何模型公司。你还得安装一个模型服务插件，告诉机器人可以调用谁的 API。</p>
+<p>最常用的是 OpenAI：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>yarn<span class="w"> </span>add<span class="w"> </span>@yesimbot/koishi-plugin-provider-openai
 </span></code></pre></div>
-<p>当前官方 Provider 包：</p>
+<p>如果你用其他模型服务商，也可以在插件市场搜索：</p>
 <table>
 <thead>
 <tr>
-<th>Provider</th>
-<th>包名</th>
+<th>服务商</th>
+<th>插件</th>
 </tr>
 </thead>
 <tbody>
@@ -1575,32 +1602,44 @@
 </tr>
 </tbody>
 </table>
-<h2 id="3">3. 启用并填写配置<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<p>在 Koishi 中启用 <code>yesimbot</code> 和至少一个 Provider。Provider 的 <code>id</code> 默认是 <code>openai</code>、<code>anthropic</code>、<code>deepseek</code> 或 <code>google</code>，也可以自定义。</p>
-<p><code>chatModel</code> 使用 <code>providerId:modelId</code> 格式，例如：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>openai:gpt-4o
+<h2 id="3">3. 在控制台里完成配置<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>安装完成后，进入 Koishi 的“插件配置”页面：</p>
+<ol>
+<li>启用 <code>yesimbot</code>。</li>
+<li>启用模型服务插件，并填写 API Key。</li>
+<li>在模型列表里确认有你要用的模型，例如 <code>gpt-4o</code>。</li>
+<li>回到 <code>yesimbot</code> 配置，选择聊天模型。</li>
+<li>添加一个“允许响应的频道”。</li>
+</ol>
+<p>“允许响应的频道”的意思是：机器人只在这些频道里接收消息。默认情况下，如果没有添加频道，机器人不会回复任何人。</p>
+<p>如果你愿意直接编辑配置，最小示例是：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">yesimbot</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">chatModel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai:gpt-4o</span><span class="w">  </span><span class="c1"># 选择模型</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">allowedChannels</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">onebot</span><span class="w">      </span><span class="c1"># 平台</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">      </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123456&quot;</span><span class="w">   </span><span class="c1"># 频道 ID</span>
 </span></code></pre></div>
-<p><code>allowedChannels</code> 采用默认拒绝策略。未配置时插件不会处理任何外部 Session。至少添加一条规则后才能收到消息：</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">yesimbot</span><span class="p">:</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">chatModel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai:gpt-4o</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">allowedChannels</span><span class="p">:</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">onebot</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123456&quot;</span>
+<p>想测试时也可以先放行所有频道，但正式使用时不建议这样：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">allowedChannels</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
 </span></code></pre></div>
-<p>规则按 OR 合并，<code>platform</code> 与 <code>channelId</code> 支持 <code>*</code>。省略 <code>isDirect</code> 表示同时匹配私聊和群聊：</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">allowedChannels</span><span class="p">:</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
+<h2 id="4">4. 验证是否成功<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>在允许的频道里 @ 机器人：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>@Athena 你好
 </span></code></pre></div>
-<h2 id="4">4. 验证<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
-<p>在允许的频道中 @ 机器人：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>@Athena 你好
-</span></code></pre></div>
-<p>如果默认 routing 配置下被 @ 会触发回复，说明基础链路已经工作。默认群聊普通消息是 <code>wait</code>，机器人不会每条都回复。</p>
+<p>机器人回复，说明基础配置已经成功。</p>
+<p>默认情况下：</p>
+<ul>
+<li>私聊消息会触发回复；</li>
+<li>群聊里 @ 机器人会触发回复；</li>
+<li>群聊普通消息只会被记录，不会交给模型。</li>
+</ul>
+<p>如果你希望机器人像群友一样自然参与群聊，不建议只把 <code>group</code> 改成 <code>trigger</code>。更好的做法是安装 <a href="../../plugins/will-policy/">Will 策略插件</a>，并使用 <code>willingness</code> 引擎，让机器人按关键词、引用、图片和意愿值判断是否加入。</p>
 <div class="admonition tip">
-<p class="admonition-title">开发分支自动接入</p>
-<p>如果要直接使用当前 <code>dev</code> 分支源码，可以运行仓库内的 <code>scripts/setup-koishi.mjs</code>，具体见<a href="../installation/">安装指南</a>。</p>
+<p class="admonition-title">想直接用开发版源码？</p>
 </div>
+<p>这通常是给开发者用的。普通用户不需要。如果你确实需要，可以看<a href="../installation/">安装指南</a>里的 dev 接入说明。</p>
 
 
 

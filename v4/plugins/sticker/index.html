@@ -883,7 +883,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      配置
+      这个插件解决什么问题
     </span>
   </a>
   
@@ -892,7 +892,16 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      能力
+      安装和配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用能力
     </span>
   </a>
   
@@ -1467,7 +1476,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      配置
+      这个插件解决什么问题
     </span>
   </a>
   
@@ -1476,7 +1485,16 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      能力
+      安装和配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用能力
     </span>
   </a>
   
@@ -1503,23 +1521,27 @@
 
 <h1 id="_1">贴纸管理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>包名：<code>koishi-plugin-yesimbot-sticker-manager</code></p>
-<p>表情包收藏、分类、导入和管理插件。</p>
-<h2 id="_2">配置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">这个插件解决什么问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>让机器人能收藏、分类、搜索和发送表情包。你可以在群里把看到的好图“偷”进表情库，之后让机器人按关键词或分类发送。</p>
+<h2 id="_3">安装和配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>在插件市场安装 <code>koishi-plugin-yesimbot-sticker-manager</code>。</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">yesimbot-sticker-manager</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">scope</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">global</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">scope</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">global</span><span class="w">                  </span><span class="c1"># global=全局库，channel=按频道</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">storagePath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/yesimbot/sticker-manager</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">classificationModel</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">tagMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">sendStaticAsGif</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">stickerElement</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">classificationModel</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">        </span><span class="c1"># 留空使用默认聊天模型</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">tagMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">                 </span><span class="c1"># 是否启用实验性标签</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">sendStaticAsGif</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">          </span><span class="c1"># 静态图是否转 GIF</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">stickerElement</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">           </span><span class="c1"># 是否允许直接输出表情元素</span>
 </span></code></pre></div>
-<h2 id="_3">能力<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_4">常用能力<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>sticker_categories</code> / <code>sticker_search</code> / <code>sticker_steal</code> / <code>sticker_send</code></li>
-<li>开启 <code>tagMode</code> 后提供 <code>sticker_tags</code> 和按 tag 发送</li>
-<li>允许直接输出 <code>&lt;sticker id="..."/&gt;</code> 或 <code>&lt;sticker category="..."/&gt;</code></li>
+<li>查询表情分类；</li>
+<li>搜索表情；</li>
+<li>收藏当前消息里的图片；</li>
+<li>发送指定或随机表情；</li>
+<li>开启 <code>tagMode</code> 后，可以按多个标签发送。</li>
 </ul>
-<p>该插件需要 Koishi database。</p>
+<p>这个插件需要 Koishi 数据库。</p>
 
 
 

@@ -599,9 +599,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#provider-id" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Provider 与模型 ID
+      一句话解释
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#id" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型 ID
     </span>
   </a>
   
@@ -610,16 +619,7 @@
         <li class="md-nav__item">
   <a href="#modelsjson" class="md-nav__link">
     <span class="md-ellipsis">
-      models.json
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      图片能力
+      models.json 是什么
     </span>
   </a>
   
@@ -628,7 +628,40 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      运行时快照
+      图片能力
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="图片能力">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      一步步启用图片
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      控制图片预算
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改模型后
     </span>
   </a>
   
@@ -1483,9 +1516,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#provider-id" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Provider 与模型 ID
+      一句话解释
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#id" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型 ID
     </span>
   </a>
   
@@ -1494,16 +1536,7 @@
         <li class="md-nav__item">
   <a href="#modelsjson" class="md-nav__link">
     <span class="md-ellipsis">
-      models.json
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      图片能力
+      models.json 是什么
     </span>
   </a>
   
@@ -1512,7 +1545,40 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      运行时快照
+      图片能力
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="图片能力">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      一步步启用图片
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      控制图片预算
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改模型后
     </span>
   </a>
   
@@ -1538,59 +1604,82 @@
 
 
 <h1 id="_1">模型服务<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>模型服务位于 <code>ctx.yesimbot.model</code>，负责 Provider 注册、模型解析和 <code>models.json</code> 覆盖。</p>
-<h2 id="provider-id">Provider 与模型 ID<a class="headerlink" href="#provider-id" title="Permanent link">&para;</a></h2>
-<p>每个 Provider 插件通过 <code>ctx.yesimbot.model.register()</code> 注册：</p>
-<div class="language-typescript highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">ctx</span><span class="p">.</span><span class="nx">yesimbot</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">register</span><span class="p">({</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;openai&quot;</span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nx">capabilities</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">chat</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w"> </span><span class="nx">embedding</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">},</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nx">chatModels</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">config</span><span class="p">.</span><span class="nx">chatModels</span><span class="p">,</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nx">embeddingModels</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">config</span><span class="p">.</span><span class="nx">embeddingModels</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="p">[],</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nx">chat</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">modelId</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">chat</span><span class="p">(</span><span class="nx">modelId</span><span class="p">),</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nx">embedding</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">modelId</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">embedding</span><span class="p">(</span><span class="nx">modelId</span><span class="p">),</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">});</span>
+<p>这个页面讲机器人如何选择和使用模型。</p>
+<h2 id="_2">一句话解释<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>YesImBot 不内置任何模型公司。它通过“模型服务插件”连接 OpenAI、Anthropic、DeepSeek、Google 等服务商。插件负责注册模型，配置负责选择用哪个模型。</p>
+<h2 id="id">模型 ID<a class="headerlink" href="#id" title="Permanent link">&para;</a></h2>
+<p>每个模型有一个完整 ID，写法是“服务商:模型”：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>openai:gpt-4o
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>anthropic:claude-sonnet-4-6
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>deepseek:deepseek-v4-pro
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>google:gemini-2.5-pro
 </span></code></pre></div>
-<p>模型完整 ID 是 <code>providerId:modelId</code>：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>openai:gpt-4o
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>anthropic:claude-sonnet-4-6
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>deepseek:deepseek-v4-pro
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>google:gemini-2.5-pro
-</span></code></pre></div>
-<p><code>chatModel</code> 使用这个 ID，也可以使用 <code>models.json</code> 中定义的 alias。</p>
-<h2 id="modelsjson">models.json<a class="headerlink" href="#modelsjson" title="Permanent link">&para;</a></h2>
-<p>文件默认在 <code>basePath/models.json</code>。它负责：</p>
+<p>在 <code>yesimbot</code> 配置里，<code>chatModel</code> 填这个 ID。</p>
+<h2 id="modelsjson">models.json 是什么<a class="headerlink" href="#modelsjson" title="Permanent link">&para;</a></h2>
+<p><code>models.json</code> 是模型能力的补充配置文件，主要用来告诉系统：</p>
 <ul>
-<li><code>defaults.chat</code>：默认聊天模型。</li>
-<li><code>defaults.embedding</code>：默认嵌入模型。</li>
-<li><code>aliases</code>：模型 ID 别名。</li>
-<li><code>chat</code>：覆盖模型能力、上下文/输出限制、隐藏状态、模态。</li>
-<li><code>embedding</code>：覆盖嵌入模型元数据。</li>
+<li>默认使用哪个模型；</li>
+<li>某个 ID 可以叫一个更短的名字；</li>
+<li>模型是否支持图片；</li>
+<li>模型的上下文和输出长度。</li>
 </ul>
+<p>普通用户如果只做文本聊天，通常不需要修改它。</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;defaults&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&quot;chat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openai:gpt-4o&quot;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;aliases&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openai:gpt-4o&quot;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">&quot;chat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">&quot;openai:gpt-4o&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="nt">&quot;modalities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;context&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">128000</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;output&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16384</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="_3">图片能力<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>想让机器人看图，需要：</p>
+<ol>
+<li>模型本身支持图片；</li>
+<li><code>models.json</code> 里声明支持图片；</li>
+<li><code>imageInput</code> 没有关闭。</li>
+</ol>
+<p>模型不会自动翻看历史图片，只会读取当前步骤中明确读取的图片。</p>
+<h3 id="_4">一步步启用图片<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>如果你希望机器人能看图，按下面的步骤操作：</p>
+<ol>
+<li>先确认模型服务插件里的模型 ID，例如 <code>openai:gpt-4o</code>。</li>
+<li>打开 <code>data/yesimbot/models.json</code>。如果文件不存在，就创建一个空文件，内容为 <code>{}</code>。</li>
+<li>在 <code>chat</code> 下添加这个模型，并声明图片输入：</li>
+</ol>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;defaults&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&quot;chat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openai:gpt-4o&quot;</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="p">},</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;aliases&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openai:gpt-4o&quot;</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="p">},</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nt">&quot;chat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nt">&quot;openai:gpt-4o&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">      </span><span class="nt">&quot;modalities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">      </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;context&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">128000</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;output&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16384</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">}</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;chat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&quot;openai:gpt-4o&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span><span class="nt">&quot;modalities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">}</span>
 </span></code></pre></div>
-<h2 id="_2">图片能力<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Provider 本身不声明模态能力。</li>
-<li>只有 <code>models.json</code> 的 <code>modalities.input</code> 能声明模型支持图片。</li>
-<li><code>imageInput</code> 控制全局开关和预算。</li>
-<li>模型没有声明图片能力时，即使 <code>imageInput</code> 开启也只发送文本。</li>
-<li>模型调用不会自动扫描历史图片；图片由 <code>read</code> 工具按预算投影。</li>
-</ul>
-<h2 id="_3">运行时快照<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>活动 Runtime 在创建时快照模型能力、<code>chatModel</code>、<code>visionModel</code>、<code>imageInput</code>、Will、提示词与插件。修改 <code>models.json</code> 后需要重启 Koishi 或等待 Runtime 替换。</p>
+<ol>
+<li>保存文件，然后重启 Koishi。</li>
+<li>确认 <code>imageInput</code> 没有设为 <code>false</code>。</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">模型 ID 不能写错</p>
+<p><code>models.json</code> 里的键必须是完整的“服务商:模型”格式。写错会被忽略，并在启动日志里出现警告。</p>
+</div>
+<h3 id="_5">控制图片预算<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">imageInput</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">maxCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w">            </span><span class="c1"># 最多同时读取 3 张图片</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">maxBytesPerImage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5242880</span><span class="w">   </span><span class="c1"># 单张图片最大 5MB</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">maxTotalBytes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10485760</span><span class="w">     </span><span class="c1"># 本轮图片总共最大 10MB</span>
+</span></code></pre></div>
+<h2 id="_6">修改模型后<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>模型、图片能力和相关配置会在频道开始时被固定下来。修改后建议重启 Koishi，让新设置完整生效。</p>
 
 
 

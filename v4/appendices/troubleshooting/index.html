@@ -1400,18 +1400,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#runtime" class="md-nav__link">
-    <span class="md-ellipsis">
-      消息无法进入 Runtime
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      图片无法读取
+      机器人完全收不到消息
     </span>
   </a>
   
@@ -1420,7 +1411,7 @@
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      会话文件损坏
+      图片无法读取
     </span>
   </a>
   
@@ -1428,6 +1419,15 @@
       
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      会话文件损坏
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       插件工具没有出现
     </span>
@@ -1519,18 +1519,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#runtime" class="md-nav__link">
-    <span class="md-ellipsis">
-      消息无法进入 Runtime
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      图片无法读取
+      机器人完全收不到消息
     </span>
   </a>
   
@@ -1539,7 +1530,7 @@
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      会话文件损坏
+      图片无法读取
     </span>
   </a>
   
@@ -1547,6 +1538,15 @@
       
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      会话文件损坏
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       插件工具没有出现
     </span>
@@ -1574,40 +1574,41 @@
 
 
 <h1 id="_1">故障排查<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>这个页面按“现象”来组织，方便你快速找到对应检查项。开始前建议先打开 Koishi 控制台，观察启动和运行时日志。</p>
 <h2 id="_2">开启详细日志<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">yesimbot</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">logLevel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 </span></code></pre></div>
-<p>在 Koishi 中还可以把 Provider 或插件日志调到 debug。</p>
+<p>在 Koishi 中还可以把模型服务插件或其他插件日志调到 debug。</p>
 <h2 id="_3">模型调用失败<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>检查：</p>
 <ul>
-<li>Provider 是否已启用；</li>
+<li>模型服务插件是否已启用；</li>
 <li><code>apiKey</code> 是否有效；</li>
 <li><code>chatModel</code> 是否为 <code>providerId:modelId</code>；</li>
 <li>网络与代理是否可达；</li>
-<li>模型 ID 是否存在于 Provider 的 <code>chatModels</code>。</li>
+<li>模型 ID 是否存在于模型服务插件的模型列表。</li>
 </ul>
-<h2 id="runtime">消息无法进入 Runtime<a class="headerlink" href="#runtime" title="Permanent link">&para;</a></h2>
+<h2 id="_4">机器人完全收不到消息<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>检查：</p>
 <ul>
-<li><code>allowedChannels</code> 是否匹配；</li>
-<li>shared 频道 <code>assignee</code> 是否为空或不是当前 Bot；</li>
+<li>“允许响应的频道”是否包含当前频道；</li>
+<li>群聊频道 assignee 是否为空或不是当前 Bot；</li>
 <li>是否缺少 Database；</li>
-<li>日志中是否有 <code>gateway.route_failed</code>。</li>
+<li>Koishi 控制台日志中是否有报错。</li>
 </ul>
-<h2 id="_4">图片无法读取<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_5">图片无法读取<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>检查：</p>
 <ul>
-<li>PlatformTranslator 是否把图片写入 AssetStore；</li>
-<li><code>models.json</code> 是否声明 image 模态；</li>
-<li><code>imageInput</code> 是否开启；</li>
+<li>平台插件是否成功保存了图片；</li>
+<li>模型是否支持图片；</li>
+<li>图片输入是否开启；</li>
 <li><code>resourceReadTimeoutMs</code> 是否足够。</li>
 </ul>
-<h2 id="_5">会话文件损坏<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>JSONL 读取会逐行 <code>JSON.parse</code>，语法损坏的行会被跳过并警告。Core 不做语义校验。</p>
-<h2 id="_6">插件工具没有出现<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>确认插件已启用，并且插件确实调用了 <code>registerChannelPlugin()</code>。Runtime 创建后插件变化不会热更新。</p>
+<h2 id="_6">会话文件损坏<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>会话文件按 JSONL 保存。如果文件里有损坏行，系统会跳过并给出警告，但不会自动修复历史文件。</p>
+<h2 id="_7">插件工具没有出现<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>确认插件已启用。如果刚安装或修改了插件但工具没有出现，重启 Koishi 后再试。</p>
 
 
 

@@ -1412,18 +1412,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#assetstore" class="md-nav__link">
+  <a href="#assetstore-artifactstore" class="md-nav__link">
     <span class="md-ellipsis">
-      AssetStore
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#artifactstore" class="md-nav__link">
-    <span class="md-ellipsis">
-      ArtifactStore
+      AssetStore / ArtifactStore
     </span>
   </a>
   
@@ -1448,9 +1439,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#message-first" class="md-nav__link">
+  <a href="#koishi" class="md-nav__link">
     <span class="md-ellipsis">
-      Message-first
+      Koishi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型服务插件
     </span>
   </a>
   
@@ -1460,15 +1469,6 @@
   <a href="#platformtranslator" class="md-nav__link">
     <span class="md-ellipsis">
       PlatformTranslator
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#provider" class="md-nav__link">
-    <span class="md-ellipsis">
-      Provider
     </span>
   </a>
   
@@ -1487,6 +1487,15 @@
   <a href="#will" class="md-nav__link">
     <span class="md-ellipsis">
       Will
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      允许响应的频道
     </span>
   </a>
   
@@ -1544,18 +1553,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#assetstore" class="md-nav__link">
+  <a href="#assetstore-artifactstore" class="md-nav__link">
     <span class="md-ellipsis">
-      AssetStore
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#artifactstore" class="md-nav__link">
-    <span class="md-ellipsis">
-      ArtifactStore
+      AssetStore / ArtifactStore
     </span>
   </a>
   
@@ -1580,9 +1580,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#message-first" class="md-nav__link">
+  <a href="#koishi" class="md-nav__link">
     <span class="md-ellipsis">
-      Message-first
+      Koishi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型服务插件
     </span>
   </a>
   
@@ -1592,15 +1610,6 @@
   <a href="#platformtranslator" class="md-nav__link">
     <span class="md-ellipsis">
       PlatformTranslator
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#provider" class="md-nav__link">
-    <span class="md-ellipsis">
-      Provider
     </span>
   </a>
   
@@ -1619,6 +1628,15 @@
   <a href="#will" class="md-nav__link">
     <span class="md-ellipsis">
       Will
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      允许响应的频道
     </span>
   </a>
   
@@ -1644,26 +1662,29 @@
 
 
 <h1 id="_1">术语表<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>这个页面用更口语的方式解释常见词。普通用户遇到看不懂的词时可以回来查，不需要一次读完。</p>
 <h2 id="agentplugin">AgentPlugin<a class="headerlink" href="#agentplugin" title="Permanent link">&para;</a></h2>
-<p>由插件注册到每个频道 Runtime 的 Agent 扩展，可提供工具、提示词块和生命周期 hooks。</p>
-<h2 id="assetstore">AssetStore<a class="headerlink" href="#assetstore" title="Permanent link">&para;</a></h2>
-<p>频道范围内的字节存储，以内容哈希作为 ID。PlatformTranslator 把入站媒体写入这里。</p>
-<h2 id="artifactstore">ArtifactStore<a class="headerlink" href="#artifactstore" title="Permanent link">&para;</a></h2>
-<p>工具产生的不可变媒体存储，例如 MCP 返回的图片。</p>
+<p>插件用来给机器人增加能力的一种接口。普通用户可以把它理解为“插件的内部挂载点”，不需要直接接触。</p>
+<h2 id="assetstore-artifactstore">AssetStore / ArtifactStore<a class="headerlink" href="#assetstore-artifactstore" title="Permanent link">&para;</a></h2>
+<p>存放图片、文件等资源的本地仓库。AssetStore 存放收到的资源，ArtifactStore 存放工具生成的资源。</p>
 <h2 id="channelruntime">ChannelRuntime<a class="headerlink" href="#channelruntime" title="Permanent link">&para;</a></h2>
-<p>每个频道独立持有的 FIFO、Agent、Will、JSONL、资源与输出消费者。</p>
+<p>每个频道独立的运行状态，负责排队处理消息。普通用户不需要操作它。</p>
 <h2 id="channelscope">ChannelScope<a class="headerlink" href="#channelscope" title="Permanent link">&para;</a></h2>
-<p>公开的频道标识，只包含 <code>type</code>、<code>platform</code>、<code>selfId</code>、<code>channelId</code>。</p>
-<h2 id="message-first">Message-first<a class="headerlink" href="#message-first" title="Permanent link">&para;</a></h2>
-<p>先把消息固定为 Canonical Record，再决定是否触发模型 turn。</p>
+<p>标识“哪个平台、哪个机器人、哪个频道”的一组信息。</p>
+<h2 id="koishi">Koishi<a class="headerlink" href="#koishi" title="Permanent link">&para;</a></h2>
+<p>机器人框架。YesImBot 是运行在 Koishi 里的插件。</p>
+<h2 id="mcp">MCP<a class="headerlink" href="#mcp" title="Permanent link">&para;</a></h2>
+<p>一种连接外部工具服务的协议。安装 MCP 客户端后，机器人可以调用外部服务提供的工具。</p>
+<h2 id="_2">模型服务插件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>连接 OpenAI、Anthropic、DeepSeek、Google 等服务商的插件。它负责让机器人能调用某个模型。</p>
 <h2 id="platformtranslator">PlatformTranslator<a class="headerlink" href="#platformtranslator" title="Permanent link">&para;</a></h2>
-<p>把 Koishi Session 转成 Core Message/Event record 的平台接入层。</p>
-<h2 id="provider">Provider<a class="headerlink" href="#provider" title="Permanent link">&para;</a></h2>
-<p>把 AI SDK 模型注册到 <code>ctx.yesimbot.model</code> 的 Koishi 插件。</p>
+<p>把不同平台消息转成统一格式的接入层。普通用户不需要直接接触。</p>
 <h2 id="runtime-snapshot">Runtime Snapshot<a class="headerlink" href="#runtime-snapshot" title="Permanent link">&para;</a></h2>
-<p>Runtime 创建时冻结的模型、Will、提示词、工具和插件集合。</p>
+<p>频道开始时固定下来的模型、工具和插件设置。修改这些配置后需要重启才能生效。</p>
 <h2 id="will">Will<a class="headerlink" href="#will" title="Permanent link">&para;</a></h2>
-<p>决定消息进入历史后是 <code>wait</code> 还是 <code>trigger</code> 的固定边界。</p>
+<p>机器人决定“先观察”还是“触发回复”的规则。</p>
+<h2 id="_3">允许响应的频道<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>机器人可以接收消息的频道白名单。未配置时机器人不会接收任何频道消息。</p>
 
 
 

@@ -791,7 +791,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      最小配置
+      这个插件解决什么问题
     </span>
   </a>
   
@@ -800,7 +800,25 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      重要边界
+      举个例子
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装和配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      重要说明
     </span>
   </a>
   
@@ -1467,7 +1485,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      最小配置
+      这个插件解决什么问题
     </span>
   </a>
   
@@ -1476,7 +1494,25 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      重要边界
+      举个例子
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装和配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      重要说明
     </span>
   </a>
   
@@ -1503,22 +1539,25 @@
 
 <h1 id="memos">MemOS 记忆<a class="headerlink" href="#memos" title="Permanent link">&para;</a></h1>
 <p>包名：<code>koishi-plugin-yesimbot-memos-client</code></p>
-<p>把 MemOS Cloud 作为长期记忆后端。Core 不负责长期记忆，MemOS 插件负责事实、偏好和跨频道记忆的读写。</p>
-<h2 id="_1">最小配置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_1">这个插件解决什么问题<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>默认情况下，YesImBot 只保存聊天会话，不具备真正意义上的长期记忆。安装 MemOS 后，机器人可以把值得记住的事实、偏好和经历存到 MemOS Cloud，之后在对话里检索使用。</p>
+<h2 id="_2">举个例子<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>用户告诉机器人“我喜欢咖啡”，一段时间后再问“我喜欢喝什么”，机器人可以凭记忆回答，而不是每次重新认识你。</p>
+<h2 id="_3">安装和配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>在插件市场安装 <code>koishi-plugin-yesimbot-memos-client</code>，然后填写：</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">yesimbot-memos-client</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">baseUrl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://memos.memtensor.cn/api/openmem/v1</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">apiKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">your-api-key</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">memoryScope</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auto</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">memoryScope</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auto</span><span class="w">   </span><span class="c1"># auto=群聊按频道、私聊按用户</span>
 </span></code></pre></div>
-<p><code>memoryScope</code> 支持：</p>
+<p><code>memoryScope</code> 决定记忆属于谁：</p>
 <ul>
-<li><code>auto</code>：群聊使用频道记忆，私聊使用用户记忆。</li>
-<li><code>channel</code>：始终使用频道 scope。</li>
-<li><code>user</code>：始终使用用户 scope。</li>
+<li><code>auto</code>：群聊记忆属于频道，私聊记忆属于用户。</li>
+<li><code>channel</code>：始终按频道保存。</li>
+<li><code>user</code>：始终按用户保存。</li>
 </ul>
-<p>插件提供 <code>search_memory</code> / <code>add_memory</code> 等工具，并通过 <code>appendSystemPrompt</code> 告诉 Agent 如何使用。</p>
-<h2 id="_2">重要边界<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>MemOS 是可选插件，不是 Core 的一部分。没有安装该插件时，Agent 没有长期事实记忆。</p>
+<h2 id="_4">重要说明<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>MemOS 是可选的。没有安装它，机器人不会自动获得长期事实记忆。它也不是聊天记录的替代品，而是用来保存“值得记住”的信息。</p>
 
 
 
