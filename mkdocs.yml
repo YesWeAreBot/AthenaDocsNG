@@ -22,6 +22,9 @@ nav:
     - 模型服务: concepts/model.md
     - 工具与资源: concepts/tools.md
     - 平台接入: concepts/platforms.md
+  - 最佳实践:
+    - 拟人发言模板: best-practices/prompt-engineering.md
+    - 搬运分享模板: best-practices/global-brain-mover.md
   - 插件与提供商:
     - 插件总览: plugins/index.md
     - 工作区: plugins/workspace.md
@@ -62,7 +65,6 @@ theme:
     - navigation.instant
     - navigation.expand
     - navigation.sections
-    - navigation.tracking
     - navigation.top
     - search.suggest
     - search.highlight

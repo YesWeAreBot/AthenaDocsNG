@@ -58,6 +58,8 @@ yesimbot.session.status
 
 首次启动会自动创建。直接编辑这些文件，就能调整机器人的人格和行为。
 
+如何拆分 `PERSONA.md` 与 `AGENTS.md`、如何写少样本和工具链，见[拟人发言模板](../best-practices/prompt-engineering.md)。
+
 ## 长期记忆
 
 - [MemOS](../plugins/memos.md)：云端长期记忆。
