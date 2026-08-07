@@ -81,20 +81,22 @@
 }
 
 .md-nav {
-  line-height: 1.4;
+  line-height: 1.25;
 }
 
 .md-nav__title {
   color: var(--yb-teal);
-  font-size: .78rem;
+  font-size: .72rem;
   font-weight: 800;
+  line-height: 1.2;
 }
 
 .md-nav__item .md-nav__link {
   border-radius: 6px;
   color: var(--yb-ink);
-  font-size: .85rem;
-  padding: .28rem .65rem;
+  font-size: .82rem;
+  line-height: 1.25;
+  padding: .18rem .45rem;
 }
 
 .md-nav__item .md-nav__link:hover {
@@ -113,12 +115,28 @@
 
 .md-nav__item--nested > .md-nav__link {
   border-bottom: none;
-  margin: .2rem .65rem;
-  padding-bottom: .35rem;
+  color: var(--yb-teal);
+  font-size: .78rem;
+  font-weight: 800;
+  margin: .12rem .45rem;
+  padding-bottom: .18rem;
 }
 
-.md-nav__item--nested > .md-nav__list {
-  margin-left: .5rem;
+.md-sidebar--primary .md-nav__item--section > .md-nav__link {
+  margin: .12rem 0;
+  padding: .18rem .3rem;
+}
+
+.md-sidebar--primary .md-nav__item--nested > .md-nav > .md-nav__list {
+  border-left: 1px solid var(--yb-line);
+  margin-left: .75rem;
+  padding-left: .3rem;
+}
+
+.md-sidebar--secondary .md-nav__item .md-nav__link {
+  font-size: .78rem;
+  line-height: 1.25;
+  padding: .14rem .4rem;
 }
 
 .home-hero {
