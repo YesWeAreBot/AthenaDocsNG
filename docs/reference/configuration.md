@@ -1,175 +1,147 @@
-# 完整配置参考
+# 配置参考
 
-这是 YesImBot 的完整配置结构。您可以在 Koishi 的配置文件编辑器中找到这些选项。
+本页对应当前 `dev` 分支的 `koishi-plugin-yesimbot` Config Schema。
 
-## 根结构
+## 根配置
 
 ```yaml
-# AI 模型、API密钥和模型组配置
-modelService: { ... }
-
-# 智能体的性格、唤醒和响应逻辑
-agentBehavior: { ... }
-
-# 记忆、工具等扩展能力配置
-capabilities: { ... }
-
-# 资源服务配置
-assetService: { ... }
-
-# 系统缓存、调试等底层设置
-system: { ... }
+yesimbot:
+  basePath: data/yesimbot
+  chatModel: openai:gpt-4o
+  visionModel: ""
+  logLevel: 2
+  allowedChannels: []
+  imageInput: false
+  resourceReadTimeoutMs: 30000
+  will:
+    engine: routing
+    direct: trigger
+    mention: trigger
+    group: wait
+  reply:
+    pacing:
+      charactersPerSecond: 8
+      maxTotalDelayMs: 60000
+    customInnerThought: false
+  session:
+    compact:
+      threshold: 0.9
+      charTokenRatio: 1.8
+      minMessages: 20
+      maxFailures: 3
+      model: ""
+    idle:
+      timeout: 7200000
 ```
 
----
+## 字段说明
 
-## `modelService`
+| 键 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `basePath` | string | `data/yesimbot` | 频道存储、models.json、PERSONA.md 的根目录 |
+| `chatModel` | string | 必填 | 聊天模型完整 ID 或 `models.json` alias |
+| `visionModel` | string | 空 | `describe_image` 使用的识图模型 |
+| `logLevel` | 0-3 | `2` | None / Error / Info / Debug |
+| `allowedChannels` | array | `[]` | 外部 Session 白名单，默认拒绝 |
+| `imageInput` | false \| object | `false` | 图片输入开关与预算 |
+| `resourceReadTimeoutMs` | number | `30000` | 资源读取超时（毫秒） |
+| `will` | object | routing | 消息触发策略 |
+| `reply.pacing` | object | `8/60000` | 被动回复打字节奏 |
+| `reply.customInnerThought` | boolean | `false` | 启用 `<inner_thought>` 协议 |
+| `session.compact` | object | 见下 | 上下文压缩策略 |
+| `session.idle.timeout` | number | `7200000` | 空闲压缩触发时长（毫秒），0 禁用 |
 
-AI 模型、API密钥和模型组配置。
+## allowedChannels
 
-| 键 | 类型 | 描述 | 必填 |
-|---|---|---|---|
-| `providers` | `ProviderConfig[]` | 配置你的 AI 模型提供商。 | 是 |
-| `modelGroups` | `object[]` | 创建模型组，用于故障转移或任务路由。 | 是 |
-| `task.chat` | string | 主要聊天功能使用的模型组名称。 | 是 |
-| `task.embed` | string | 生成文本嵌入时使用的模型组名称。 | 是 |
-| `task.summarize` | string | 对话历史总结时使用的模型组名称。 | 是 |
+```yaml
+allowedChannels:
+  - platform: onebot
+    channelId: "123456"
+  - platform: discord
+    channelId: "dm-123"
+    isDirect: true
+  - platform: "*"
+    channelId: "*"
+```
 
-### `ProviderConfig` (在 `providers` 数组中)
-| 键 | 类型 | 默认值 | 描述 |
-|---|---|---|---|
-| `name` | string | - | **提供商的唯一名称 (必填)**，用于在模型组中引用。 |
-| `enabled` | boolean | `true` | 是否启用此提供商。 |
-| `type` | string | `OpenAI` | 提供商类型, e.g., `OpenAI`, `Anthropic`, `Ollama`, `Google Gemini`。 |
-| `baseURL` | string | - | API 地址。用于代理或本地模型。 |
-| `apiKey` | string | - | 该服务的 API 密钥。 |
-| `proxy` | string | - | 代理地址，如 `http://127.0.0.1:7890`。 |
-| `models` | `ModelConfig[]` | **模型列表 (必填)**。 |
+规则按 OR 合并。省略 `isDirect` 表示同时匹配私聊和群聊。
 
-### `ModelConfig` (在 `models` 数组中)
-| 键 | 类型 | 默认值 | 描述 |
-|---|---|---|---|
-| `modelId` | string | - | **模型ID (必填)**，如 `gpt-4o`。 |
-| `abilities` | `string[]` | `[对话, 函数调用]` | 模型支持的能力。 |
-| `parameters.temperature`| number | `1.36` | 温度参数，控制生成文本的随机性。 |
-| `parameters.topP`| number | `0.8` | TopP 参数，控制核心词汇的范围。 |
-| `parameters.stream`| boolean | `true` | 是否流式传输，可加快首响应时间。 |
-| `parameters.custom`| `object`| - | 其他自定义模型参数。 |
+## imageInput
 
-### 模型组配置步骤
+```yaml
+imageInput:
+  maxCount: 3
+  maxBytesPerImage: 5242880
+  maxTotalBytes: 10485760
+```
 
-模型组的配置选项依赖于已有的模型，因此请**先配置好模型并成功启动一次插件**。
+模型是否支持图片仍由 `models.json` 声明。
 
-1.  **创建模型组**：在配置界面找到「模型组」(`modelGroups`)设置，点击“添加”创建新的一行，并展开进行编辑。
-2.  **填写信息**：
-    -   **模型组名称 (`name`)**：为其命名，例如 `default`。
-    -   **选择模型 (`models`)**：点击“添加”，从下拉列表中选择要加入该组的模型。此列表会自动显示您在`providers`中已配置好的可用模型。
-3.  **保存并应用**：保存配置并重载插件。新的模型组会立即生效，并可以被`task`任务分配所使用。
+## will
 
-!!! tip "配置技巧"
-    无论是选择模型还是模型组，都强烈建议**从下拉列表中选择预设项**，而不是手动输入名称，以避免因拼写错误导致配置失败。
+### routing
 
----
+```yaml
+will:
+  engine: routing
+  direct: trigger
+  mention: trigger
+  group: wait
+```
 
-## `agentBehavior`
+### willingness
 
-智能体的性格、唤醒和响应逻辑。
+```yaml
+will:
+  engine: willingness
+  probabilityThreshold: 55
+  decayHalfLifeSeconds: 600
+  replyCost: 35
+```
 
-| 键 | 类型 | 描述 |
-|---|---|---|
-| `arousal` | `ArousalConfig` | 唤醒条件，决定在哪些群聊中响应。 |
-| `willingness` | `WillingnessConfig` | 响应意愿，决定何时响应。 |
-| `heartbeat` | `number` | 每轮对话最大心跳次数 (默认 5)。 |
-| `timeout` | `number` | 每轮对话最大超时时间 (秒, 默认 60)。 |
-| `prompt` | `object` | 提示词模板。 |
-| `vision` | `VisionConfig` | 视觉与多模态配置。 |
-| `newMessageStrategy` | `string` | 新消息处理策略 (默认 `skip`)。 |
-| `deferredProcessingTime` | `number` | 延迟处理策略的安静期时间 (毫秒, 默认 10000)。 |
+## session.compact
 
-### `ArousalConfig`
-| 键 | 类型 | 默认值 | 描述 |
-|---|---|---|---|
-| `allowedChannelGroups`| `object[][]`| `[]` | **允许 Agent 响应的频道 (必填)**。 |
-| `debounceMs` | number | `1000` | 消息防抖时间 (毫秒)。 |
+| 键 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `threshold` | number | `0.9` | 触发压缩的 token 占比 |
+| `charTokenRatio` | number | `1.8` | 字符与 token 估算比例 |
+| `minMessages` | number | `20` | 最少消息数 |
+| `maxFailures` | number | `3` | 连续失败上限 |
+| `model` | string | 空 | 压缩模型，空则使用 `chatModel` |
 
-### `WillingnessConfig`
-包含 `personality` 预设选项，以及 `base`, `attribute`, `interest`, `lifecycle` 四个部分的详细配置。详见[意愿系统](../concepts/willingness-system.md)章节。
+## models.json
 
-### `VisionConfig`
-| 键 | 类型 | 默认值 | 描述 |
-|---|---|---|---|
-| `enabled` | boolean | `false` | 是否启用视觉功能。 |
-| `allowedImageTypes`| `string[]`| `["image/jpeg", "image/png"]` | 允许的图片MIME类型。 |
-| `maxImagesInContext`| number | `3` | 上下文中允许的最大图片数。 |
-| `imageLifecycleCount`| number | `2` | 图片在上下文中的生命周期。 |
-| `detail` | string | `low` | 图片细节程度 (`low`, `high`, `auto`)。 |
+```json
+{
+  "defaults": {
+    "chat": "openai:gpt-4o",
+    "embedding": "openai:text-embedding-3-small"
+  },
+  "aliases": {
+    "main": "openai:gpt-4o"
+  },
+  "chat": {
+    "openai:gpt-4o": {
+      "name": "GPT-4o",
+      "toolCall": true,
+      "reasoning": true,
+      "hidden": false,
+      "limit": {
+        "context": 128000,
+        "output": 16384
+      },
+      "modalities": {
+        "input": ["text", "image"],
+        "output": ["text"]
+      }
+    }
+  },
+  "embedding": {
+    "openai:text-embedding-3-small": {
+      "hidden": false
+    }
+  }
+}
+```
 
----
-
-## `capabilities`
-
-记忆、工具等扩展能力配置。
-
-| 键 | 类型 | 描述 |
-|---|---|---|
-| `memory` | `MemoryConfig` | 记忆能力配置。 |
-| `tools` | `ToolServiceConfig` | 工具能力配置。 |
-| `history` | `HistoryConfig` | 对话历史记录的管理方式。 |
-
-### `MemoryConfig`
-| 键 | 类型 | 默认值 | 描述 |
-|---|---|---|---|
-| `coreMemoryPath`| string | `data/yesimbot/memory/core`| 核心记忆 `.md` 文件的存放目录。 |
-| `backup.enabled`| boolean| `false`| 是否启用归档记忆备份。 |
-| `backup.backupPath`| string | `data/yesimbot/memory/backup`| 备份文件存放路径。 |
-
-### `ToolServiceConfig`
-| 键 | 类型 | 默认值 | 描述 |
-|---|---|---|---|
-| `extra` | `object` | `{}` | 用于存放各工具扩展的独立配置。 |
-| `advanced.maxRetry`| number| `3`| 工具执行失败最大重试次数。 |
-| `advanced.retryDelay`| number| `1000`| 重试延迟时间(毫秒)。 |
-| `advanced.timeout`| number| `10000`| 工具执行超时时间(毫秒)。 |
-
-### `HistoryConfig`
-| 键 | 类型 | 默认值 | 描述 |
-|---|---|---|---|
-| `summarization.enabled`| boolean| `true` | 是否启用对话历史自动总结功能。 |
-| `summarization.prompt`| string| (默认模板) | 用于生成对话摘要的提示词。 |
-| `summarization.triggerCount`| number| `6` | 累计多少片段后触发一次总结。 |
-| `summarization.minTriggerMessages`| number| `50` | 单次最少压缩的消息数量。 |
-| `fullContextSegmentCount`| number| `2` | 保留的最新“完整”对话片段数。 |
-| `maxMessages`| number| `30`| 上下文最大消息数。 |
-| `inactivityTimeoutSec`| number| `1800`| 片段在多长时间内没有新消息后被关闭（秒）。 |
-| `recall.private`| number| `3`| 私聊场景下召回用户画像的数量。 |
-| `recall.guild`| number| `8`| 群组场景下召回用户画像的数量。 |
-| `recall.minConfidence`| number| `0.5`| 最低置信度。 |
-| `dataRetentionDays`| number| `30`| 历史数据在数据库中保留天数。 |
-| `cleanupIntervalSec`| number| `60`| 后台清理任务频率(秒)。 |
-
----
-
-## `assetService`
-资源服务配置。
-
-| 键 | 类型 | 默认值 | 描述 |
-|---|---|---|---|
-| `storagePath` | string | `data/assets` | 资源本地存储路径。 |
-| `driver` | string | `local` | 存储驱动类型。目前仅支持本地存储。 |
-| `autoClearEnabled` | boolean | `true` | 是否启用自动清理过期资源的功能。 |
-| `autoClearIntervalHours` | number | `24` | 自动清理任务的执行周期（单位：小时）。 |
-| `maxAssetAgeDays` | number | `30` | 资源最长保留天数（根据最后使用时间判断）。 |
-| `endpoint` | string | - | 公开访问端点 URL (可选)。配置后，资源将通过此 URL 对外提供。 |
-
----
-
-## `system`
-系统缓存、调试等底层设置。
-
-| 键 | 类型 | 默认值 | 描述 |
-|---|---|---|---|
-| `cache.ttlSeconds`| number | `21600` | 缓存存活时间 (秒)。 |
-| `cache.maxSize` | number | `1000` | 缓存最大项目数。 |
-| `logging.level` | string | `info` | 日志级别 (`trace`, `debug`, `info`, `warn`, `error`)。 |
-| `debug.enable`| boolean | `false`| 启用全局调试模式，会在控制台输出详细信息。 |
-| `debug.uploadDump`| boolean | `false`| 应用出错时自动上报脱敏日志给开发者。 |
+未知模型覆盖项会被忽略并记录 warning。

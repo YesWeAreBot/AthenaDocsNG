@@ -1,32 +1,41 @@
 # 术语表
 
-本页集中解释了 YesImBot 项目中的核心和专有概念，帮助您快速查阅。
+## AgentPlugin
 
----
+由插件注册到每个频道 Runtime 的 Agent 扩展，可提供工具、提示词块和生命周期 hooks。
 
-#### Agent (智能体)
-指由 YesImBot 驱动的、具有特定人格、记忆和行为能力的机器人实例。
+## AssetStore
 
-#### Core Memory (核心记忆)
-机器人的长期记忆和人格基石，存储着永不忘记的基础知识和设定。通常通过用户编写的 Markdown (`.md`) 文件来定义。
+频道范围内的字节存储，以内容哈希作为 ID。PlatformTranslator 把入站媒体写入这里。
 
-#### Function Calling (函数调用)
-大语言模型的一项能力，指模型在需要时，能以结构化的格式（如 JSON）请求调用外部函数（即工具），而不仅仅是生成文本。这是 YesImBot 工具系统的技术基础。
+## ArtifactStore
 
-#### MCP (Model Context Protocol)
-一种标准化的协议，允许 YesImBot 与外部的、任何语言编写的“工具服务器”进行通信，并动态地将这些服务器提供的工具注册到自己的工具系统中。
+工具产生的不可变媒体存储，例如 MCP 返回的图片。
 
-#### Model Group (模型组)
-一个或多个 AI 模型的有序集合。主要用于两个目的：1. **故障转移**：当组内的首选模型调用失败时，自动尝试下一个备用模型。2. **任务路由**：为不同任务（如聊天、摘要）分配不同的模型组。
+## ChannelRuntime
 
-#### Provider (提供商)
-连接具体 AI 服务（如 OpenAI, Anthropic, Ollama 等）的接口配置。一个提供商可以包含多个模型。
+每个频道独立持有的 FIFO、Agent、Will、JSONL、资源与输出消费者。
 
-#### Tool (工具)
-AI 可调用的、用于执行特定任务的函数。工具使得 Agent 能够与外部世界交互，执行超越纯文本对话的操作，如搜索、计算、执行代码等。
+## ChannelScope
 
-#### Willingness (意愿)
-一个动态计算的综合评分，它决定了 Agent 是否会对当前收到的消息做出响应。YesImBot 的四层意愿系统是其实现“人性化”交互的核心。
+公开的频道标识，只包含 `type`、`platform`、`selfId`、`channelId`。
 
-#### WorldStateService (世界状态服务)
-负责管理对话历史（短期和中期记忆）的核心服务。它通过记录对话、自动生成摘要等方式，为 Agent 提供连贯的上下文，并防止上下文长度超出模型限制。
+## Message-first
+
+先把消息固定为 Canonical Record，再决定是否触发模型 turn。
+
+## PlatformTranslator
+
+把 Koishi Session 转成 Core Message/Event record 的平台接入层。
+
+## Provider
+
+把 AI SDK 模型注册到 `ctx.yesimbot.model` 的 Koishi 插件。
+
+## Runtime Snapshot
+
+Runtime 创建时冻结的模型、Will、提示词、工具和插件集合。
+
+## Will
+
+决定消息进入历史后是 `wait` 还是 `trigger` 的固定边界。

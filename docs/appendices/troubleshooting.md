@@ -1,47 +1,46 @@
-# 故障排除
+# 故障排查
 
-**问题：控制台出现 `401 Unauthorized` 或 `Invalid API Key` 错误。**
-
--   **原因:** 您的 `modelService.providers` 中配置的 `apiKey` 不正确、已失效或额度用尽。
--   **解决:**
-
-    1.  前往对应的模型提供商（如 OpenAI, Anthropic）的后台，确认您的 API Key 是否有效且有可用额度。
-    2.  仔细核对配置文件中的 `apiKey` 是否有复制粘贴错误，或遗漏了 `sk-` 前缀。
-    3.  如果您使用了代理，请确认代理服务器是否正确转发了认证头。
-
----
-
-**问题：机器人回复 `[Error: Request timed out]` 或类似超时信息。**
-
--   **原因:**
-    1.  您的网络到模型提供商的 API 服务器之间的连接速度慢或不稳定。
-    2.  您本地运行的模型（如 Ollama）响应缓慢或未启动。
-    3.  工具执行时间过长。
--   **解决:**
-    1.  在 `agentBehavior` 中适当增加 `timeout` 的值（单位：秒）。
-    2.  如果是工具超时，在 `capabilities.tools.advanced` 中增加 `timeoutMs` 的值（单位：毫秒）。
-    3.  检查您的网络连接。如果可能，为模型提供商配置 `proxy`。
-    4.  如果是本地模型，请检查运行该模型的机器负载，并确认服务已启动。
-
----
-
-**问题：修改配置后不生效。**
-
--   **原因:**
-    1.  如果您手动修改 `yaml` 或 `.json` 配置文件，需要重启 Koishi 或在插件配置页面点击对应插件的“重载”按钮。
-    2.  如果您使用 `conf.set` 指令修改，该修改是运行时的临时修改，不会自动写入文件。重启 Koishi 后会丢失。
--   **解决:**
-    1.  推荐在 Koishi 的 WebUI 中修改配置，保存后会自动重载。
-    2.  使用 `conf.set` 做临时调整后，如果希望持久化，仍需在 WebUI 保存一次。
-
-**终极排错技巧：开启 Debug 模式**
-将以下配置应用，可以获得最详细的日志输出，有助于定位绝大多数问题。
+## 开启详细日志
 
 ```yaml
-system:
-  logging:
-    level: debug
-  debug:
-    enable: true
+yesimbot:
+  logLevel: 3
 ```
-然后观察 Koishi 控制台的输出。您将能看到详细的意愿计算、Prompt 构建、模型请求和响应等全过程信息。
+
+在 Koishi 中还可以把 Provider 或插件日志调到 debug。
+
+## 模型调用失败
+
+检查：
+
+- Provider 是否已启用；
+- `apiKey` 是否有效；
+- `chatModel` 是否为 `providerId:modelId`；
+- 网络与代理是否可达；
+- 模型 ID 是否存在于 Provider 的 `chatModels`。
+
+## 消息无法进入 Runtime
+
+检查：
+
+- `allowedChannels` 是否匹配；
+- shared 频道 `assignee` 是否为空或不是当前 Bot；
+- 是否缺少 Database；
+- 日志中是否有 `gateway.route_failed`。
+
+## 图片无法读取
+
+检查：
+
+- PlatformTranslator 是否把图片写入 AssetStore；
+- `models.json` 是否声明 image 模态；
+- `imageInput` 是否开启；
+- `resourceReadTimeoutMs` 是否足够。
+
+## 会话文件损坏
+
+JSONL 读取会逐行 `JSON.parse`，语法损坏的行会被跳过并警告。Core 不做语义校验。
+
+## 插件工具没有出现
+
+确认插件已启用，并且插件确实调用了 `registerChannelPlugin()`。Runtime 创建后插件变化不会热更新。

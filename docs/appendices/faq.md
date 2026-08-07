@@ -1,32 +1,39 @@
-# 常见问题 (FAQ)
+# 常见问题
 
-**Q: 为什么我的机器人不说话？**
+## 为什么机器人不回复？
 
-**A:** 这是最常见的问题。请按以下步骤排查：
+按顺序检查：
 
-1.  **检查唤醒配置:** 确认机器人响应的当前群组或私聊已在 `agentBehavior.arousal.allowedChannelGroups` 中正确配置。这是最常见的原因。
-2.  **使用@提及:** 在群里 `@` 机器人，这是最强的唤醒信号。如果 `@` 了还不回复，说明模型服务或API Key配置可能有问题。
-3.  **启用调试模式:** 将 `system.debug.enable` 设为 `true`，并将 `system.logging.level` 设为 `debug`。此时，每次收到消息，Koishi 控制台都会打印详细的意愿值计算过程，方便您诊断是哪个环节的分数不够。
-4.  **检查模型服务:** 确认您的 `modelService` 配置正确，`apiKey` 有效，网络通畅。查看控制台是否有 API 报错。
+1. `allowedChannels` 是否包含当前频道。
+2. shared 频道是否配置了 Koishi assignee。
+3. `chatModel` 是否指向已注册 Provider 的模型。
+4. 模型 API Key 是否有效。
+5. 当前 Will 配置是否把该场景设为 `wait`。
 
----
+## 群聊普通消息不回复
 
-**Q: 如何添加一个新的 AI 模型？**
+这是默认行为。默认 routing 下 `group: wait`。如果希望群聊普通消息也触发，需要修改：
 
-**A:** 分三步：
+```yaml
+will:
+  engine: routing
+  group: trigger
+```
 
-1.  **添加至提供商:** 在 `modelService.providers` 中找到对应的提供商（或新建一个），在其 `models` 列表中加入你的新模型 `modelId`。
-2.  **添加至模型组:** 在 `modelService.modelGroups` 中创建一个新的模型组，或者在你希望使用该模型的现有模型组的 `models` 列表中，添加 `{ providerName: '...', modelId: '...' }`。
-3.  **分配任务:** 在 `modelService.task` 中，将 `chat` 或其他任务指向你刚才配置好的模型组名称。
+## 配置改完不生效
 
----
+Runtime 在创建时快照配置。停止并重启 Koishi，或等待 Runtime 被替换。Core 不提供 `reload()`。
 
-**Q: v3 版本和旧版 (v2/Athena) 的配置完全不兼容吗？**
+## models.json 覆盖被忽略
 
-**A:** 是的，**完全不兼容**。v3 版本对所有核心系统（意愿、记忆、模型）和配置结构都进行了彻底重构。如果您从旧版本升级，必须重新配置。请参考本篇新文档，不要再使用旧的配置。
+模型完整 ID 必须与 Provider 注册的 ID 完全一致。未知模型覆盖项会被记录 warning 并忽略。
 
----
+## 图片没有发送给模型
 
-**Q: 我可以将机器人的人格/记忆备份吗？**
+- 确认 `models.json` 声明了该模型的 `modalities.input: ["image"]`。
+- 确认 `imageInput` 没有设为 `false`。
+- 图片需要通过 `read` 工具读取并受预算控制。
 
-**A:** 可以。机器人的人格和核心记忆都存储在您于 `capabilities.memory.coreMemoryPath` 指定的目录下的 `.md` 文件中。您只需要备份这些文件即可。此外，可以开启 `capabilities.memory.backup.enabled` 来定时备份归档记忆。
+## v3 配置能迁移吗？
+
+不能自动迁移。v3 的 `modelService`、`agentBehavior`、`capabilities` 已重写，请参考[从 v3 升级](../getting-started/migration.md)。

@@ -1,75 +1,48 @@
 # 安装指南
 
-## 前置要求
+## 环境要求
 
-在安装 YesImBot 之前，请确保您的环境满足以下要求：
+- Node.js 18 或更高版本
+- Koishi 4.18 或更高版本
+- Koishi Database 服务，例如 SQLite、MySQL 或 PostgreSQL
+- 可访问模型 API 的网络环境
 
--   ✅ 您需要一个正在运行的 Koishi 实例（版本 4.18.7 或更高）。
--   ✅ Node.js 版本 18 或更高。
--   ✅ 熟悉 Koishi 的基本操作，能够进入控制台或编辑配置文件。
--   ✅ 已配置 Koishi 数据库服务（MySQL、PostgreSQL、SQLite 等），这是记忆和历史功能所必需的。
+## 方式一：Koishi 插件市场
 
-!!! info "Koishi 新手？"
-    如果您还没有安装 Koishi，请先访问 [Koishi 官方文档](https://koishi.chat/) 了解如何安装和配置。
+1. 打开 Koishi 控制台，进入插件市场。
+2. 搜索 `yesimbot`。
+3. 安装 `koishi-plugin-yesimbot`。
+4. 按需安装 Provider 和可选插件。
 
-## 第一步：安装核心插件
-
-`koishi-plugin-yesimbot` 是运行一切功能的基础。
-
-### 方式一：通过 Koishi 插件市场 (推荐)
-
-1.  在 Koishi 控制台的左侧菜单中，点击 "插件市场"。
-2.  在搜索框中输入 `yesimbot`。
-3.  找到 `koishi-plugin-yesimbot` 并点击“安装”。
-
-### 方式二：通过命令行
-
-在您的 Koishi 项目目录下，执行以下命令：
+## 方式二：命令行安装
 
 ```bash
-npm install koishi-plugin-yesimbot
+yarn add koishi-plugin-yesimbot
+yarn add @yesimbot/koishi-plugin-provider-openai
 ```
 
-## 第二步：安装扩展插件 (按需)
+然后在 `koishi.yml` 或 Koishi 控制台启用插件。
 
-YesImBot 的许多高级功能由扩展插件提供。请根据您的需求选择安装。
+## 方式三：接入当前 dev 源码
 
-### 代码解释器 (Code Interpreter)
+如果你希望直接使用 `dev` 分支代码，可以把 YesImBot monorepo 克隆到本地，并运行：
 
--   **功能:** 允许 AI 在一个安全的沙箱环境中执行 JavaScript 代码，进行计算、数据处理等操作。
--   **安装:**
-    -   插件市场搜索：`yesimbot-extension-code-interpreter`
-    -   命令行：`npm install koishi-plugin-yesimbot-extension-code-interpreter`
+```bash
+git clone https://github.com/YesWeAreBot/YesImBot.git
+cd YesImBot
+yarn install
+node scripts/setup-koishi.mjs --create-app ../my-koishi
+```
 
-### 好感度系统 (Favor System)
+脚本会创建 Koishi 应用、构建插件、写入 workspace 配置并生成 `group:yesimbot`。之后从 YesImBot 仓库启动：
 
--   **功能:** 为机器人添加好感度管理能力，AI 可以根据交互调整与用户的好感度。
--   **安装:**
-    -   插件市场搜索：`yesimbot-extension-favor`
-    -   命令行：`npm install koishi-plugin-yesimbot-extension-favor`
+```bash
+yarn koishi:start
+```
 
-### 模型上下文协议 (MCP)
+!!! warning "dev 分支"
+    `dev` 是开发分支，配置和 API 可能随重构变化。本版本文档以当前 `dev` 代码为准。
 
--   **功能:** 允许连接外部工具服务器，动态扩展 AI 的工具集。
--   **安装:**
-    -   插件市场搜索：`yesimbot-extension-mcp`
-    -   命令行：`npm install koishi-plugin-yesimbot-extension-mcp`
+## 启用可选插件
 
-!!! tip "扩展插件安装建议"
-    -   **新手用户:** 推荐安装**代码解释器**，它能显著增强 AI 的实用能力。
-    -   **社群运营:** **好感度系统**能让机器人更好地融入社群。
-    -   **高级开发者:** **MCP** 扩展为系统集成提供了无限可能性。
-
-## 第三步：启用插件
-
-1.  安装完成后，前往 Koishi 控制台的“插件配置”页面。
-2.  在插件列表中找到 `yesimbot` 及您安装的扩展。
-3.  点击开关以启用插件。
-
-启用后，请查看 Koishi 控制台的日志，确认没有与插件相关的错误信息。
-
-## 下一步
-
-恭喜您，安装已经完成！现在，请移步到下一章节，完成机器人的首次配置。
-
-➡️ **[快速上手](quick-start.md)**
+可选插件通过 `ctx.yesimbot.registerChannelPlugin()` 向每个频道的 Runtime 注入 AgentPlugin。安装后按需在 Koishi 控制台启用即可。完整列表见[插件总览](../plugins/index.md)。

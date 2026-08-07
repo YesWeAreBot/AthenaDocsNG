@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="YesImBot Athena">
+  <rect width="64" height="64" rx="14" fill="#0f766e"/>
+  <path d="M16 45 27 18h10l11 27h-9.2l-2-5.6H27.2l-2 5.6H16Zm14.2-13h3.6L32 24.6 30.2 32Z" fill="#f59e0b"/>
+  <path d="M44 16h10v8h-3.2v20H44V16Z" fill="#f8fafc"/>
+</svg>

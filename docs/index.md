@@ -1,36 +1,76 @@
-# 欢迎来到 YesImBot 的世界
+# YesImBot v4 官方文档
 
-YesImBot 是一个为 [Koishi](https://koishi.chat/) 框架设计的、高度可扩展的、旨在赋予聊天机器人“灵魂”的插件。
+<div class="home-hero">
 
-## 机械壳，人类心
+## 让语言模型自然融入群聊
 
-我们致力于打破传统聊天机器人机械、被动的交互模式，创造一个能够自然融入群聊环境、像真人一样思考和交流的 AI 伙伴。
+YesImBot v4 是一套基于 Koishi 的 message-first Agent Runtime。它不再把每条消息都当成一次“提问”，而是按频道持续观察对话、判断何时回应，并通过工具和插件扩展行动能力。
 
-它不仅仅是一个问答工具，更是一个具备性格、记忆和动态响应能力的智能体。通过 YesImBot，您可以将一个通用的大语言模型（LLM）转变为一个独一无二的、专属于您的社群的虚拟成员。
+</div>
 
-## 主要特性
+## 核心能力
 
--   **🤖 动态意愿系统:** 独创的四层意愿模型，让机器人拥有“人性化”的发言逻辑，在适当的时机自然地加入对话。
--   **🧠 高级记忆管理:** 结合长期核心记忆与自动摘要的短期记忆，确保对话的连贯性和深度。
--   **☁️ 强大的模型服务:** 支持多种 LLM 提供商，可设置复杂的故障转移和负载均衡策略。
--   **🛠️ 可扩展的工具集:** 通过插件化的工具系统，可以无限扩展机器人的能力边界，执行搜索、计算、代码执行等复杂任务。
--   **⚙️ 深度可定制:** 从性格、提示词到每一个响应细节，几乎所有方面都可进行精细配置。
--   **🚀 易于上手的配置:** 提供创新的交互式 `setup` 指令，引导用户轻松完成初始配置。
+<div class="feature-grid">
+
+<div class="feature-card">
+<strong>Message-first 运行时</strong>
+<p>消息按频道进入 FIFO，忙时加入当前 turn，避免多个模型流同时消费同一个频道上下文。</p>
+</div>
+
+<div class="feature-card">
+<strong>稳定的 Will 边界</strong>
+<p>routing 按私聊、提及和群聊决定 wait/trigger；willingness 提供可解释的意愿值与衰减模型。</p>
+</div>
+
+<div class="feature-card">
+<strong>插件与 Provider 生态</strong>
+<p>AgentPlugin 扩展工具、提示词和生命周期；Provider 只负责把 AI SDK 模型注册进 `ctx.yesimbot.model`。</p>
+</div>
+
+<div class="feature-card">
+<strong>本地可验证的会话与资源</strong>
+<p>频道目录保存 manifest、JSONL 会话、assets、artifacts、workspace 和插件数据，不依赖平台在线状态重放历史。</p>
+</div>
+
+</div>
 
 ## 快速通道
 
-| 入门指南 | 核心功能 | 开发指南 |
-| :--- | :--- | :--- |
-| ➡️ **[安装指南](getting-started/installation.md)** | 🧠 **[意愿系统](concepts/willingness-system.md)** | 🔧 **[扩展开发](development/extension-development.md)** |
-| ➡️ **[快速上手](getting-started/quick-start.md)** | 💾 **[记忆与世界状态](concepts/memory-system.md)** | 📋 **[配置参考](reference/configuration.md)** |
-| 📖 **[项目概览](getting-started/overview.md)** | 🛠️ **[工具系统](concepts/tool-system.md)** | 📝 **[指令参考](reference/commands.md)** |
-| | 📨 **[消息处理策略](concepts/message-processing.md)** | |
+<div class="quick-grid">
+
+<a class="quick-card" href="getting-started/quick-start.md"><strong>快速开始</strong><span>5 分钟完成基础配置并开始对话。</span></a>
+
+<a class="quick-card" href="concepts/architecture.md"><strong>架构总览</strong><span>了解 Gateway、RuntimeManager、ChannelRuntime 与 agent-runtime 的边界。</span></a>
+
+<a class="quick-card" href="reference/configuration.md"><strong>配置参考</strong><span>查看当前 v4 配置项与 `models.json` 用法。</span></a>
+
+<a class="quick-card" href="plugins/index.md"><strong>插件总览</strong><span>浏览工作区、MCP、搜索、记忆和平台工具插件。</span></a>
+
+<a class="quick-card" href="development/overview.md"><strong>开发指南</strong><span>开发 AgentPlugin、PlatformTranslator 与模型 Provider。</span></a>
+
+<a class="quick-card" href="development/versioning.md"><strong>多版本文档</strong><span>使用 Mike 发布 v3 与 v4 等历史版本。</span></a>
+
+</div>
+
+## 数据流
+
+```mermaid
+graph LR
+  S[Koishi Session] --> G[Gateway]
+  G --> A[AssetStore]
+  G --> R[Message Record]
+  R --> M[RuntimeManager]
+  M --> C[ChannelRuntime FIFO]
+  C --> W[Will Decision]
+  W --> AG[Agent]
+  AG --> T[Tools Plugins Model]
+  AG --> O[OutputQueue]
+  O --> D[Passive Delivery]
+```
 
 ## 项目信息
 
--   **当前版本:** 3.0.0-beta.4
--   **项目主页:** [GitHub - YesWeAreBot/YesImBot](https://github.com/YesWeAreBot/YesImBot)
--   **许可证:** MIT
-
-!!! tip "开始您的旅程"
-    如果您是第一次使用 YesImBot，我们强烈建议您从 **[安装指南](getting-started/installation.md)** 开始，然后通过 **[快速上手](getting-started/quick-start.md)** 完成您的首次配置。
+- 当前文档面向 `dev` 分支实现的 v4 架构。
+- 代码仓库：[YesWeAreBot/YesImBot](https://github.com/YesWeAreBot/YesImBot)
+- 文档仓库：[YesWeAreBot/AthenaDocsNG](https://github.com/YesWeAreBot/AthenaDocsNG)
+- 许可证：MIT

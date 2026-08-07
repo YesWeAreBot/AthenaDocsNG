@@ -1,89 +1,99 @@
-# 网站信息
-site_name: YesImBot 官方文档
-site_description: 让语言大模型机器人激活灵魂的 Koishi 插件
+site_name: YesImBot v4 官方文档
+site_description: 让大语言模型自然融入群聊的 Koishi Agent Runtime
 site_url: https://docs.yesimbot.chat/
 
-# 文档仓库
 repo_name: YesWeAreBot/AthenaDocsNG
 repo_url: https://github.com/YesWeAreBot/AthenaDocsNG
 edit_uri: edit/main/docs/
 
-# 导航结构
+copyright: Copyright &copy; YesWeAreBot
+
 nav:
   - 首页: index.md
   - 入门指南:
-    - 概述: getting-started/overview.md
-    - 安装指南: getting-started/installation.md
-    - 快速上手: getting-started/quick-start.md
+    - 快速开始: getting-started/quick-start.md
+    - 安装: getting-started/installation.md
+    - 基础配置: getting-started/configuration.md
+    - 从 v3 升级: getting-started/migration.md
   - 核心概念:
-    - 智能体架构: concepts/agent-architecture.md
-    - 意愿系统: concepts/willingness-system.md
-    - 记忆与世界状态: concepts/memory-system.md
-    - 模型服务: concepts/model-service.md
-    - 工具系统: concepts/tool-system.md
-  - 配置与参考:
-    - 指令参考: reference/commands.md
-    - 完整配置参考: reference/configuration.md
-  - 扩展插件:
-    - 代码解释器: extensions/code-interpreter.md
-    - 好感度系统: extensions/favor.md
-    - MCP 协议: extensions/mcp.md
-  - 进阶玩法:
-    - 定制提示词: advanced/custom-prompts.md
-    - 性能与成本优化: advanced/performance-optimization.md
-  - 最佳实践:
-    - 场景范例: best-practices/scenarios.md
+    - 架构总览: concepts/architecture.md
+    - 消息与 Will: concepts/will.md
+    - 会话与记忆: concepts/memory.md
+    - 模型服务: concepts/model.md
+    - 工具与资源: concepts/tools.md
+    - 平台接入: concepts/platforms.md
+  - 插件与提供商:
+    - 插件总览: plugins/index.md
+    - 工作区: plugins/workspace.md
+    - MCP 客户端: plugins/mcp.md
+    - MemOS 记忆: plugins/memos.md
+    - 全局脑: plugins/global-brain.md
+    - 搜索服务: plugins/search.md
+    - OneBot 工具: plugins/onebot-utils.md
+    - 贴纸管理: plugins/sticker.md
+    - 角色卡: plugins/roleplay.md
+    - 定时任务: plugins/schedule.md
+    - Will 策略: plugins/will-policy.md
+    - 模型提供商: plugins/providers.md
+  - 配置与命令:
+    - 配置参考: reference/configuration.md
+    - 命令参考: reference/commands.md
+    - 消息元素: reference/message-elements.md
+  - 开发指南:
+    - 开发总览: development/overview.md
+    - AgentPlugin: development/agent-plugin.md
+    - PlatformTranslator: development/platform-translator.md
+    - 模型 Provider: development/provider.md
+    - 资源 Scheme: development/resources.md
+    - 多版本文档发布: development/versioning.md
   - 附录:
-    - 常见问题 (FAQ): appendices/faq.md
-    - 故障排除: appendices/troubleshooting.md
+    - 常见问题: appendices/faq.md
+    - 故障排查: appendices/troubleshooting.md
     - 术语表: appendices/glossary.md
-    - 开发者指南: appendices/developer-guide.md
 
-# 主题配置
 theme:
   name: material
   language: zh
   logo: assets/logo.svg
-  favicon: assets/favicon.png
+  favicon: assets/favicon.svg
+  icon:
+    repo: fontawesome/brands/github
   features:
     - navigation.instant
-    - navigation.tabs
+    - navigation.expand
     - navigation.sections
-    - navigation.top
     - navigation.tracking
+    - navigation.top
     - search.suggest
     - search.highlight
     - search.share
     - content.code.copy
     - content.code.annotate
+    - content.tabs.link
     - toc.follow
   palette:
-    # 浅色模式
-    - scheme: default
-      primary: indigo
-      accent: indigo
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: amber
       toggle:
         icon: material/brightness-7
         name: 切换到深色模式
-    # 深色模式
-    - scheme: slate
-      primary: indigo
-      accent: indigo
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: amber
       toggle:
         icon: material/brightness-4
         name: 切换到浅色模式
   font:
-    text: Roboto
-    code: Roboto Mono
-  icon:
-    repo: fontawesome/brands/github
+    text: Noto Sans SC
+    code: JetBrains Mono
 
-# 插件配置
 plugins:
-    - search
-    - mermaid2
+  - search
+  - mermaid2
 
-# Markdown 扩展
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -100,6 +110,8 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - attr_list
   - md_in_html
   - tables
@@ -107,9 +119,20 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
 
-# 额外配置
 extra:
+  version:
+    provider: mike
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/YesWeAreBot/YesImBot
+    - icon: fontawesome/brands/qq
+      link: https://qm.qq.com/q/k3O5_1kNFJ
+
+extra_css:
+  - assets/extra.css
+
+extra_javascript:
+  - assets/extra.js
