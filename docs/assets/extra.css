@@ -71,6 +71,7 @@
 
 .md-sidebar__inner {
   padding-bottom: 2.4rem;
+  padding-right: .5rem;
 }
 
 .md-footer {
@@ -79,23 +80,125 @@
   z-index: 0;
 }
 
-.home-hero {
-  background: var(--yb-teal);
-  border-radius: 8px;
-  color: #ffffff;
-  margin-bottom: 1.2rem;
-  padding: 2.2rem 2rem;
+.md-nav {
+  line-height: 1.4;
 }
 
-.home-hero h1 {
+.md-nav__title {
+  color: var(--yb-teal);
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.md-nav__item .md-nav__link {
+  border-radius: 6px;
+  color: var(--yb-ink);
+  font-size: .85rem;
+  padding: .28rem .65rem;
+}
+
+.md-nav__item .md-nav__link:hover {
+  color: var(--yb-amber);
+}
+
+.md-nav__link--active {
+  background: var(--yb-teal-soft);
+  color: var(--yb-teal);
+  font-weight: 700;
+}
+
+.md-nav__link--active:hover {
+  color: var(--yb-teal);
+}
+
+.md-nav__item--nested > .md-nav__link {
+  border-bottom: none;
+  margin: .2rem .65rem;
+  padding-bottom: .35rem;
+}
+
+.md-nav__item--nested > .md-nav__list {
+  margin-left: .5rem;
+}
+
+.home-hero {
+  background: var(--yb-teal);
+  border-radius: 10px;
   color: #ffffff;
-  margin-bottom: .5rem;
+  margin-bottom: 1.2rem;
+  padding: 2.6rem 2.2rem 2rem;
+}
+
+.home-hero h1,
+.home-hero h2,
+.home-hero-title {
+  color: #ffffff;
+  font-size: 1.65rem;
+  font-weight: 800;
+  margin-bottom: .6rem;
 }
 
 .home-hero p {
   color: #e4f5f1;
-  font-size: 1.05rem;
+  font-size: 1rem;
+  line-height: 1.65;
   margin: 0;
+  opacity: .92;
+}
+
+.pillar-grid {
+  display: grid;
+  gap: .9rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin: 1.2rem 0 1.6rem;
+}
+
+.pillar-card {
+  background: var(--yb-paper);
+  border: 1px solid var(--yb-line);
+  border-left: 4px solid var(--yb-teal);
+  border-radius: 8px;
+  padding: .9rem 1rem;
+}
+
+.pillar-card strong {
+  color: var(--yb-ink);
+  font-size: .92rem;
+}
+
+.pillar-card p {
+  font-size: .88rem;
+  margin: .35rem 0 0;
+}
+
+.steps-list {
+  counter-reset: step;
+  list-style: none;
+  margin: 1rem 0 1.4rem;
+  padding: 0;
+}
+
+.steps-list li {
+  border: 1px solid var(--yb-line);
+  border-radius: 8px;
+  counter-increment: step;
+  margin-bottom: .55rem;
+  padding: .75rem 1rem;
+}
+
+.steps-list li::before {
+  background: var(--yb-teal);
+  border-radius: 50%;
+  color: #fff;
+  content: counter(step);
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 800;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  margin-right: .55rem;
+  text-align: center;
+  width: 1.2rem;
 }
 
 .feature-grid {
@@ -174,7 +277,8 @@
     padding: 1.5rem 1.2rem;
   }
 
-  .home-hero h1 {
+  .home-hero h1,
+  .home-hero-title {
     font-size: 1.55rem;
   }
 }

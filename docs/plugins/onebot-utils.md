@@ -2,9 +2,25 @@
 
 包名：`koishi-plugin-yesimbot-onebot-utils`
 
-为 OneBot 平台提供平台专属工具。只在 `scope.platform === "onebot"` 的频道注册。
+## 这个插件解决什么问题
 
-## 工具
+OneBot 工具给机器人提供 QQ/OneBot 平台上的操作能力，例如读取合并转发、设置精华、表态、OCR 识别图片、群管理操作等。
+
+## 安装和启用
+
+在插件市场安装 `koishi-plugin-yesimbot-onebot-utils`，然后在插件配置里勾选需要的工具：
+
+```yaml
+yesimbot-onebot-utils:
+  enabledTools:
+    - onebot_get_forward_message   # 读取合并转发
+    - onebot_set_essence          # 设置精华
+  parseImages: false              # 是否解析转发里的图片
+  attachImageSummary: true        # 动画表情是否附带 summary
+  maxForwardPageChars: 6000       # 合并转发每页最大字符数
+```
+
+## 可用工具
 
 ```text
 onebot_get_forward_message
@@ -19,16 +35,6 @@ onebot_set_qq_profile
 onebot_set_qq_avatar
 ```
 
-## 配置
+## 注意
 
-```yaml
-yesimbot-onebot-utils:
-  enabledTools:
-    - onebot_get_forward_message
-    - onebot_set_essence
-  parseImages: false
-  attachImageSummary: true
-  maxForwardPageChars: 6000
-```
-
-群管理工具只在 shared 频道暴露。
+群管理工具只会在群聊频道出现。每个工具是否可用，还取决于你用的 OneBot 实现是否支持对应接口。

@@ -2,25 +2,31 @@
 
 包名：`koishi-plugin-yesimbot-memos-client`
 
-把 MemOS Cloud 作为长期记忆后端。Core 不负责长期记忆，MemOS 插件负责事实、偏好和跨频道记忆的读写。
+## 这个插件解决什么问题
 
-## 最小配置
+默认情况下，YesImBot 只保存聊天会话，不具备真正意义上的长期记忆。安装 MemOS 后，机器人可以把值得记住的事实、偏好和经历存到 MemOS Cloud，之后在对话里检索使用。
+
+## 举个例子
+
+用户告诉机器人“我喜欢咖啡”，一段时间后再问“我喜欢喝什么”，机器人可以凭记忆回答，而不是每次重新认识你。
+
+## 安装和配置
+
+在插件市场安装 `koishi-plugin-yesimbot-memos-client`，然后填写：
 
 ```yaml
 yesimbot-memos-client:
   baseUrl: https://memos.memtensor.cn/api/openmem/v1
   apiKey: your-api-key
-  memoryScope: auto
+  memoryScope: auto   # auto=群聊按频道、私聊按用户
 ```
 
-`memoryScope` 支持：
+`memoryScope` 决定记忆属于谁：
 
-- `auto`：群聊使用频道记忆，私聊使用用户记忆。
-- `channel`：始终使用频道 scope。
-- `user`：始终使用用户 scope。
+- `auto`：群聊记忆属于频道，私聊记忆属于用户。
+- `channel`：始终按频道保存。
+- `user`：始终按用户保存。
 
-插件提供 `search_memory` / `add_memory` 等工具，并通过 `appendSystemPrompt` 告诉 Agent 如何使用。
+## 重要说明
 
-## 重要边界
-
-MemOS 是可选插件，不是 Core 的一部分。没有安装该插件时，Agent 没有长期事实记忆。
+MemOS 是可选的。没有安装它，机器人不会自动获得长期事实记忆。它也不是聊天记录的替代品，而是用来保存“值得记住”的信息。

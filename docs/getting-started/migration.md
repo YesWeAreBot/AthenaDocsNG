@@ -1,29 +1,35 @@
-# 从 v3 升级到 v4
+# 从旧版本升级
 
-v4 是重写版本，旧的 v3 配置和旧版 Athena 配置不兼容。不要尝试把 `modelService`、`agentBehavior`、`capabilities` 原样搬到 v4。
+如果你以前用过 YesImBot v3 或更早版本，这个页面会告诉你 v4 有哪些重要变化。它不适合“直接照抄旧配置”，因为很多旧设置已经不存在了。
+
+## 一句话说明
+
+v4 是重写版本，不是一次普通的版本更新。旧配置不能直接搬过来，机器人的人设、记忆、插件和模型配置都需要重新设置一遍。
 
 ## 主要变化
 
-| v3 概念 | v4 对应 |
+| 旧版本 | v4 |
 | --- | --- |
-| `modelService.providers` / `modelGroups` | Provider 插件 + `chatModel` / `models.json` |
-| `agentBehavior.willingness` 四层模型 | `will.engine` 下的 routing / willingness |
-| `agentBehavior.arousal.allowedChannelGroups` | `allowedChannels` 白名单 |
-| `capabilities.memory` 核心记忆目录 | `PERSONA.md`、`AGENTS.md` 与频道会话 |
-| `WorldStateService` 摘要记忆 | JSONL 会话压缩、归档和可选记忆插件 |
-| `ToolService` 扩展 | AgentPlugin 与 Provider/Translator 边界 |
-| `setup` / `conf.get` / `conf.set` | 由 Koishi 配置页和 `yesimbot.session.*` 命令承担 |
+| 核心插件里配置模型服务 | 安装独立的模型服务插件 |
+| 旧的模型组和任务分配 | 直接在配置里选择聊天模型 |
+| 旧版“允许频道”配置 | 新的“允许响应的频道”白名单 |
+| 旧版核心记忆目录 | 由 `PERSONA.md`、`AGENTS.md` 和会话文件负责 |
+| 旧版世界状态摘要 | 会话压缩、归档和可选记忆插件 |
+| 旧的扩展工具体系 | 通过 Koishi 插件市场安装功能插件 |
 
-## 迁移步骤
+## 升级时要做的事
 
-1. 备份 `PERSONA.md` 或旧的记忆文件内容。
-2. 安装 `koishi-plugin-yesimbot` 和一个模型 Provider。
-3. 配置 `chatModel` 与 `allowedChannels`。
-4. 重新按需启用插件。
-5. 用 `yesimbot.session.status` 观察会话，而不是依赖旧配置页。
+1. 备份旧人设、旧记忆文件或旧配置内容。
+2. 安装新版的 `koishi-plugin-yesimbot`。
+3. 安装一个模型服务插件并填写 API Key。
+4. 重新选择聊天模型。
+5. 重新配置“允许响应的频道”。
+6. 按需重新安装功能插件。
 
-## 不再保留的假设
+## 升级后没有自动迁移
 
-- 没有自动迁移旧 JSONL 或旧目录布局。
-- 不提供 dual read、alias 或 fallback。
-- reset 只清理 `sessions/` 和 `assets`，不会清理 workspace 或插件数据。
+- 旧会话文件不会自动转换格式。
+- 旧目录布局不会被读取。
+- 重置会话只会清空当前频道的新会话和资源，不会恢复旧版本数据。
+
+如果你还保留旧文件，建议先备份到其他地方，不要指望 v4 自动读取。

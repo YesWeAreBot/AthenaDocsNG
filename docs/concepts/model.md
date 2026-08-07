@@ -1,23 +1,14 @@
 # 模型服务
 
-模型服务位于 `ctx.yesimbot.model`，负责 Provider 注册、模型解析和 `models.json` 覆盖。
+这个页面讲机器人如何选择和使用模型。
 
-## Provider 与模型 ID
+## 一句话解释
 
-每个 Provider 插件通过 `ctx.yesimbot.model.register()` 注册：
+YesImBot 不内置任何模型公司。它通过“模型服务插件”连接 OpenAI、Anthropic、DeepSeek、Google 等服务商。插件负责注册模型，配置负责选择用哪个模型。
 
-```typescript
-ctx.yesimbot.model.register({
-  id: "openai",
-  capabilities: { chat: true, embedding: true },
-  chatModels: () => config.chatModels,
-  embeddingModels: () => config.embeddingModels ?? [],
-  chat: (modelId) => client.chat(modelId),
-  embedding: (modelId) => client.embedding(modelId),
-});
-```
+## 模型 ID
 
-模型完整 ID 是 `providerId:modelId`：
+每个模型有一个完整 ID，写法是“服务商:模型”：
 
 ```text
 openai:gpt-4o
@@ -26,17 +17,18 @@ deepseek:deepseek-v4-pro
 google:gemini-2.5-pro
 ```
 
-`chatModel` 使用这个 ID，也可以使用 `models.json` 中定义的 alias。
+在 `yesimbot` 配置里，`chatModel` 填这个 ID。
 
-## models.json
+## models.json 是什么
 
-文件默认在 `basePath/models.json`。它负责：
+`models.json` 是模型能力的补充配置文件，主要用来告诉系统：
 
-- `defaults.chat`：默认聊天模型。
-- `defaults.embedding`：默认嵌入模型。
-- `aliases`：模型 ID 别名。
-- `chat`：覆盖模型能力、上下文/输出限制、隐藏状态、模态。
-- `embedding`：覆盖嵌入模型元数据。
+- 默认使用哪个模型；
+- 某个 ID 可以叫一个更短的名字；
+- 模型是否支持图片；
+- 模型的上下文和输出长度。
+
+普通用户如果只做文本聊天，通常不需要修改它。
 
 ```json
 {
@@ -57,12 +49,49 @@ google:gemini-2.5-pro
 
 ## 图片能力
 
-- Provider 本身不声明模态能力。
-- 只有 `models.json` 的 `modalities.input` 能声明模型支持图片。
-- `imageInput` 控制全局开关和预算。
-- 模型没有声明图片能力时，即使 `imageInput` 开启也只发送文本。
-- 模型调用不会自动扫描历史图片；图片由 `read` 工具按预算投影。
+想让机器人看图，需要：
 
-## 运行时快照
+1. 模型本身支持图片；
+2. `models.json` 里声明支持图片；
+3. `imageInput` 没有关闭。
 
-活动 Runtime 在创建时快照模型能力、`chatModel`、`visionModel`、`imageInput`、Will、提示词与插件。修改 `models.json` 后需要重启 Koishi 或等待 Runtime 替换。
+模型不会自动翻看历史图片，只会读取当前步骤中明确读取的图片。
+
+### 一步步启用图片
+
+如果你希望机器人能看图，按下面的步骤操作：
+
+1. 先确认模型服务插件里的模型 ID，例如 `openai:gpt-4o`。
+2. 打开 `data/yesimbot/models.json`。如果文件不存在，就创建一个空文件，内容为 `{}`。
+3. 在 `chat` 下添加这个模型，并声明图片输入：
+
+```json
+{
+  "chat": {
+    "openai:gpt-4o": {
+      "modalities": {
+        "input": ["image"]
+      }
+    }
+  }
+}
+```
+
+4. 保存文件，然后重启 Koishi。
+5. 确认 `imageInput` 没有设为 `false`。
+
+!!! warning "模型 ID 不能写错"
+    `models.json` 里的键必须是完整的“服务商:模型”格式。写错会被忽略，并在启动日志里出现警告。
+
+### 控制图片预算
+
+```yaml
+imageInput:
+  maxCount: 3            # 最多同时读取 3 张图片
+  maxBytesPerImage: 5242880   # 单张图片最大 5MB
+  maxTotalBytes: 10485760     # 本轮图片总共最大 10MB
+```
+
+## 修改模型后
+
+模型、图片能力和相关配置会在频道开始时被固定下来。修改后建议重启 Koishi，让新设置完整生效。

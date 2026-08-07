@@ -1,6 +1,6 @@
 # 插件总览
 
-YesImBot v4 的插件通过 `ctx.yesimbot.registerChannelPlugin()` 向每个频道的 Agent 注入工具、提示词和生命周期行为。Provider 插件通过 `ctx.yesimbot.model.register()` 注册模型。
+插件是用来给机器人增加具体能力的。你可以只安装需要的部分，不需要一次装齐，也不需要写代码。
 
 ## Agent 能力插件
 
@@ -17,18 +17,23 @@ YesImBot v4 的插件通过 `ctx.yesimbot.registerChannelPlugin()` 向每个频�
 | 定时任务 | `koishi-plugin-yesimbot-schedule` | 频道内持久化定时事件 |
 | Will 策略 | `koishi-plugin-yesimbot-will-policy` | 精细 routing / willingness 策略 |
 
-## 模型 Provider
+## 模型服务插件
 
-| Provider | 包名 |
+| 服务商 | 包名 |
 | --- | --- |
 | OpenAI | `@yesimbot/koishi-plugin-provider-openai` |
 | Anthropic | `@yesimbot/koishi-plugin-provider-anthropic` |
 | DeepSeek | `@yesimbot/koishi-plugin-provider-deepseek` |
 | Google | `@yesimbot/koishi-plugin-provider-google` |
 
-## 安装后
+## 安装方式
 
-在 Koishi 控制台启用插件即可。每个插件会注册自己的 `AgentPlugin`，但不会修改 Core 的公开协议。
+1. 打开 Koishi 控制台的插件市场。
+2. 搜索插件名，点击安装。
+3. 安装完成后，在插件配置页面打开开关。
+4. 按页面提示填写 API Key、文件路径等设置。
 
-!!! tip "插件存储"
-    受信任插件可以通过 `ctx.yesimbot.getStoragePath(scope)` 获得频道根目录，并自行选择 `workspace/` 等子目录。
+大部分插件安装后立即对当前频道生效。修改模型或插件配置后，如果机器人没有马上变化，重启 Koishi 通常是最直接的解决方式。
+
+!!! tip "插件可以克隆"
+    模型服务插件和 Will 策略插件是可复用、可克隆的。在 Koishi 插件列表里点击右键选择“克隆”，就可以用不同配置创建多个实例，并通过 Koishi 过滤器应用到不同频道或用户。

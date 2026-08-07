@@ -1,5 +1,7 @@
 # 故障排查
 
+这个页面按“现象”来组织，方便你快速找到对应检查项。开始前建议先打开 Koishi 控制台，观察启动和运行时日志。
+
 ## 开启详细日志
 
 ```yaml
@@ -7,40 +9,40 @@ yesimbot:
   logLevel: 3
 ```
 
-在 Koishi 中还可以把 Provider 或插件日志调到 debug。
+在 Koishi 中还可以把模型服务插件或其他插件日志调到 debug。
 
 ## 模型调用失败
 
 检查：
 
-- Provider 是否已启用；
+- 模型服务插件是否已启用；
 - `apiKey` 是否有效；
 - `chatModel` 是否为 `providerId:modelId`；
 - 网络与代理是否可达；
-- 模型 ID 是否存在于 Provider 的 `chatModels`。
+- 模型 ID 是否存在于模型服务插件的模型列表。
 
-## 消息无法进入 Runtime
+## 机器人完全收不到消息
 
 检查：
 
-- `allowedChannels` 是否匹配；
-- shared 频道 `assignee` 是否为空或不是当前 Bot；
+- “允许响应的频道”是否包含当前频道；
+- 群聊频道 assignee 是否为空或不是当前 Bot；
 - 是否缺少 Database；
-- 日志中是否有 `gateway.route_failed`。
+- Koishi 控制台日志中是否有报错。
 
 ## 图片无法读取
 
 检查：
 
-- PlatformTranslator 是否把图片写入 AssetStore；
-- `models.json` 是否声明 image 模态；
-- `imageInput` 是否开启；
+- 平台插件是否成功保存了图片；
+- 模型是否支持图片；
+- 图片输入是否开启；
 - `resourceReadTimeoutMs` 是否足够。
 
 ## 会话文件损坏
 
-JSONL 读取会逐行 `JSON.parse`，语法损坏的行会被跳过并警告。Core 不做语义校验。
+会话文件按 JSONL 保存。如果文件里有损坏行，系统会跳过并给出警告，但不会自动修复历史文件。
 
 ## 插件工具没有出现
 
-确认插件已启用，并且插件确实调用了 `registerChannelPlugin()`。Runtime 创建后插件变化不会热更新。
+确认插件已启用。如果刚安装或修改了插件但工具没有出现，重启 Koishi 后再试。

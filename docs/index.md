@@ -1,72 +1,96 @@
-# YesImBot v4 官方文档
+# YesImBot 官方文档
 
 <div class="home-hero">
 
-## 让语言模型自然融入群聊
+<h2 class="home-hero-title">让 AI 成为群聊中一个合适的存在</h2>
 
-YesImBot v4 是一套基于 Koishi 的 message-first Agent Runtime。它不再把每条消息都当成一次“提问”，而是按频道持续观察对话、判断何时回应，并通过工具和插件扩展行动能力。
-
-</div>
-
-## 核心能力
-
-<div class="feature-grid">
-
-<div class="feature-card">
-<strong>Message-first 运行时</strong>
-<p>消息按频道进入 FIFO，忙时加入当前 turn，避免多个模型流同时消费同一个频道上下文。</p>
-</div>
-
-<div class="feature-card">
-<strong>稳定的 Will 边界</strong>
-<p>routing 按私聊、提及和群聊决定 wait/trigger；willingness 提供可解释的意愿值与衰减模型。</p>
-</div>
-
-<div class="feature-card">
-<strong>插件与 Provider 生态</strong>
-<p>AgentPlugin 扩展工具、提示词和生命周期；Provider 只负责把 AI SDK 模型注册进 `ctx.yesimbot.model`。</p>
-</div>
-
-<div class="feature-card">
-<strong>本地可验证的会话与资源</strong>
-<p>频道目录保存 manifest、JSONL 会话、assets、artifacts、workspace 和插件数据，不依赖平台在线状态重放历史。</p>
-</div>
+<p>YesImBot 的目标不是更快地回复，而是更合适地存在。它应该像群聊里的真实参与者：知道什么时候说话，也知道什么时候保持沉默；有自己的看法，也允许经历慢慢改变它。</p>
 
 </div>
 
-## 快速通道
+## YesImBot 在解决什么问题
 
-<div class="quick-grid">
+传统聊天机器人把每一条消息都当成一次“请求”：收到问题，调用模型，返回答案。这种模式在客服、问答和工作流里很有用，但在群聊里并不自然。
 
-<a class="quick-card" href="getting-started/quick-start.md"><strong>快速开始</strong><span>5 分钟完成基础配置并开始对话。</span></a>
+群聊不是一串独立请求，而是一个持续发生的场：
 
-<a class="quick-card" href="concepts/architecture.md"><strong>架构总览</strong><span>了解 Gateway、RuntimeManager、ChannelRuntime 与 agent-runtime 的边界。</span></a>
+- 有人在聊天，但这句话不一定是对机器人说的；
+- 话题会分叉、升温、冷却；
+- 机器人过去说过什么、和谁熟悉，都会影响下一次开口；
+- 沉默本身也是一种完整的选择。
 
-<a class="quick-card" href="reference/configuration.md"><strong>配置参考</strong><span>查看当前 v4 配置项与 `models.json` 用法。</span></a>
+YesImBot 想解决的就是这个问题：让 AI 不再只是“会回答的工具”，而是能够理解自己身处什么场景、何时加入、何时退后的参与者。
 
-<a class="quick-card" href="plugins/index.md"><strong>插件总览</strong><span>浏览工作区、MCP、搜索、记忆和平台工具插件。</span></a>
+## 它首先是一种人格，而不是一套功能
 
-<a class="quick-card" href="development/overview.md"><strong>开发指南</strong><span>开发 AgentPlugin、PlatformTranslator 与模型 Provider。</span></a>
+<div class="pillar-grid">
 
-<a class="quick-card" href="development/versioning.md"><strong>多版本文档</strong><span>使用 Mike 发布 v3 与 v4 等历史版本。</span></a>
+<div class="pillar-card">
+<strong>稳定人设</strong>
+<p>每次对话都带着同一个身份，而不是每次从头认识世界。</p>
+</div>
+
+<div class="pillar-card">
+<strong>允许改变</strong>
+<p>可以形成自己的看法，也允许经历慢慢改变它。</p>
+</div>
+
+<div class="pillar-card">
+<strong>沉默是选择</strong>
+<p>不会为了礼貌而对每句话都回应。不说话也是一个完整的选择。</p>
+</div>
+
+<div class="pillar-card">
+<strong>记得关系</strong>
+<p>记住共同经历和偏好，而不是把聊天日志全归档。</p>
+</div>
+
+<div class="pillar-card">
+<strong>工具服务于判断</strong>
+<p>能行动，但行动不会替代判断。</p>
+</div>
+
+<div class="pillar-card">
+<strong>合适地存在</strong>
+<p>知道什么时候加入对话，什么时候退后观察。</p>
+</div>
 
 </div>
 
-## 数据流
+## 围绕这个目标，它可以做到
 
-```mermaid
-graph LR
-  S[Koishi Session] --> G[Gateway]
-  G --> A[AssetStore]
-  G --> R[Message Record]
-  R --> M[RuntimeManager]
-  M --> C[ChannelRuntime FIFO]
-  C --> W[Will Decision]
-  W --> AG[Agent]
-  AG --> T[Tools Plugins Model]
-  AG --> O[OutputQueue]
-  O --> D[Passive Delivery]
-```
+### 自然参与群聊
+
+默认配置只处理私聊和 @。如果你希望机器人真正参与群聊，推荐使用 `willingness` 引擎和 Will 策略插件，让它根据关键词、引用、图片和意愿值判断是否加入，而不是机械地每条都回。
+
+### 拥有持续的人格与记忆
+
+人格写在 `PERSONA.md` 和角色卡里。关系与经历可以通过 MemOS 或全局脑插件长期保存，也可以跨频道共享有价值的经验。
+
+### 具备行动能力
+
+工作区、搜索、MCP 等插件让机器人不只是聊天，还可以读取文件、运行命令、联网查资料、调用外部工具，并把结果带回对话。
+
+### 适配真实平台
+
+YesImBot 运行在 Koishi 上，内置 OneBot 接入，也支持其他平台。平台差异由接入层处理，机器人不需要为每一种消息格式重新写一套人格。
+
+## 快速开始
+
+<ol class="steps-list">
+<li>在 Koishi 插件市场安装 <code>koishi-plugin-yesimbot</code>。</li>
+<li>安装一个模型服务插件，并填写 API Key。</li>
+<li>在配置里选择聊天模型，并添加允许响应的频道。</li>
+</ol>
+
+更具体的步骤见[快速开始](getting-started/quick-start.md)。
+
+## 使用前先理解
+
+- 机器人不是有问必答的客服，默认不会处理群聊普通消息。
+- 想让机器人自然参与群聊，请使用 Will 策略插件和 `willingness` 引擎。
+- 长期记忆不是默认开启的，需要安装 MemOS 或全局脑插件。
+- 修改模型、插件或主要配置后，通常需要重启 Koishi。
 
 ## 项目信息
 

@@ -1,31 +1,33 @@
 # 会话与记忆
 
-v4 的“记忆”被明确拆成两部分：
+这个页面讲机器人怎么记住东西。
 
-- 频道会话：Core 保存可重放的 JSONL 消息记录。
-- 长期记忆：由 MemOS、全局脑等插件按需提供。
+## 先区分两件事
 
-## 频道存储
+YesImBot 把“记忆”分成两层：
 
-每个频道在 `basePath/channels/` 下有自己的目录，包含：
+1. **会话记录**：机器人当前频道里发生过什么，用来维持对话上下文。
+2. **长期记忆**：机器人真正记住的事实、偏好和经历，由 MemOS 或全局脑等插件提供。
 
-```text
-channel.json
-sessions/
-assets/
-artifacts/
-workspace/
-```
+默认情况下，YesImBot 有第一层，没有第二层。想要长期记忆，需要另外安装插件。
 
-- `channel.json` 是权威 Manifest。
-- `sessions/` 保存当前会话 JSONL。
-- `assets/` 保存入站媒体字节。
-- `artifacts/` 保存工具生成的不可变工件。
-- `workspace/` 由工作区插件使用。
+## 会话记录存在哪里
 
-## 会话压缩与归档
+每个频道有自己的数据目录，里面保存：
 
-`session.compact` 控制上下文压缩：
+- 频道信息；
+- 当前会话消息；
+- 收到的图片等资源；
+- 工具生成的文件；
+- 工作区文件。
+
+这些数据保存在本地，不会因为平台接口失效而丢失。
+
+## 对话太长怎么办
+
+模型能处理的消息长度有限。会话很长时，系统会自动压缩较早的内容，把关键信息保留下来。
+
+相关配置：
 
 ```yaml
 session:
@@ -39,26 +41,26 @@ session:
     timeout: 7200000
 ```
 
-压缩不会删除原始 JSONL，而是追加 `compact` 条目。`yesimbot.session.archive` 可以把当前会话归档为独立会话文件。
+也可以手动执行：
 
-## PERSONA.md 与 AGENTS.md
+```text
+yesimbot.session.compact
+yesimbot.session.archive
+yesimbot.session.status
+```
 
-Runtime 的系统提示词由固定顺序组成：
+## 人设文件
 
-1. Core Constitution
-2. `<persona>`：用户 `PERSONA.md` 或内置默认人格
-3. 可选 `<agents>`：用户 `AGENTS.md`
-4. `<runtime_context>`：ChannelScope 与 Bot selfId
+机器人的人设保存在两个文件里：
 
-文件位于 `basePath`。首次启动会自动创建 `PERSONA.md` 和空的 `AGENTS.md`。
+- `PERSONA.md`：机器人是谁、怎么表达。
+- `AGENTS.md`：给机器人的额外任务说明。
 
-!!! warning "不要混淆"
-    Runtime 的 `AGENTS.md` / `PERSONA.md` 是给模型的人格和任务说明，不是仓库维护者开发指南。
+首次启动会自动创建。直接编辑这些文件，就能调整机器人的人格和行为。
 
-## 会话命令
+## 长期记忆
 
-- `yesimbot.session.compact`：手动压缩。
-- `yesimbot.session.archive`：归档当前会话。
-- `yesimbot.session.clear`：清空会话与资源。
-- `yesimbot.session.status`：查看活动会话和压缩状态。
-- `yesimbot.session.list`：列出会话文件。
+- [MemOS](../plugins/memos.md)：云端长期记忆。
+- [全局脑](../plugins/global-brain.md)：跨频道共享经验。
+
+这些插件不会自动保存所有聊天记录，而是保存“值得记住”的信息。

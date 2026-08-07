@@ -1,48 +1,93 @@
-# 消息与 Will
+# 机器人什么时候回复
 
-Will 决定一条消息进入 Agent 后是 `wait` 还是 `trigger`。它不是“模型自己决定要不要回”，而是 Runtime 在调用模型之前完成的固定判断。
+这个页面讲“Will”，也就是机器人决定要不要回复的规则。
 
-## routing 引擎（默认）
+## 先理解两种行为
+
+每条消息进入机器人后，系统先做一个低成本判断：
+
+- **触发回复**：把消息交给模型，生成回复。
+- **先观察**：只把消息记下来，不调用模型。
+
+这个判断发生在调用模型之前，所以机器人不会对每条消息都花一次模型费用。
+
+## 默认规则：只是最小启动配置
+
+默认配置长这样：
+
+```yaml
+will:
+  engine: routing   # 使用固定规则，不靠模型判断
+  direct: trigger   # 私聊消息：触发回复
+  mention: trigger  # 群里被 @：触发回复
+  group: wait       # 群聊普通消息：先观察
+```
+
+这三行已经覆盖了大多数场景：
+
+1. 有人私聊机器人，机器人会回应。
+2. 有人在群里 @ 机器人，机器人会回应。
+3. 群里普通聊天，机器人先潜水，避免每句话都插嘴。
+
+这里需要说清楚一点：`group: wait` 的意思是“普通群聊消息不会交给模型”。机器人不会看到这些消息，也就谈不上主动参与。
+
+所以这个默认配置只适合：
+
+- 刚安装时做最小验证；
+- 你只希望机器人处理私聊和 @；
+- 你暂时不想让它进入普通群聊上下文。
+
+如果你希望机器人像群友一样自然参与群聊，不要停留在 routing，建议使用下文推荐的 `willingness` + Will 策略插件。
+
+## 如果想让机器人更活跃
+
+把群聊普通消息从 `wait` 改成 `trigger`：
 
 ```yaml
 will:
   engine: routing
-  direct: trigger
-  mention: trigger
-  group: wait
+  group: trigger   # 普通群聊消息也会回复
 ```
 
-- `direct`：私聊消息。
-- `mention`：群聊中 @ 当前 Bot。
-- `group`：群聊普通消息。
+改完建议重启 Koishi。这样做之后，机器人可能在热闹的群里频繁发言，需要留意刷屏问题。
 
-每个值只能是 `wait` 或 `trigger`。默认群聊普通消息不触发，避免机器人刷屏。
+不过，`group: trigger` 是对所有普通消息直接触发，仍然不够“自然”。更推荐的做法是使用意愿值，让机器人根据话题和节奏判断。
 
-## willingness 引擎
+## 如果想按意愿值动态判断
+
+固定规则适合“明确要不要回”的场景。如果希望机器人根据话题热度和对话节奏自然决定，可以使用意愿值：
 
 ```yaml
 will:
-  engine: willingness
-  probabilityThreshold: 55
-  decayHalfLifeSeconds: 600
-  replyCost: 35
+  engine: willingness          # 使用动态意愿值
+  probabilityThreshold: 55     # 意愿达到 55 后才可能回复
+  decayHalfLifeSeconds: 600    # 意愿值约 10 分钟衰减一半
+  replyCost: 35                # 每次回复后扣除 35，避免连续刷屏
 ```
 
-实现按消息增益、动态衰减和概率掷骰决定是否触发。它只保留三个面向用户的旋钮，不提供无限扩展的状态机。
+可以这样理解：
 
-## 忙时行为
+- `probabilityThreshold` 越高，机器人越“高冷”。
+- `decayHalfLifeSeconds` 越短，兴趣消退越快。
+- `replyCost` 越大，机器人说完一次后越不容易立刻再说。
 
-当频道已有活动 turn 时，新消息不会创建第二个模型流消费者：
+## 推荐做法：willingness + Will 策略插件
 
-- `wait`：只进入历史。
-- `trigger` 且忙：join 当前 turn，在下一模型 step 或后续循环中进入上下文。
-- 主动事件 `trigger()` 忙时同样 join。
+想做出“平时潜水，但遇到感兴趣的话题会参与”的效果，推荐安装 [Will 策略插件](../plugins/will-policy.md)，并把引擎设为 `willingness`。
 
-## 插件扩展 seam
+它比默认 routing 更接近自然群友：
 
-Core 暴露两组注册入口：
+- 普通群聊消息会先积累“意愿”；
+- 命中关键词、被 @、私聊、引用或图片时，意愿会提高；
+- 只有意愿达到阈值才触发回复；
+- 每次回复后会消耗意愿，避免连续刷屏。
 
-- `registerWillConfigContributor(contributor)`：按 `ChannelScope` 修改 Will 配置。
-- `registerWillEngineFactory(factory)`：按 scope 和 session 提供自定义 WillEngine。
+这样的行为不需要让每一条普通消息都直接触发模型，但机器人确实会“看到”群聊，并有机会自然加入。
 
-没有插件注册时，Core 使用内置默认引擎。更多精细策略见[Will 策略插件](../plugins/will-policy.md)。
+## 机器人正在忙时
+
+如果机器人正在回复，新消息不会抢线。它会进入当前对话流程，等合适时机再被处理。这样不会出现同一个频道多个回复互相打架的情况。
+
+## 更细的控制
+
+默认规则之外，还有 [Will 策略插件](../plugins/will-policy.md)，可以按引用、图片、关键词、具体频道或用户来调整回复规则，也是当前推荐使用的方向。

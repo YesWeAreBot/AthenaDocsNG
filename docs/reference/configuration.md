@@ -1,5 +1,7 @@
 # 配置参考
 
+这个页面是完整字段速查表，适合需要精确配置的用户。第一次使用建议先读[快速开始](../getting-started/quick-start.md)和[基础配置](../getting-started/configuration.md)。
+
 本页对应当前 `dev` 分支的 `koishi-plugin-yesimbot` Config Schema。
 
 ## 根配置

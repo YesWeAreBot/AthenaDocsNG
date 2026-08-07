@@ -2,30 +2,42 @@
 
 包名：`koishi-plugin-yesimbot-mcp-client`
 
-连接 MCP 服务器并把服务器工具注册为 Agent 工具。工具名会加服务器名前缀：
+## 这个插件解决什么问题
 
-```text
-<server-name>-<tool-name>
-```
+MCP 是一种连接外部工具服务的协议。安装 MCP 客户端后，机器人可以调用别人已经写好的工具服务，而不需要每个工具都做成一个 Koishi 插件。
 
-## 配置
+## 举个例子
+
+假设你有一个“天气查询服务”。把它配置成 MCP 服务器后，机器人就能调用“查天气”这个工具，而不需要你写代码。
+
+## 安装和配置
+
+在插件市场安装 `koishi-plugin-yesimbot-mcp-client`，然后在配置里添加服务器：
 
 ```yaml
 yesimbot-mcp-client:
   mcpServers:
     filesystem:
-      type: stdio
-      command: npx
+      type: stdio        # 通过本地命令启动
+      command: npx       # 要运行的命令
       args:
         - -y
         - @modelcontextprotocol/server-filesystem
     remote:
-      type: http
-      url: https://example.com/mcp
+      type: http         # 通过 HTTP 连接
+      url: https://example.com/mcp  # 服务地址
 ```
 
-支持 `stdio`、`http`、`sse` 三种 transport。
+连接方式有三种：
 
-## 媒体处理
+- `stdio`：启动一个本地命令作为服务。
+- `http`：连接远程 HTTP 服务。
+- `sse`：连接远程 SSE 服务。
 
-MCP 返回的图片会写入频道 ArtifactStore，并转换成 `artifact://` 引用。MCP 输出会被限制长度，防止工具结果无限膨胀。
+## 工具名
+
+来自服务器的工具会加上服务器名前缀，避免不同服务器之间冲突。例如服务器叫 `filesystem`，里面的工具可能叫 `filesystem-read_file`。
+
+## 注意事项
+
+MCP 返回的图片会被保存为本地资源，避免把大段数据直接塞进模型。返回内容也有长度限制，防止机器人一次处理过多数据。

@@ -1,41 +1,47 @@
 # 术语表
 
+这个页面用更口语的方式解释常见词。普通用户遇到看不懂的词时可以回来查，不需要一次读完。
+
 ## AgentPlugin
 
-由插件注册到每个频道 Runtime 的 Agent 扩展，可提供工具、提示词块和生命周期 hooks。
+插件用来给机器人增加能力的一种接口。普通用户可以把它理解为“插件的内部挂载点”，不需要直接接触。
 
-## AssetStore
+## AssetStore / ArtifactStore
 
-频道范围内的字节存储，以内容哈希作为 ID。PlatformTranslator 把入站媒体写入这里。
-
-## ArtifactStore
-
-工具产生的不可变媒体存储，例如 MCP 返回的图片。
+存放图片、文件等资源的本地仓库。AssetStore 存放收到的资源，ArtifactStore 存放工具生成的资源。
 
 ## ChannelRuntime
 
-每个频道独立持有的 FIFO、Agent、Will、JSONL、资源与输出消费者。
+每个频道独立的运行状态，负责排队处理消息。普通用户不需要操作它。
 
 ## ChannelScope
 
-公开的频道标识，只包含 `type`、`platform`、`selfId`、`channelId`。
+标识“哪个平台、哪个机器人、哪个频道”的一组信息。
 
-## Message-first
+## Koishi
 
-先把消息固定为 Canonical Record，再决定是否触发模型 turn。
+机器人框架。YesImBot 是运行在 Koishi 里的插件。
+
+## MCP
+
+一种连接外部工具服务的协议。安装 MCP 客户端后，机器人可以调用外部服务提供的工具。
+
+## 模型服务插件
+
+连接 OpenAI、Anthropic、DeepSeek、Google 等服务商的插件。它负责让机器人能调用某个模型。
 
 ## PlatformTranslator
 
-把 Koishi Session 转成 Core Message/Event record 的平台接入层。
-
-## Provider
-
-把 AI SDK 模型注册到 `ctx.yesimbot.model` 的 Koishi 插件。
+把不同平台消息转成统一格式的接入层。普通用户不需要直接接触。
 
 ## Runtime Snapshot
 
-Runtime 创建时冻结的模型、Will、提示词、工具和插件集合。
+频道开始时固定下来的模型、工具和插件设置。修改这些配置后需要重启才能生效。
 
 ## Will
 
-决定消息进入历史后是 `wait` 还是 `trigger` 的固定边界。
+机器人决定“先观察”还是“触发回复”的规则。
+
+## 允许响应的频道
+
+机器人可以接收消息的频道白名单。未配置时机器人不会接收任何频道消息。

@@ -1,78 +1,51 @@
 # 架构总览
 
-YesImBot v4 是一个 message-first 的 Koishi Agent Runtime。核心原则是：先固定“一条消息是什么”，再决定“要不要回应”，最后才进入模型与工具执行。
+这个页面讲 YesImBot 内部是怎么工作的。普通用户不需要读懂所有细节；如果你想理解“为什么机器人有时候不回复”或“为什么改完配置要重启”，这里可以给你一个大概印象。
 
-## 输入管线
+## 先看结论
+
+一条消息进入机器人后，会经过这几步：
+
+1. 判断这条消息来自哪个频道、是不是允许响应的频道。
+2. 把消息转成机器人能理解的格式。
+3. 决定是“先观察”还是“触发回复”。
+4. 如果触发，就调用模型、执行工具，最后把结果发回群里。
+
+## 输入流程
 
 ```text
-Session
-  -> allowlist
-  -> shared assignee admission
-  -> channel AssetStore
-  -> PlatformTranslator
-  -> final Message/Event Record
-  -> RuntimeManager
-  -> ChannelRuntime FIFO
-  -> Will: wait | join | one output consumer
-  -> passive Gateway delivery
+平台消息
+  -> 频道白名单
+  -> 平台格式转换
+  -> 消息记录
+  -> 频道队列
+  -> 是否回复
+  -> 模型与工具
+  -> 发送回复
 ```
 
-## 组件边界
+## 几个重要边界
 
-### Gateway
+### Gateway：平台消息入口
 
-Gateway 是 live Session 的唯一 owner。它负责：
+Gateway 负责接收平台消息，检查频道是否允许，然后把消息转成统一的内部记录。它也是负责把回复发回平台的地方。
 
-- 检查 `allowedChannels` 白名单；
-- 检查 shared 频道的 assignee；
-- 创建频道 `AssetStore`；
-- 调用 `PlatformTranslator` 生成最终 record；
-- 用原 Session 被动发送模型输出；
-- 管理 Session 生命周期和投递失败反馈。
+### RuntimeManager：频道和机器人管理
 
-Gateway 不保存 Session 到 Runtime，也不做平台业务。
+每个频道会有一个独立的运行状态。RuntimeManager 负责创建、停止和替换这些状态，保证一个频道不会同时出现多个互相干扰的回复流程。
 
-### RuntimeManager
+### ChannelRuntime：频道内的消息队列
 
-RuntimeManager 按持久化频道维护 `ChannelRuntime`。它负责：
+同一个频道里的消息会按顺序处理。如果机器人正在回复，新消息不会开一个新线程抢着回，而是进入同一个对话流程。
 
-- 根据 record 推导 `ChannelScope`；
-- 创建或替换 Runtime；
-- 停止、reset、clear、compact、archive、status；
-- 在 shared 频道 Bot 变化时停止旧 Runtime。
+### Agent Runtime：模型和工具执行
 
-### ChannelRuntime
+真正调用模型、执行工具、生成回复的是通用 Agent 运行时。它不关心 Koishi 或具体平台，只处理消息、工具和模型之间的交互。
 
-每个频道有独立的 FIFO。ChannelRuntime 持有：
+## 为什么改配置要重启
 
-- Agent 状态与 JSONL storage；
-- Will engine；
-- 模型输入投影；
-- 输出队列与 delivery feedback；
-- 当前 Bot 的 `sendMessage` 工具；
-- Core 的 `read`、`finalize` 等工具。
+机器人在开始一个频道时会固定使用当时的模型、工具和插件设置。为了避免一边聊一边切换底层配置造成混乱，新配置通常要等重启后才会完整生效。
 
-ChannelRuntime 不保留 Koishi Session。
+## 投递失败会怎样
 
-### @yesimbot/agent-runtime
-
-`@yesimbot/agent-runtime` 是框架无关的通用 Agent 核心，提供：
-
-- `createAgent()` 与 turn queue；
-- append / send / run / wait / interrupt / stop；
-- 有序 AgentPlugin hooks；
-- 工具包装、流式模型执行和 terminal events；
-- AgentStorage 抽象。
-
-它不理解 Koishi Session、平台 API 或频道目录。
-
-## 生命周期
-
-- Runtime 创建时快照模型、Will、提示词、工具和插件。
-- 没有热更新或 `reload()`。
-- 停止或 shared Bot 替换后，下一次路由会创建新的 Runtime。
-- reset 只清理会话与资源，不清理 workspace 和插件数据。
-
-## 投递失败
-
-投递失败会通过 `delivery.failed` 事件回到 producing Runtime，并作为同频道事件提交，后续输出仍继续处理。首段发送成功只通知一次 Will `onReply()`。
+如果回复发送失败，机器人会把这次失败记录下来，并让同一个频道的对话流程知道发送没有成功。这比假装已经发出要好，方便排查问题。
