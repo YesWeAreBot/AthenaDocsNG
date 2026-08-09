@@ -37,6 +37,7 @@ nav:
     - 角色卡: plugins/roleplay.md
     - 定时任务: plugins/schedule.md
     - Will 策略: plugins/will-policy.md
+    - 聊天学习: plugins/chat-learning.md
     - 模型提供商: plugins/providers.md
   - 配置与命令:
     - 配置参考: reference/configuration.md

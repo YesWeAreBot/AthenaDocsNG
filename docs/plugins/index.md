@@ -16,6 +16,7 @@
 | 角色卡 | `koishi-plugin-yesimbot-roleplay` | 从 PNG 角色卡加载人设 |
 | 定时任务 | `koishi-plugin-yesimbot-schedule` | 频道内持久化定时事件 |
 | Will 策略 | `koishi-plugin-yesimbot-will-policy` | 精细 routing / willingness 策略 |
+| 聊天学习 | `koishi-plugin-yesimbot-chat-learning` | 历史对话风格学习与参考 |
 
 ## 模型服务插件
 
