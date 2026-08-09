@@ -1021,6 +1021,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/chat-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    聊天学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/providers/" class="md-nav__link">
         
   
@@ -1270,6 +1293,15 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       核心边界
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      公开 API 入口
     </span>
   </a>
   
@@ -1581,6 +1613,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      公开 API 入口
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       常用验证
@@ -1619,18 +1660,46 @@
 
 <h1 id="_1">开发总览<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>YesImBot 是 Yarn 4 monorepo：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>core/                    koishi-plugin-yesimbot
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>packages/agent-runtime/  @yesimbot/agent-runtime
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>core/                    koishi-plugin-yesimbot（Koishi 集成层）
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>packages/agent-runtime/  @yesimbot/agent-runtime（框架无关的 Agent 核心）
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>plugins/*                可选 Koishi 插件
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>providers/*              模型 Provider 插件
 </span></code></pre></div>
 <h2 id="_2">核心边界<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>core/</code> 负责 Koishi 集成、模型注册、Gateway、频道存储、RuntimeManager 与 ChannelRuntime。</li>
-<li><code>packages/agent-runtime/</code> 是框架无关的 Agent 核心。</li>
-<li><code>plugins/*</code> 通过 <code>registerChannelPlugin()</code> 注册 AgentPlugin。</li>
+<li><code>core/</code> 负责 Koishi 集成、模型注册、Messenger（消息收发）、Channels（频道存储）、RuntimeManager 与 ChannelRuntime。</li>
+<li><code>packages/agent-runtime/</code> 是框架无关的 Agent 核心：turn 队列、工具执行、插件 hook。</li>
+<li><code>plugins/*</code> 通过 <code>ctx.yesimbot.agent.use()</code> 注册 ChannelPlugin。</li>
 <li><code>providers/*</code> 通过 <code>ctx.yesimbot.model.register()</code> 注册模型。</li>
 </ul>
+<h2 id="api">公开 API 入口<a class="headerlink" href="#api" title="Permanent link">&para;</a></h2>
+<p>安装 YesImBot 后，<code>ctx.yesimbot</code> 暴露四个子对象：</p>
+<table>
+<thead>
+<tr>
+<th>入口</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ctx.yesimbot.model</code></td>
+<td>模型注册与解析</td>
+</tr>
+<tr>
+<td><code>ctx.yesimbot.messenger</code></td>
+<td>Translator 注册、主动投递消息</td>
+</tr>
+<tr>
+<td><code>ctx.yesimbot.agent</code></td>
+<td>ChannelPlugin 注册、WillPlugin 注册</td>
+</tr>
+<tr>
+<td><code>ctx.yesimbot.resource</code></td>
+<td>ResourceReader 注册、频道资源获取</td>
+</tr>
+</tbody>
+</table>
 <h2 id="_3">常用验证<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>yarn<span class="w"> </span>install
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>yarn<span class="w"> </span>lint
@@ -1645,8 +1714,8 @@
 </span></code></pre></div>
 <h2 id="_4">文档维护<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
-<li>用户文档先写当前能力，不写推测中的路线。</li>
-<li>架构变化同步更新 <code>docs/athena-v4-vision-and-evolution-notes.md</code> 和本站在 <code>docs/</code> 下的页面。</li>
+<li>用户文档写当前已实现的能力，不写推测中的路线。</li>
+<li>架构变化同步更新 <code>docs/athena-v4-vision-and-evolution-notes.md</code> 和本站 <code>docs/</code> 下的页面。</li>
 <li>多版本发布见<a href="../versioning/">多版本文档发布</a>。</li>
 </ul>
 

@@ -1019,6 +1019,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/chat-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    聊天学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/providers/" class="md-nav__link">
         
   
@@ -1519,6 +1542,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#channelplugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChannelPlugin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channelresources" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChannelResources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#channelruntime" class="md-nav__link">
     <span class="md-ellipsis">
       ChannelRuntime
@@ -1555,6 +1596,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#messenger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Messenger
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       模型服务插件
@@ -1564,9 +1614,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#platformtranslator" class="md-nav__link">
+  <a href="#platformtranslator-translator" class="md-nav__link">
     <span class="md-ellipsis">
-      PlatformTranslator
+      PlatformTranslator / Translator
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resourcereader" class="md-nav__link">
+    <span class="md-ellipsis">
+      ResourceReader
     </span>
   </a>
   
@@ -1582,9 +1641,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#will" class="md-nav__link">
+  <a href="#willengine" class="md-nav__link">
     <span class="md-ellipsis">
-      Will
+      WillEngine
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#willplugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      WillPlugin
     </span>
   </a>
   
@@ -1660,6 +1728,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#channelplugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChannelPlugin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channelresources" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChannelResources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#channelruntime" class="md-nav__link">
     <span class="md-ellipsis">
       ChannelRuntime
@@ -1696,6 +1782,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#messenger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Messenger
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       模型服务插件
@@ -1705,9 +1800,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#platformtranslator" class="md-nav__link">
+  <a href="#platformtranslator-translator" class="md-nav__link">
     <span class="md-ellipsis">
-      PlatformTranslator
+      PlatformTranslator / Translator
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resourcereader" class="md-nav__link">
+    <span class="md-ellipsis">
+      ResourceReader
     </span>
   </a>
   
@@ -1723,9 +1827,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#will" class="md-nav__link">
+  <a href="#willengine" class="md-nav__link">
     <span class="md-ellipsis">
-      Will
+      WillEngine
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#willplugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      WillPlugin
     </span>
   </a>
   
@@ -1760,29 +1873,39 @@
 
 
 <h1 id="_1">术语表<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>这个页面用更口语的方式解释常见词。普通用户遇到看不懂的词时可以回来查，不需要一次读完。</p>
+<p>遇到看不懂的词时回来查，不需要一次读完。</p>
 <h2 id="agentplugin">AgentPlugin<a class="headerlink" href="#agentplugin" title="Permanent link">&para;</a></h2>
-<p>插件用来给机器人增加能力的一种接口。普通用户可以把它理解为“插件的内部挂载点”，不需要直接接触。</p>
+<p>给机器人增加能力的运行时接口。通过 ChannelPlugin 的 <code>setup()</code> 方法返回，在每个频道生效。</p>
 <h2 id="assetstore-artifactstore">AssetStore / ArtifactStore<a class="headerlink" href="#assetstore-artifactstore" title="Permanent link">&para;</a></h2>
-<p>存放图片、文件等资源的本地仓库。AssetStore 存放收到的资源，ArtifactStore 存放工具生成的资源。</p>
+<p>本地资源仓库。AssetStore 存放收到的图片和文件，ArtifactStore 存放工具生成的资源。</p>
+<h2 id="channelplugin">ChannelPlugin<a class="headerlink" href="#channelplugin" title="Permanent link">&para;</a></h2>
+<p>插件向 Core 注册的工厂接口。每个频道 Runtime 初始化时调用其 <code>setup(scope, bot)</code> 方法，返回 AgentPlugin 或 null。</p>
+<h2 id="channelresources">ChannelResources<a class="headerlink" href="#channelresources" title="Permanent link">&para;</a></h2>
+<p>一个频道的资源集合，包含 AssetStore、ArtifactStore 和注册的 ResourceReader。通过 <code>ctx.yesimbot.resource.get(scope)</code> 获取。</p>
 <h2 id="channelruntime">ChannelRuntime<a class="headerlink" href="#channelruntime" title="Permanent link">&para;</a></h2>
-<p>每个频道独立的运行状态，负责排队处理消息。普通用户不需要操作它。</p>
+<p>每个频道独立的运行状态，负责按顺序处理消息队列。</p>
 <h2 id="channelscope">ChannelScope<a class="headerlink" href="#channelscope" title="Permanent link">&para;</a></h2>
-<p>标识“哪个平台、哪个机器人、哪个频道”的一组信息。</p>
+<p>标识"哪个平台、哪个机器人、哪个频道"的一组信息。</p>
 <h2 id="koishi">Koishi<a class="headerlink" href="#koishi" title="Permanent link">&para;</a></h2>
 <p>机器人框架。YesImBot 是运行在 Koishi 里的插件。</p>
 <h2 id="mcp">MCP<a class="headerlink" href="#mcp" title="Permanent link">&para;</a></h2>
-<p>一种连接外部工具服务的协议。安装 MCP 客户端后，机器人可以调用外部服务提供的工具。</p>
+<p>一种连接外部工具服务的协议。安装 MCP 客户端后，机器人可调用外部服务提供的工具。</p>
+<h2 id="messenger">Messenger<a class="headerlink" href="#messenger" title="Permanent link">&para;</a></h2>
+<p>Core 的消息入口与出口。注册 Koishi 中间件接收平台消息，处理白名单检查、Translator 选择、回复投递和节奏控制。</p>
 <h2 id="_2">模型服务插件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>连接 OpenAI、Anthropic、DeepSeek、Google 等服务商的插件。它负责让机器人能调用某个模型。</p>
-<h2 id="platformtranslator">PlatformTranslator<a class="headerlink" href="#platformtranslator" title="Permanent link">&para;</a></h2>
-<p>把不同平台消息转成统一格式的接入层。普通用户不需要直接接触。</p>
+<p>连接 OpenAI、Anthropic、DeepSeek、Google 等服务商的 Provider 插件。通过 <code>ctx.yesimbot.model.register()</code> 注册。</p>
+<h2 id="platformtranslator-translator">PlatformTranslator / Translator<a class="headerlink" href="#platformtranslator-translator" title="Permanent link">&para;</a></h2>
+<p>把不同平台消息转成统一格式的接入层。通过 <code>ctx.yesimbot.messenger.use()</code> 注册。</p>
+<h2 id="resourcereader">ResourceReader<a class="headerlink" href="#resourcereader" title="Permanent link">&para;</a></h2>
+<p>读取自定义 URI scheme 资源的接口。通过 <code>ctx.yesimbot.resource.use()</code> 注册。</p>
 <h2 id="runtime-snapshot">Runtime Snapshot<a class="headerlink" href="#runtime-snapshot" title="Permanent link">&para;</a></h2>
-<p>频道开始时固定下来的模型、工具和插件设置。修改这些配置后需要重启才能生效。</p>
-<h2 id="will">Will<a class="headerlink" href="#will" title="Permanent link">&para;</a></h2>
-<p>机器人决定“先观察”还是“触发回复”的规则。</p>
+<p>频道开始时固定下来的模型、工具和插件设置。修改这些配置后需重启才能生效。</p>
+<h2 id="willengine">WillEngine<a class="headerlink" href="#willengine" title="Permanent link">&para;</a></h2>
+<p>机器人决定"先观察"还是"触发回复"的判断引擎。内置 routing 引擎按固定规则判断，willingness 引擎按动态意愿值判断。</p>
+<h2 id="willplugin">WillPlugin<a class="headerlink" href="#willplugin" title="Permanent link">&para;</a></h2>
+<p>通过 <code>ctx.yesimbot.agent.will()</code> 注册的回复策略插件。按 priority 匹配，首个匹配的插件接管频道的回复判断。</p>
 <h2 id="_3">允许响应的频道<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>机器人可以接收消息的频道白名单。未配置时机器人不会接收任何频道消息。</p>
+<p>机器人可以接收消息的频道白名单。未配置时机器人不接收任何频道消息。</p>
 
 
 

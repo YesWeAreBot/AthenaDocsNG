@@ -1021,6 +1021,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/chat-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    聊天学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/providers/" class="md-nav__link">
         
   
@@ -1359,6 +1382,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#resourcereader" class="md-nav__link">
+    <span class="md-ellipsis">
+      ResourceReader 接口
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       注册
@@ -1572,6 +1604,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#resourcereader" class="md-nav__link">
+    <span class="md-ellipsis">
+      ResourceReader 接口
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       注册
@@ -1619,24 +1660,32 @@
 
 <h1 id="scheme">资源 Scheme 开发<a class="headerlink" href="#scheme" title="Permanent link">&para;</a></h1>
 <p>Core 通过 <code>read</code> 工具和 <code>ResourceReader</code> 统一读取频道资源。插件可以注册自定义 scheme。</p>
+<h2 id="resourcereader">ResourceReader 接口<a class="headerlink" href="#resourcereader" title="Permanent link">&para;</a></h2>
+<div class="language-typescript highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ChannelResources</span><span class="p">,</span><span class="w"> </span><span class="nx">ResourceReader</span><span class="p">,</span><span class="w"> </span><span class="nx">ResourceOpenOptions</span><span class="p">,</span><span class="w"> </span><span class="nx">ResourceOpenResult</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;koishi-plugin-yesimbot&quot;</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">myReader</span><span class="o">:</span><span class="w"> </span><span class="kt">ResourceReader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nx">scheme</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;myfile&quot;</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nx">prompt</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;myfile:///&lt;name&gt; 是自定义资源 URI，用于读取插件管理的文件。&quot;</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">setup</span><span class="p">(</span><span class="nx">resources</span><span class="o">:</span><span class="w"> </span><span class="kt">ChannelResources</span><span class="p">,</span><span class="w"> </span><span class="nx">uri</span><span class="o">:</span><span class="w"> </span><span class="kt">URL</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="o">:</span><span class="w"> </span><span class="kt">ResourceOpenOptions</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">ResourceOpenResult</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">uri</span><span class="p">.</span><span class="nx">pathname</span><span class="p">;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="c1">// 校验路径不逃逸 root</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">readFileBytes</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="p">.</span><span class="nx">signal</span><span class="p">);</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">bytes</span><span class="p">,</span><span class="w"> </span><span class="nx">mediaType</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text/plain&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">filename</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;example.txt&quot;</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">};</span>
+</span></code></pre></div>
 <h2 id="_1">注册<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div class="language-typescript highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">dispose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">yesimbot</span><span class="p">.</span><span class="nx">registerResourceScheme</span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="s2">&quot;myfile&quot;</span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="s2">&quot;myfile:///&lt;name&gt; 是自定义资源 URI。&quot;</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span><span class="w"> </span><span class="nx">uri</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="c1">// 校验路径后读取字节</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">bytes</span><span class="p">,</span><span class="w"> </span><span class="nx">mediaType</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text/plain&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">filename</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;example.txt&quot;</span><span class="w"> </span><span class="p">};</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="p">},</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">);</span>
+<div class="language-typescript highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">dispose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">yesimbot</span><span class="p">.</span><span class="nx">resource</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">myReader</span><span class="p">);</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nx">ctx</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;dispose&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">dispose</span><span class="p">);</span>
 </span></code></pre></div>
 <p><code>asset</code> 与 <code>artifact</code> 是保留 scheme，不能重复注册。</p>
 <h2 id="_2">模型输入投影<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>只有 <code>&lt;img&gt;</code> 和 <code>&lt;file&gt;</code> 的 <code>src</code> 支持资源 URI。模型输入插件会把已持久化资源转成文本占位符，再按 <code>imageInput</code> 预算把图片投递给视觉模型。</p>
+<p>只有 <code>&lt;img&gt;</code> 和 <code>&lt;file&gt;</code> 的 <code>src</code> 支持资源 URI。模型输入插件把已持久化资源转成文本占位符，再按 <code>imageInput</code> 预算把图片投递给视觉模型。</p>
 <h2 id="_3">安全要求<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
-<li>解析 scheme 时必须验证路径不能逃逸 root。</li>
+<li>解析 scheme 时验证路径不能逃逸 root。</li>
 <li>使用 <code>realpath</code> 后再次校验包含关系。</li>
-<li>遵守 <code>maxBytes</code> / <code>signal</code> 限制。</li>
+<li>遵守 <code>options.maxBytes</code> 和 <code>options.signal</code> 限制。</li>
 </ul>
 
 

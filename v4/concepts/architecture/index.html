@@ -532,7 +532,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      先看结论
+      消息处理流程
     </span>
   </a>
   
@@ -541,26 +541,26 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      输入流程
+      关键组件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="关键组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#messenger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Messenger：消息入口与出口
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      几个重要边界
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="几个重要边界">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gateway" class="md-nav__link">
+  <a href="#channels" class="md-nav__link">
     <span class="md-ellipsis">
-      Gateway：平台消息入口
+      Channels：频道存储
     </span>
   </a>
   
@@ -569,7 +569,7 @@
           <li class="md-nav__item">
   <a href="#runtimemanager" class="md-nav__link">
     <span class="md-ellipsis">
-      RuntimeManager：频道和机器人管理
+      RuntimeManager：频道运行管理
     </span>
   </a>
   
@@ -578,7 +578,7 @@
           <li class="md-nav__item">
   <a href="#channelruntime" class="md-nav__link">
     <span class="md-ellipsis">
-      ChannelRuntime：频道内的消息队列
+      ChannelRuntime：消息队列
     </span>
   </a>
   
@@ -599,7 +599,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       为什么改配置要重启
     </span>
@@ -608,7 +608,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       投递失败会怎样
     </span>
@@ -1150,6 +1150,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/chat-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    聊天学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/providers/" class="md-nav__link">
         
   
@@ -1634,7 +1657,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      先看结论
+      消息处理流程
     </span>
   </a>
   
@@ -1643,26 +1666,26 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      输入流程
+      关键组件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="关键组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#messenger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Messenger：消息入口与出口
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      几个重要边界
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="几个重要边界">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gateway" class="md-nav__link">
+  <a href="#channels" class="md-nav__link">
     <span class="md-ellipsis">
-      Gateway：平台消息入口
+      Channels：频道存储
     </span>
   </a>
   
@@ -1671,7 +1694,7 @@
           <li class="md-nav__item">
   <a href="#runtimemanager" class="md-nav__link">
     <span class="md-ellipsis">
-      RuntimeManager：频道和机器人管理
+      RuntimeManager：频道运行管理
     </span>
   </a>
   
@@ -1680,7 +1703,7 @@
           <li class="md-nav__item">
   <a href="#channelruntime" class="md-nav__link">
     <span class="md-ellipsis">
-      ChannelRuntime：频道内的消息队列
+      ChannelRuntime：消息队列
     </span>
   </a>
   
@@ -1701,7 +1724,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       为什么改配置要重启
     </span>
@@ -1710,7 +1733,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       投递失败会怎样
     </span>
@@ -1738,38 +1761,47 @@
 
 
 <h1 id="_1">架构总览<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>这个页面讲 YesImBot 内部是怎么工作的。普通用户不需要读懂所有细节；如果你想理解“为什么机器人有时候不回复”或“为什么改完配置要重启”，这里可以给你一个大概印象。</p>
-<h2 id="_2">先看结论<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>一条消息进入机器人后，会经过这几步：</p>
+<p>普通用户不需要读懂所有细节。如果你想理解"为什么机器人有时候不回复"或"为什么改完配置要重启"，这里给你一个大概印象。</p>
+<h2 id="_2">消息处理流程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>一条消息进入机器人后经过这几步：</p>
 <ol>
-<li>判断这条消息来自哪个频道、是不是允许响应的频道。</li>
-<li>把消息转成机器人能理解的格式。</li>
-<li>决定是“先观察”还是“触发回复”。</li>
-<li>如果触发，就调用模型、执行工具，最后把结果发回群里。</li>
+<li><strong>频道白名单</strong>：是否允许接收此频道消息。</li>
+<li><strong>Assignee 检查</strong>：群聊频道是否把 Bot 设为负责人。</li>
+<li><strong>格式转换</strong>：平台消息经 Translator 转成内部记录。</li>
+<li><strong>Will 判断</strong>：决定"先观察"还是"触发回复"。</li>
+<li><strong>模型调用</strong>：如果触发，调用模型、执行工具、生成回复。</li>
+<li><strong>分段投递</strong>：结果按节奏发回群里。</li>
 </ol>
-<h2 id="_3">输入流程<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>平台消息
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  -&gt; 频道白名单
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  -&gt; 平台格式转换
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  -&gt; 消息记录
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  -&gt; 频道队列
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  -&gt; 是否回复
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  -&gt; 模型与工具
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  -&gt; 发送回复
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  → Messenger 接收
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  → 白名单 + assignee 检查
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  → Translator 格式转换
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  → ChannelRuntime 入队
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  → Will 判断
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  → Agent Runtime（模型 + 工具）
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  → 分段投递回平台
 </span></code></pre></div>
-<h2 id="_4">几个重要边界<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<h3 id="gateway">Gateway：平台消息入口<a class="headerlink" href="#gateway" title="Permanent link">&para;</a></h3>
-<p>Gateway 负责接收平台消息，检查频道是否允许，然后把消息转成统一的内部记录。它也是负责把回复发回平台的地方。</p>
-<h3 id="runtimemanager">RuntimeManager：频道和机器人管理<a class="headerlink" href="#runtimemanager" title="Permanent link">&para;</a></h3>
-<p>每个频道会有一个独立的运行状态。RuntimeManager 负责创建、停止和替换这些状态，保证一个频道不会同时出现多个互相干扰的回复流程。</p>
-<h3 id="channelruntime">ChannelRuntime：频道内的消息队列<a class="headerlink" href="#channelruntime" title="Permanent link">&para;</a></h3>
-<p>同一个频道里的消息会按顺序处理。如果机器人正在回复，新消息不会开一个新线程抢着回，而是进入同一个对话流程。</p>
+<h2 id="_3">关键组件<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="messenger">Messenger：消息入口与出口<a class="headerlink" href="#messenger" title="Permanent link">&para;</a></h3>
+<p>Messenger 注册 Koishi 中间件，接收平台 Session。它负责：</p>
+<ul>
+<li>检查频道白名单和 assignee</li>
+<li>选择 Translator 转换消息格式</li>
+<li>投递回复，按字符速度 pacing 分段发送</li>
+<li>失败时通知 Runtime</li>
+</ul>
+<h3 id="channels">Channels：频道存储<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h3>
+<p>每个频道有独立数据目录，保存会话文件、收到的图片、工具生成的文件。Channels 负责创建和管理这些目录。</p>
+<h3 id="runtimemanager">RuntimeManager：频道运行管理<a class="headerlink" href="#runtimemanager" title="Permanent link">&para;</a></h3>
+<p>每个频道有一个 ChannelRuntime。RuntimeManager 按需创建、缓存和销毁它们，保证同一频道不会出现多个互相干扰的回复流程。</p>
+<h3 id="channelruntime">ChannelRuntime：消息队列<a class="headerlink" href="#channelruntime" title="Permanent link">&para;</a></h3>
+<p>同一频道的消息按顺序处理。如果机器人正在回复，新消息进入同一对话流程排队，不会开新线程抢回复。</p>
 <h3 id="agent-runtime">Agent Runtime：模型和工具执行<a class="headerlink" href="#agent-runtime" title="Permanent link">&para;</a></h3>
-<p>真正调用模型、执行工具、生成回复的是通用 Agent 运行时。它不关心 Koishi 或具体平台，只处理消息、工具和模型之间的交互。</p>
-<h2 id="_5">为什么改配置要重启<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>机器人在开始一个频道时会固定使用当时的模型、工具和插件设置。为了避免一边聊一边切换底层配置造成混乱，新配置通常要等重启后才会完整生效。</p>
-<h2 id="_6">投递失败会怎样<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>如果回复发送失败，机器人会把这次失败记录下来，并让同一个频道的对话流程知道发送没有成功。这比假装已经发出要好，方便排查问题。</p>
+<p>真正调用模型、执行工具、生成回复的通用运行时。它不关心 Koishi 或具体平台，只处理消息、工具和模型之间的交互。位于 <code>@yesimbot/agent-runtime</code> 包中。</p>
+<h2 id="_4">为什么改配置要重启<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>频道开始时会固定当时的模型、工具和插件设置（Runtime Snapshot）。避免一边聊一边切换底层配置造成混乱，新配置通常等重启后完整生效。</p>
+<h2 id="_5">投递失败会怎样<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>如果回复发送失败，Messenger 会把失败通知同一频道的 ChannelRuntime，让对话流程知道发送未成功。这比假装已发出要好，方便排查问题。</p>
 
 
 
