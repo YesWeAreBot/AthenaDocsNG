@@ -2,7 +2,7 @@
 
 这个页面是给第一次使用 YesImBot 的人看的。目标只有一个：让机器人能在 Koishi 里回复你。
 
-你不需要写插件代码。安装阶段会用到一条 Launcher 命令，之后的大部分配置都在 Koishi 控制台里完成。
+你不需要写插件代码。安装阶段会用到 Launcher 的一两条命令，之后的大部分配置都在 Koishi 控制台里完成。
 
 ## 先认识三个名字
 
@@ -12,29 +12,54 @@
 
 ## 1. 安装 YesImBot
 
-目前 v4 还没有上架 npm 或 Koishi 插件市场，请先安装 Launcher：
+v4 尚未发布到 npm 或 Koishi 插件市场，所以这一步使用官方 Launcher 从源码接入。Launcher 会先安装命令行工具 `yesimbot-cli`，再由它创建 Koishi App、拉取 YesImBot v4 源码并构建。
+
+### 1.1 安装 Launcher
+
+根据你的系统选择一条命令：
+
+Linux / WSL / macOS：
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/YesWeAreBot/launcher/main/install.sh | sh
-yesimbot-cli init
 ```
+
+Windows PowerShell：
 
 ```powershell
 irm https://raw.githubusercontent.com/YesWeAreBot/launcher/main/install.ps1 | iex
+```
+
+安装完成后可以运行 `yesimbot-cli --help` 验证。
+
+### 1.2 创建或接入 Koishi App
+
+第一次使用，直接运行：
+
+```bash
 yesimbot-cli init
 ```
 
-`yesimbot-cli init` 会创建 Koishi App，并从 GitHub `dev` 分支接入 YesImBot v4 源码。
+已经有 Koishi App，传入它的目录：
 
-YesImBot 需要一个数据库来保存聊天记录和频道信息。Launcher 创建的 Koishi App 自带 SQLite，默认无需额外设置；需要 MySQL/PostgreSQL 时再在 Koishi App 中配置。
+```bash
+yesimbot-cli init /path/to/koishi-app
+```
 
-## 2. 安装一个模型服务插件
+`init` 会完成这些事：
 
-YesImBot 本身不连接任何模型公司。接入源码后，在 Koishi 控制台的插件列表里启用一个模型服务插件，告诉机器人可以调用谁的 API。
+- 没有 App 时下载 Koishi 模板；
+- 从 GitHub `dev` 分支拉取 YesImBot v4 源码；
+- 构建插件并写入 workspace 依赖；
+- 结束后询问是否立即启动。
 
-最常用的是 OpenAI：
+数据库不需要单独准备：Launcher 创建的 Koishi App 自带 SQLite，默认直接使用；需要 MySQL/PostgreSQL 时再在 Koishi App 中配置。
 
-如果你用其他模型服务商，可以启用对应插件：
+## 2. 启用一个模型服务插件
+
+YesImBot 本身不连接任何模型公司。接入源码并启动后，在 Koishi 控制台的插件列表里启用一个模型服务插件，告诉机器人可以调用谁的 API。
+
+最常用的是 OpenAI；其他服务商可以启用对应插件：
 
 | 服务商 | 插件 |
 | --- | --- |
