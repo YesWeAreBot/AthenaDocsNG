@@ -1668,7 +1668,8 @@
 <p>机器人在 A 群里学会了“这个项目每周五发版”。之后在 B 群里提到项目计划时，机器人可以结合这条经验来回应。</p>
 <h2 id="_4">安装和配置<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 <code>koishi-plugin-yesimbot-global-brain</code>。基本配置：</p>
-<div class="config-preview">
+<div class="config-preview"><div class="config-preview-tabs" role="tablist"><button class="config-preview-tab" data-panel="yaml" type="button">YAML</button><button class="config-preview-tab active" data-panel="form" type="button">表单预览</button></div><div class="config-preview-panel" data-panel="yaml" hidden><div markdown="1">
+
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">yesimbot-global-brain</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">shareImmediately</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">  </span><span class="c1"># 是否允许主动唤起其他频道</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">storageDir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">           </span><span class="c1"># 留空使用默认目录</span>
@@ -1676,7 +1677,8 @@
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">maxDigestReplies</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">      </span><span class="c1"># 每次最多摘要几个回复线程</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">maxDigestContentLength</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span><span class="w"> </span><span class="c1"># 摘要里每条内容最多多少字</span>
 </span></code></pre></div>
-</div>
+
+</div></div><div class="config-preview-panel" data-panel="form"></div></div>
 <ul>
 <li><code>storageDir</code> 留空时使用默认目录。</li>
 <li><code>shareImmediately</code> 允许插件在写入内容后主动唤起其他频道。</li>

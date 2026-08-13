@@ -1724,14 +1724,16 @@
 </ul>
 <p>这个判断发生在调用模型之前，机器人不会对每条消息都花一次模型费用。</p>
 <h2 id="_3">默认规则：最小启动配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<div class="config-preview">
+<div class="config-preview"><div class="config-preview-tabs" role="tablist"><button class="config-preview-tab" data-panel="yaml" type="button">YAML</button><button class="config-preview-tab active" data-panel="form" type="button">表单预览</button></div><div class="config-preview-panel" data-panel="yaml" hidden><div markdown="1">
+
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">will</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">routing</span><span class="w">   </span><span class="c1"># 固定规则（routing）</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">direct</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trigger</span><span class="w">   </span><span class="c1"># 私聊消息</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">mention</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trigger</span><span class="w">  </span><span class="c1"># @ 机器人</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wait</span><span class="w">       </span><span class="c1"># 普通群消息</span>
 </span></code></pre></div>
-</div>
+
+</div></div><div class="config-preview-panel" data-panel="form"></div></div>
 <p>覆盖的场景：</p>
 <ol>
 <li>私聊机器人 → 回应。</li>
@@ -1748,24 +1750,28 @@
 <p>想让机器人像群友一样自然参与，使用 <code>willingness</code> 引擎 + Will 策略插件。</p>
 <h2 id="_4">让机器人更活跃<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>把群聊普通消息改成 <code>trigger</code>：</p>
-<div class="config-preview">
+<div class="config-preview"><div class="config-preview-tabs" role="tablist"><button class="config-preview-tab" data-panel="yaml" type="button">YAML</button><button class="config-preview-tab active" data-panel="form" type="button">表单预览</button></div><div class="config-preview-panel" data-panel="yaml" hidden><div markdown="1">
+
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">will</span><span class="p">:</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">routing</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trigger</span><span class="w">   </span><span class="c1"># 普通群消息</span>
 </span></code></pre></div>
-</div>
+
+</div></div><div class="config-preview-panel" data-panel="form"></div></div>
 <p>改完重启 Koishi。机器人可能在热闹群里频繁发言，注意刷屏。</p>
 <p><code>group: trigger</code> 对所有普通消息直接触发，仍不够"自然"。更好的做法是使用意愿值。</p>
 <h2 id="_5">按意愿值动态判断<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>固定规则适合"明确要不要回"的场景。想让机器人根据话题热度和节奏自然决定：</p>
-<div class="config-preview">
+<div class="config-preview"><div class="config-preview-tabs" role="tablist"><button class="config-preview-tab" data-panel="yaml" type="button">YAML</button><button class="config-preview-tab active" data-panel="form" type="button">表单预览</button></div><div class="config-preview-panel" data-panel="yaml" hidden><div markdown="1">
+
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">will</span><span class="p">:</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">willingness</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">probabilityThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">55</span><span class="w">     </span><span class="c1"># 触发概率阈值</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">decayHalfLifeSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">600</span><span class="w">    </span><span class="c1"># 意愿值半衰期(秒)</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">replyCost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">35</span><span class="w">                </span><span class="c1"># 每次成功回复后扣除的意愿值</span>
 </span></code></pre></div>
-</div>
+
+</div></div><div class="config-preview-panel" data-panel="form"></div></div>
 <ul>
 <li><code>probabilityThreshold</code> 越高，机器人越"高冷"。</li>
 <li><code>decayHalfLifeSeconds</code> 越短，兴趣消退越快。</li>

@@ -1802,21 +1802,25 @@
 </ol>
 <p>“允许响应的频道”的意思是：机器人只在这些频道里接收消息。默认情况下，如果没有添加频道，机器人不会回复任何人。</p>
 <p>如果你愿意直接编辑配置，最小示例是：</p>
-<div class="config-preview">
+<div class="config-preview"><div class="config-preview-tabs" role="tablist"><button class="config-preview-tab" data-panel="yaml" type="button">YAML</button><button class="config-preview-tab active" data-panel="form" type="button">表单预览</button></div><div class="config-preview-panel" data-panel="yaml" hidden><div markdown="1">
+
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">yesimbot</span><span class="p">:</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">chatModel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai:gpt-4o</span><span class="w">  </span><span class="c1"># 选择模型</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">allowedChannels</span><span class="p">:</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">onebot</span><span class="w">      </span><span class="c1"># 平台</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123456&quot;</span><span class="w">   </span><span class="c1"># 频道 ID</span>
 </span></code></pre></div>
-</div>
+
+</div></div><div class="config-preview-panel" data-panel="form"></div></div>
 <p>想测试时也可以先放行所有频道，但正式使用时不建议这样：</p>
-<div class="config-preview">
+<div class="config-preview"><div class="config-preview-tabs" role="tablist"><button class="config-preview-tab" data-panel="yaml" type="button">YAML</button><button class="config-preview-tab active" data-panel="form" type="button">表单预览</button></div><div class="config-preview-panel" data-panel="yaml" hidden><div markdown="1">
+
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">allowedChannels</span><span class="p">:</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
 </span></code></pre></div>
-</div>
+
+</div></div><div class="config-preview-panel" data-panel="form"></div></div>
 <h2 id="4">4. 验证是否成功<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p>在允许的频道里 @ 机器人：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>@Athena 你好

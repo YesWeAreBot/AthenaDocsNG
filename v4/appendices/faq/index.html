@@ -1710,12 +1710,14 @@
 <h2 id="_3">群聊普通消息不回复<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>这是默认行为：<code>group: wait</code> 表示普通群聊消息只会被记录，不会交给模型。</p>
 <p>如果希望机器人自然参与群聊，推荐安装 <a href="../../plugins/will-policy/">Will 策略插件</a>，并使用 <code>willingness</code> 引擎。这样机器人会看到普通消息、积累意愿，并按关键词、引用和图片判断是否回复。</p>
-<div class="config-preview">
+<div class="config-preview"><div class="config-preview-tabs" role="tablist"><button class="config-preview-tab" data-panel="yaml" type="button">YAML</button><button class="config-preview-tab active" data-panel="form" type="button">表单预览</button></div><div class="config-preview-panel" data-panel="yaml" hidden><div markdown="1">
+
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">will</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">routing</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trigger</span>
 </span></code></pre></div>
-</div>
+
+</div></div><div class="config-preview-panel" data-panel="form"></div></div>
 <h2 id="_4">配置改完不生效<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>重启 Koishi 后，新的模型、插件和主要配置会生效。如果只做了临时调试，注意它不会自动保存到配置文件。</p>
 <h2 id="modelsjson">models.json 覆盖被忽略<a class="headerlink" href="#modelsjson" title="Permanent link">&para;</a></h2>

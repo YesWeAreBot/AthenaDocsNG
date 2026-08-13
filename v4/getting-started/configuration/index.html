@@ -1709,19 +1709,23 @@
 <h2 id="_3">允许响应的频道<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>“允许响应的频道”决定机器人能在哪里说话。默认情况下，列表是空的，也就是机器人不会接收任何频道消息。</p>
 <p>至少要添加一条规则。最简单的规则是：</p>
-<div class="config-preview">
+<div class="config-preview"><div class="config-preview-tabs" role="tablist"><button class="config-preview-tab" data-panel="yaml" type="button">YAML</button><button class="config-preview-tab active" data-panel="form" type="button">表单预览</button></div><div class="config-preview-panel" data-panel="yaml" hidden><div markdown="1">
+
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">allowedChannels</span><span class="p">:</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">onebot</span><span class="w">   </span><span class="c1"># 平台，例如 onebot、discord</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123456&quot;</span><span class="w"> </span><span class="c1"># 频道 ID</span>
 </span></code></pre></div>
-</div>
+
+</div></div><div class="config-preview-panel" data-panel="form"></div></div>
 <p>想允许所有平台和所有频道，可以写：</p>
-<div class="config-preview">
+<div class="config-preview"><div class="config-preview-tabs" role="tablist"><button class="config-preview-tab" data-panel="yaml" type="button">YAML</button><button class="config-preview-tab active" data-panel="form" type="button">表单预览</button></div><div class="config-preview-panel" data-panel="yaml" hidden><div markdown="1">
+
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">allowedChannels</span><span class="p">:</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="w">   </span><span class="c1"># 不限平台</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="w">  </span><span class="c1"># 不限频道</span>
 </span></code></pre></div>
-</div>
+
+</div></div><div class="config-preview-panel" data-panel="form"></div></div>
 <p><code>*</code> 表示“不限制”。正式使用时不建议直接放行所有频道。</p>
 <h2 id="_4">机器人什么时候回复<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>默认情况下，私聊和群聊 @ 会回复，群聊普通消息只会被记录，不会交给模型。</p>
@@ -1747,13 +1751,15 @@
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>还可以限制图片数量、单张大小和总大小：</p>
-<div class="config-preview">
+<div class="config-preview"><div class="config-preview-tabs" role="tablist"><button class="config-preview-tab" data-panel="yaml" type="button">YAML</button><button class="config-preview-tab active" data-panel="form" type="button">表单预览</button></div><div class="config-preview-panel" data-panel="yaml" hidden><div markdown="1">
+
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">imageInput</span><span class="p">:</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">maxCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">maxBytesPerImage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5242880</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">maxTotalBytes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10485760</span>
 </span></code></pre></div>
-</div>
+
+</div></div><div class="config-preview-panel" data-panel="form"></div></div>
 <p>更完整的说明见<a href="../../concepts/model/">模型服务</a>和<a href="../../reference/configuration/">配置参考</a>。</p>
 
 
