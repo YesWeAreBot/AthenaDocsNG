@@ -1841,12 +1841,16 @@
 <p>运行在 Koishi 上，内置 OneBot 接入，也支持其他平台。平台差异由接入层处理，机器人不需为每种消息格式重写人格。</p>
 <h2 id="_8">快速开始<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <ol class="steps-list">
-<li>在 Koishi 插件市场安装 <code>koishi-plugin-yesimbot</code>。</li>
-<li>安装一个模型服务插件，填写 API Key。</li>
-<li>选择聊天模型，添加允许响应的频道。</li>
+<li>安装 Launcher 并运行 <code>yesimbot-cli init</code> 接入 v4。</li>
+<li>在 Koishi 控制台启用一个模型服务插件，并填写 API Key。</li>
+<li>在配置里选择聊天模型，并添加允许响应的频道。</li>
 </ol>
 
 <p>详细步骤见<a href="getting-started/quick-start/">快速开始</a>。</p>
+<div class="admonition warning">
+<p class="admonition-title">尚未上架</p>
+<p>目前 v4 还未发布到 npm，也未上架 Koishi 插件市场；请使用 Launcher 或源码方式安装。</p>
+</div>
 <h2 id="_9">使用前先理解<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
 <li>机器人不是有问必答的客服，默认不处理群聊普通消息。</li>

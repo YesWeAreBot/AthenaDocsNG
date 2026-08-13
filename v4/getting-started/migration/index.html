@@ -1693,18 +1693,18 @@
 </tr>
 <tr>
 <td>旧的扩展工具体系</td>
-<td>通过 Koishi 插件市场安装功能插件</td>
+<td>通过 Launcher 接入 v4 源码并启用功能插件</td>
 </tr>
 </tbody>
 </table>
 <h2 id="_4">升级时要做的事<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ol>
 <li>备份旧人设、旧记忆文件或旧配置内容。</li>
-<li>安装新版的 <code>koishi-plugin-yesimbot</code>。</li>
-<li>安装一个模型服务插件并填写 API Key。</li>
+<li>安装 Launcher，并运行 <code>yesimbot-cli init</code> 接入 v4 源码。</li>
+<li>在 Koishi 控制台启用一个模型服务插件并填写 API Key。</li>
 <li>重新选择聊天模型。</li>
 <li>重新配置“允许响应的频道”。</li>
-<li>按需重新安装功能插件。</li>
+<li>在 Koishi 插件列表里按需启用功能插件；当前 v4 插件未上架 npm/插件市场，不需要逐包安装。</li>
 </ol>
 <h2 id="_5">升级后没有自动迁移<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>

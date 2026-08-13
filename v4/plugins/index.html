@@ -1642,6 +1642,10 @@
 
 <h1 id="_1">插件总览<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>插件是用来给机器人增加具体能力的。你可以只安装需要的部分，不需要一次装齐，也不需要写代码。</p>
+<div class="admonition warning">
+<p class="admonition-title">当前 v4 尚未上架</p>
+<p>目前 v4 插件还没有发布到 npm，也没有上架 Koishi 插件市场。通过 Launcher 接入源码后，Koishi 插件列表会包含以下插件，直接启用即可。</p>
+</div>
 <h2 id="agent">Agent 能力插件<a class="headerlink" href="#agent" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1738,11 +1742,12 @@
 </table>
 <h2 id="_3">安装方式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ol>
-<li>打开 Koishi 控制台的插件市场。</li>
-<li>搜索插件名，点击安装。</li>
-<li>安装完成后，在插件配置页面打开开关。</li>
+<li>安装 Launcher，并运行 <code>yesimbot-cli init</code> 接入 v4 源码。</li>
+<li>打开 Koishi 控制台的插件列表。</li>
+<li>找到要用的插件，打开开关。</li>
 <li>按页面提示填写 API Key、文件路径等设置。</li>
 </ol>
+<p>当前 v4 插件未上架 npm/插件市场，不需要逐个执行 <code>yarn add</code>。</p>
 <p>大部分插件安装后立即对当前频道生效。修改模型或插件配置后，如果机器人没有马上变化，重启 Koishi 通常是最直接的解决方式。</p>
 <div class="admonition tip">
 <p class="admonition-title">插件可以克隆</p>

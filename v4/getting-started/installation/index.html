@@ -418,18 +418,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#v4" class="md-nav__link">
     <span class="md-ellipsis">
-      方式一：在插件市场安装（推荐）
+      当前 v4 安装状态
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#launcher" class="md-nav__link">
     <span class="md-ellipsis">
-      方式二：命令行安装
+      方式一：使用 Launcher 安装（推荐）
     </span>
   </a>
   
@@ -438,14 +438,14 @@
         <li class="md-nav__item">
   <a href="#dev" class="md-nav__link">
     <span class="md-ellipsis">
-      方式三：接入当前 dev 源码
+      方式二：手动接入当前 dev 源码
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       安装功能插件
     </span>
@@ -1622,18 +1622,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#v4" class="md-nav__link">
     <span class="md-ellipsis">
-      方式一：在插件市场安装（推荐）
+      当前 v4 安装状态
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#launcher" class="md-nav__link">
     <span class="md-ellipsis">
-      方式二：命令行安装
+      方式一：使用 Launcher 安装（推荐）
     </span>
   </a>
   
@@ -1642,14 +1642,14 @@
         <li class="md-nav__item">
   <a href="#dev" class="md-nav__link">
     <span class="md-ellipsis">
-      方式三：接入当前 dev 源码
+      方式二：手动接入当前 dev 源码
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       安装功能插件
     </span>
@@ -1680,43 +1680,49 @@
 <p>这个页面讲怎样把 YesImBot 安装到 Koishi 里。第一次使用的话，推荐从<a href="../quick-start/">快速开始</a>开始；如果你已经知道自己在做什么，可以按这里的方式安装。</p>
 <h2 id="_2">需要准备什么<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
-<li>一个已经能运行的 Koishi 实例，版本 4.18 或更高。</li>
 <li>Node.js 18 或更高版本。</li>
-<li>Koishi 数据库服务，例如 SQLite、MySQL 或 PostgreSQL。</li>
+<li>Git（Launcher 接入源码时需要）。</li>
+<li>数据库：Launcher 创建的 Koishi App 自带 SQLite，默认无需单独安装；如需 MySQL/PostgreSQL，在 Koishi App 中配置即可。</li>
 <li>一个能访问模型 API 的网络环境。</li>
+<li>可选：一个已有 Koishi App；没有的话 Launcher 会创建新的。</li>
 </ul>
-<h2 id="_3">方式一：在插件市场安装（推荐）<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<ol>
-<li>打开 Koishi 控制台。</li>
-<li>进入“插件市场”。</li>
-<li>搜索 <code>yesimbot</code>。</li>
-<li>安装 <code>koishi-plugin-yesimbot</code>。</li>
-<li>按需安装模型服务插件和功能插件。</li>
-</ol>
-<p>这个方式不需要接触命令行，适合大多数用户。</p>
-<h2 id="_4">方式二：命令行安装<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>如果你已经熟悉 Koishi 项目，可以在项目目录运行：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>yarn<span class="w"> </span>add<span class="w"> </span>koishi-plugin-yesimbot
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>yarn<span class="w"> </span>add<span class="w"> </span>@yesimbot/koishi-plugin-provider-openai
+<h2 id="v4">当前 v4 安装状态<a class="headerlink" href="#v4" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">尚未发布到 npm / 插件市场</p>
+<p>目前 v4 还没有上架 npm，也没有进入 Koishi 插件市场。请不要使用 <code>yarn add koishi-plugin-yesimbot</code> 或在插件市场搜索安装；这些方式现在拿不到 v4。</p>
+</div>
+<h2 id="launcher">方式一：使用 Launcher 安装（推荐）<a class="headerlink" href="#launcher" title="Permanent link">&para;</a></h2>
+<p>YesImBot Launcher 会从 GitHub Release 安装 <code>yesimbot-cli</code>，然后由 <code>yesimbot-cli init</code> 创建或接入 Koishi App，并从 GitHub <code>dev</code> 分支拉取 YesImBot 源码、构建并写入 workspace 配置。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Linux / WSL / macOS</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/YesWeAreBot/launcher/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>yesimbot-cli<span class="w"> </span>init<span class="w">          </span><span class="c1"># 结束后按提示选择是否立即启动</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 以后需要再次启动时：</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>yesimbot-cli<span class="w"> </span>start<span class="w"> </span>--daemon
 </span></code></pre></div>
-<p>然后在 <code>koishi.yml</code> 或 Koishi 控制台里启用插件。</p>
-<h2 id="dev">方式三：接入当前 dev 源码<a class="headerlink" href="#dev" title="Permanent link">&para;</a></h2>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c"># Windows PowerShell</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">irm </span><span class="n">https</span><span class="p">://</span><span class="n">raw</span><span class="p">.</span><span class="n">githubusercontent</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">YesWeAreBot</span><span class="p">/</span><span class="n">launcher</span><span class="p">/</span><span class="n">main</span><span class="p">/</span><span class="n">install</span><span class="p">.</span><span class="n">ps1</span> <span class="p">|</span> <span class="nb">iex</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">yesimbot-cli</span> <span class="n">init</span>          <span class="c"># 结束后按提示选择是否立即启动</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c"># 以后需要再次启动时：</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">yesimbot-cli</span> <span class="nb">start </span><span class="p">-</span><span class="n">-daemon</span>
+</span></code></pre></div>
+<p><code>init</code> 默认创建 <code>./yesimbot-app</code>；传入目录可以创建到指定位置，也可以接入已有 Koishi App。安装完成后，Koishi 控制台里会包含 <code>yesimbot</code>、模型服务插件和功能插件，按需启用即可。</p>
+<h2 id="dev">方式二：手动接入当前 dev 源码<a class="headerlink" href="#dev" title="Permanent link">&para;</a></h2>
 <p>这个方式只推荐给开发者或想要提前体验最新代码的人。普通用户不需要这样做。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YesWeAreBot/YesImBot.git
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>YesImBot
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>git<span class="w"> </span>checkout<span class="w"> </span>dev
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>yarn<span class="w"> </span>install
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>node<span class="w"> </span>scripts/setup-koishi.mjs<span class="w"> </span>--create-app<span class="w"> </span>../my-koishi
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YesWeAreBot/YesImBot.git
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>YesImBot
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>git<span class="w"> </span>checkout<span class="w"> </span>dev
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>yarn<span class="w"> </span>install
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>node<span class="w"> </span>scripts/setup-koishi.mjs<span class="w"> </span>--create-app<span class="w"> </span>../my-koishi
 </span></code></pre></div>
 <p>脚本会创建 Koishi 应用、构建插件并写入 workspace 配置。之后从 YesImBot 仓库启动：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>yarn<span class="w"> </span>koishi:start
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>yarn<span class="w"> </span>koishi:start
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">dev 分支</p>
 <p><code>dev</code> 是开发分支，配置和功能可能随时变化。本版本文档以当前 <code>dev</code> 代码为准。</p>
 </div>
-<h2 id="_5">安装功能插件<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>YesImBot 的功能插件可以按需安装，例如：</p>
+<h2 id="_3">安装功能插件<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>接入源码后，YesImBot 的功能插件可以按需启用，例如：</p>
 <ul>
 <li>联网搜索</li>
 <li>文件和工作区操作</li>
@@ -1725,7 +1731,7 @@
 <li>贴纸管理</li>
 <li>OneBot 群管理工具</li>
 </ul>
-<p>安装方式和其他 Koishi 插件一样：在插件市场搜索、安装，然后在插件配置页打开开关。不需要写代码。</p>
+<p>当前 v4 功能插件没有上架插件市场，不需要逐个执行 <code>yarn add</code>。通过 Launcher 接入源码后，直接在 Koishi 控制台的插件列表里启用对应插件，然后在插件配置页填写设置。</p>
 <p>完整列表见<a href="../../plugins/">插件总览</a>。</p>
 
 
