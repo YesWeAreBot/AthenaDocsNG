@@ -19,7 +19,7 @@
 
 以 OpenAI 为例：
 
-```yaml
+```yaml-config
 @yesimbot/koishi-plugin-provider-openai:
   id: openai        # Provider 实例 ID，必须唯一
   apiKey: sk-xxx    # 对应 API 的 Key
@@ -36,7 +36,7 @@
 
 例如：
 
-```yaml
+```yaml-config
 @yesimbot/koishi-plugin-provider-openai:
   id: relay
   apiKey: relay-key
@@ -66,7 +66,7 @@
 
 DeepSeek 可以额外配置思考等级：
 
-```yaml
+```yaml-config
 @yesimbot/koishi-plugin-provider-deepseek:
   id: deepseek
   apiKey: sk-xxx

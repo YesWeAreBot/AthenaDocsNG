@@ -29,7 +29,7 @@ YesImBot 把“记忆”分成两层：
 
 相关配置：
 
-```yaml
+```yaml-config
 session:
   compact:
     threshold: 0.9

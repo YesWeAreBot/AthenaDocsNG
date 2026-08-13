@@ -85,7 +85,7 @@ google:gemini-2.5-pro
 
 ### 控制图片预算
 
-```yaml
+```yaml-config
 imageInput:
   maxCount: 3            # 最多同时读取 3 张图片
   maxBytesPerImage: 5242880   # 单张图片最大 5MB

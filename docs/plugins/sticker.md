@@ -10,7 +10,7 @@
 
 当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 `koishi-plugin-yesimbot-sticker-manager`。
 
-```yaml
+```yaml-config
 yesimbot-sticker-manager:
   scope: global                  # global=全局库，channel=按频道
   storagePath: data/yesimbot/sticker-manager

@@ -14,7 +14,7 @@
 
 当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 `koishi-plugin-yesimbot-memos-client`，然后填写：
 
-```yaml
+```yaml-config
 yesimbot-memos-client:
   baseUrl: https://memos.memtensor.cn/api/openmem/v1
   apiKey: your-api-key

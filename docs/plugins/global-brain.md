@@ -14,7 +14,7 @@
 
 当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 `koishi-plugin-yesimbot-global-brain`。基本配置：
 
-```yaml
+```yaml-config
 yesimbot-global-brain:
   shareImmediately: false  # 是否允许主动唤起其他频道
   storageDir: ""           # 留空使用默认目录

@@ -13,12 +13,12 @@ Will 控制机器人决定要不要回复。
 
 ## 默认规则：最小启动配置
 
-```yaml
+```yaml-config
 will:
-  engine: routing   # 使用固定规则，不靠模型判断
-  direct: trigger   # 私聊消息：触发回复
-  mention: trigger  # 群里被 @：触发回复
-  group: wait       # 群聊普通消息：先观察
+  engine: routing   # 固定规则（routing）
+  direct: trigger   # 私聊消息
+  mention: trigger  # @ 机器人
+  group: wait       # 普通群消息
 ```
 
 覆盖的场景：
@@ -41,10 +41,10 @@ will:
 
 把群聊普通消息改成 `trigger`：
 
-```yaml
+```yaml-config
 will:
   engine: routing
-  group: trigger   # 普通群聊消息也回复
+  group: trigger   # 普通群消息
 ```
 
 改完重启 Koishi。机器人可能在热闹群里频繁发言，注意刷屏。
@@ -55,12 +55,12 @@ will:
 
 固定规则适合"明确要不要回"的场景。想让机器人根据话题热度和节奏自然决定：
 
-```yaml
+```yaml-config
 will:
   engine: willingness
-  probabilityThreshold: 55     # 意愿达到 55 后才可能回复
-  decayHalfLifeSeconds: 600    # 意愿约 10 分钟衰减一半
-  replyCost: 35                # 每次回复后扣除 35，避免连续刷屏
+  probabilityThreshold: 55     # 触发概率阈值
+  decayHalfLifeSeconds: 600    # 意愿值半衰期(秒)
+  replyCost: 35                # 每次成功回复后扣除的意愿值
 ```
 
 - `probabilityThreshold` 越高，机器人越"高冷"。

@@ -1,5 +1,11 @@
 # Python 
 .venv
+__pycache__/
+*.pyc
 
 # build 
 /site
+
+# config form widget
+tools/config-form/node_modules
+tools/config-form/.yarn

@@ -84,7 +84,7 @@ YesImBot 本身不连接任何模型公司。接入源码并启动后，在 Kois
 
 如果你愿意直接编辑配置，最小示例是：
 
-```yaml
+```yaml-config
 yesimbot:
   chatModel: openai:gpt-4o  # 选择模型
   allowedChannels:
@@ -94,7 +94,7 @@ yesimbot:
 
 想测试时也可以先放行所有频道，但正式使用时不建议这样：
 
-```yaml
+```yaml-config
 allowedChannels:
   - platform: "*"
     channelId: "*"

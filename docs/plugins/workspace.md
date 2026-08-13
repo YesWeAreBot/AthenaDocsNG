@@ -19,7 +19,7 @@
 
 ## 基本配置
 
-```yaml
+```yaml-config
 yesimbot-workspace:
   bash:
     mode: sandbox         # 沙箱模式，不会直接操作宿主机

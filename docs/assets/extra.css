@@ -290,6 +290,98 @@
   vertical-align: middle;
 }
 
+.config-preview {
+  background: var(--yb-paper);
+  border: 1px solid var(--yb-line);
+  border-radius: 8px;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+.config-preview-tabs {
+  background: var(--yb-surface, transparent);
+  border-bottom: 1px solid var(--yb-line);
+  display: flex;
+  gap: .25rem;
+  padding: .35rem .5rem 0;
+}
+
+.config-preview-tab {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: var(--yb-ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: .85rem;
+  padding: .45rem .75rem;
+}
+
+.config-preview-tab.active {
+  border-bottom-color: var(--yb-teal);
+  color: var(--yb-teal);
+}
+
+.config-preview-panel {
+  padding: .75rem;
+}
+
+.config-preview-panel[hidden] {
+  display: none;
+}
+
+.config-preview .highlight {
+  margin: 0;
+}
+
+.config-preview .highlight pre {
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.config-preview .k-form {
+  margin-top: 0;
+}
+
+.config-preview .k-schema-header {
+  display: none;
+}
+
+.config-preview .k-schema-item:first-child {
+  border-top: 0;
+}
+
+.config-preview .k-schema-left h3 {
+  font-size: .82rem;
+}
+
+.config-preview .k-schema-left p {
+  font-size: .75rem;
+}
+
+.config-preview .k-schema-left .markdown {
+  color: var(--yb-ink);
+  font-size: .75rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.config-preview .k-schema-left .markdown p {
+  margin: .15rem 0 0;
+}
+
+.config-preview .k-schema-main {
+  min-height: 2.2rem;
+}
+
+.config-preview-error,
+.config-preview-empty {
+  color: var(--yb-ink);
+  font-size: .85rem;
+  margin: 0;
+}
+
 @media screen and (max-width: 760px) {
   .home-hero {
     padding: 1.5rem 1.2rem;
@@ -299,4 +391,5 @@
   .home-hero-title {
     font-size: 1.55rem;
   }
+
 }

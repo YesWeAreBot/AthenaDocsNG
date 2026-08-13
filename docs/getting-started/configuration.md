@@ -22,7 +22,7 @@ Provider ID 是模型服务插件实例里的 `id`，不一定是厂商名；改
 
 至少要添加一条规则。最简单的规则是：
 
-```yaml
+```yaml-config
 allowedChannels:
   - platform: onebot   # 平台，例如 onebot、discord
     channelId: "123456" # 频道 ID
@@ -30,7 +30,7 @@ allowedChannels:
 
 想允许所有平台和所有频道，可以写：
 
-```yaml
+```yaml-config
 allowedChannels:
   - platform: "*"   # 不限平台
     channelId: "*"  # 不限频道
@@ -75,7 +75,7 @@ allowedChannels:
 
 还可以限制图片数量、单张大小和总大小：
 
-```yaml
+```yaml-config
 imageInput:
   maxCount: 3
   maxBytesPerImage: 5242880

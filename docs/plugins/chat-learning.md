@@ -16,9 +16,9 @@
 
 ## 安装和配置
 
-在插件市场安装 `koishi-plugin-yesimbot-chat-learning`。
+当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 `koishi-plugin-yesimbot-chat-learning`。
 
-```yaml
+```yaml-config
 yesimbot-chat-learning:
   maxExamples: 4              # 每轮最多注入几个示例对话段
   maxMessagesPerExample: 5    # 每段最多几条消息

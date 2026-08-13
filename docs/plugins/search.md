@@ -14,7 +14,7 @@
 
 ### Tavily
 
-```yaml
+```yaml-config
 yesimbot-search-service:
   provider: tavily   # 搜索后端
   tavily:
@@ -24,7 +24,7 @@ yesimbot-search-service:
 
 ### SearXNG
 
-```yaml
+```yaml-config
 yesimbot-search-service:
   provider: searxng   # 自建 SearXNG
   searxng:

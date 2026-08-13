@@ -4,7 +4,7 @@
 
 ## 开启详细日志
 
-```yaml
+```yaml-config
 yesimbot:
   logLevel: 3
 ```

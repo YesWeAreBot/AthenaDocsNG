@@ -17,15 +17,15 @@
 
 ## 固定规则
 
-```yaml
+```yaml-config
 yesimbot-will-policy:
-  engine: routing      # 使用固定规则
+  engine: routing      # 固定规则（routing）
   routing:
-    direct: trigger    # 私聊：回复
-    mention: trigger   # 被 @：回复
-    quote: wait        # 引用机器人：先观察
-    image: wait        # 含图片：先观察
-    group: wait        # 普通群聊消息：先观察
+    direct: trigger    # 私聊消息
+    mention: trigger   # @ 机器人
+    quote: wait        # 引用/回复消息
+    image: wait        # 含图片的消息
+    group: wait        # 普通群消息
 ```
 
 每个规则都可以改成 `trigger` 或 `wait`。
@@ -34,14 +34,14 @@ yesimbot-will-policy:
 
 如果希望机器人对某些话题更积极，可以使用意愿值：
 
-```yaml
+```yaml-config
 yesimbot-will-policy:
-  engine: willingness
+  engine: willingness  # 意愿值引擎(willingness)
   willingness:
-    probabilityThreshold: 55
-    replyCost: 35
-    keywords: ["Koishi", "文档"]
-    keywordMultiplier: 1.2
+    probabilityThreshold: 55  # 触发概率阈值
+    replyCost: 35             # 每次成功回复后扣除的意愿值
+    keywords: ["Koishi", "文档"]  # 高兴趣关键词
+    keywordMultiplier: 1.2    # 命中关键词时的乘数
 ```
 
 命中关键词时，机器人回复概率会更高。

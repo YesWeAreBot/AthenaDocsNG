@@ -51,7 +51,7 @@
 
 ## 图片预算
 
-```yaml
+```yaml-config
 imageInput:
   maxCount: 3
   maxBytesPerImage: 5242880

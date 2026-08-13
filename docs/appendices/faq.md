@@ -18,7 +18,7 @@
 
 如果希望机器人自然参与群聊，推荐安装 [Will 策略插件](../plugins/will-policy.md)，并使用 `willingness` 引擎。这样机器人会看到普通消息、积累意愿，并按关键词、引用和图片判断是否回复。
 
-```yaml
+```yaml-config
 will:
   engine: routing
   group: trigger

@@ -10,7 +10,7 @@
 
 当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 `koishi-plugin-yesimbot-roleplay`，然后指定角色卡文件：
 
-```yaml
+```yaml-config
 yesimbot-roleplay:
   characterCard: ./characters/athena.png # PNG 角色卡路径
   useRandomGreeting: false               # 是否随机选开场白

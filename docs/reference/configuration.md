@@ -6,7 +6,7 @@
 
 ## 根配置
 
-```yaml
+```yaml-config
 yesimbot:
   basePath: data/yesimbot
   chatModel: openai:gpt-4o
@@ -55,7 +55,7 @@ yesimbot:
 
 ## allowedChannels
 
-```yaml
+```yaml-config
 allowedChannels:
   - platform: onebot
     channelId: "123456"
@@ -70,7 +70,7 @@ allowedChannels:
 
 ## imageInput
 
-```yaml
+```yaml-config
 imageInput:
   maxCount: 3
   maxBytesPerImage: 5242880
@@ -83,7 +83,7 @@ imageInput:
 
 ### routing
 
-```yaml
+```yaml-config
 will:
   engine: routing
   direct: trigger
@@ -93,7 +93,7 @@ will:
 
 ### willingness
 
-```yaml
+```yaml-config
 will:
   engine: willingness
   probabilityThreshold: 55
