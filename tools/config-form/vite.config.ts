@@ -2,16 +2,20 @@ import { existsSync, renameSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 import vue from "@vitejs/plugin-vue";
-import yaml from "js-yaml";
 import { defineConfig, type Plugin } from "vite";
+import { parseDocument } from "yaml";
 
 function yamlPlugin(): Plugin {
   return {
     name: "athena-yaml",
     transform(code, id) {
       if (!id.endsWith(".yml") && !id.endsWith(".yaml")) return;
+      const document = parseDocument(code);
+      if (document.errors.length > 0) {
+        throw document.errors[0];
+      }
       return {
-        code: `export default ${JSON.stringify(yaml.load(code))}`,
+        code: `export default ${JSON.stringify(document.toJS())}`,
         map: null,
       };
     },

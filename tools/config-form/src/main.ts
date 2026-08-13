@@ -102,9 +102,7 @@ function escapeHtml(value: string): string {
 
 function mountConfigForm(block: HTMLElement): void {
   const code = block.querySelector("pre code") as HTMLElement | null;
-  const pre = code.closest("pre");
-  const highlight = pre?.parentElement;
-  if (!code || !pre || !highlight) return;
+  if (!code) return;
 
   const source = code.textContent ?? "";
   let formHtml = "";
@@ -122,22 +120,13 @@ function mountConfigForm(block: HTMLElement): void {
     formHtml = `<div class="config-preview-error">无法解析 YAML：${escapeHtml(String(error))}</div>`;
   }
 
-  const container = document.createElement("div");
-  container.className = "config-preview";
-  container.innerHTML =
-    '<div class="config-preview-tabs" role="tablist">' +
-    '<button class="config-preview-tab" data-panel="yaml" type="button">YAML</button>' +
-    '<button class="config-preview-tab active" data-panel="form" type="button">表单预览</button>' +
-    "</div>" +
-    '<div class="config-preview-panel" data-panel="yaml" hidden></div>' +
-    `<div class="config-preview-panel" data-panel="form">${formHtml}</div>`;
-  container.dataset.configMounted = "true";
+  block.dataset.configMounted = "true";
+  const formPanel = block.querySelector('.config-preview-panel[data-panel="form"]') as HTMLElement | null;
+  if (!formPanel) return;
+  if (formHtml) formPanel.innerHTML = formHtml;
 
-  block.replaceWith(container);
-  container.querySelector('.config-preview-panel[data-panel="yaml"]')!.appendChild(highlight);
-
-  const tabs = container.querySelectorAll(".config-preview-tab");
-  const panels = container.querySelectorAll(".config-preview-panel");
+  const tabs = block.querySelectorAll(".config-preview-tab");
+  const panels = block.querySelectorAll(".config-preview-panel");
   for (const tab of tabs) {
     tab.addEventListener("click", () => {
       for (const candidate of tabs) {
@@ -151,7 +140,7 @@ function mountConfigForm(block: HTMLElement): void {
 
   if (!schema) return;
   const mount = document.createElement("div");
-  container.querySelector('.config-preview-panel[data-panel="form"]')!.appendChild(mount);
+  formPanel.appendChild(mount);
   const app = createApp(ConfigForm, { schema, initial });
   const i18n = createI18n({ legacy: false, locale: "zh-CN", fallbackLocale: "en-US" });
   app.use(ElementPlus);
