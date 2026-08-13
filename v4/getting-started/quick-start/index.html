@@ -401,12 +401,36 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1. 安装 YesImBot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-launcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 安装 Launcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-koishi-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 创建或接入 Koishi App
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 安装一个模型服务插件
+      2. 启用一个模型服务插件
     </span>
   </a>
   
@@ -1628,12 +1652,36 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1. 安装 YesImBot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-launcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 安装 Launcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-koishi-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 创建或接入 Koishi App
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 安装一个模型服务插件
+      2. 启用一个模型服务插件
     </span>
   </a>
   
@@ -1678,7 +1726,7 @@
 
 <h1 id="_1">快速开始<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>这个页面是给第一次使用 YesImBot 的人看的。目标只有一个：让机器人能在 Koishi 里回复你。</p>
-<p>你不需要写插件代码。安装阶段会用到一条 Launcher 命令，之后的大部分配置都在 Koishi 控制台里完成。</p>
+<p>你不需要写插件代码。安装阶段会用到 Launcher 的一两条命令，之后的大部分配置都在 Koishi 控制台里完成。</p>
 <h2 id="_2">先认识三个名字<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Koishi</strong>：机器人框架，相当于机器人运行的家。</li>
@@ -1686,19 +1734,34 @@
 <li><strong>模型服务插件</strong>：负责连接 OpenAI、Anthropic、DeepSeek 或 Google 的插件。机器人用哪个模型，由它决定。</li>
 </ul>
 <h2 id="1-yesimbot">1. 安装 YesImBot<a class="headerlink" href="#1-yesimbot" title="Permanent link">&para;</a></h2>
-<p>目前 v4 还没有上架 npm 或 Koishi 插件市场，请先安装 Launcher：</p>
+<p>v4 尚未发布到 npm 或 Koishi 插件市场，所以这一步使用官方 Launcher 从源码接入。Launcher 会先安装命令行工具 <code>yesimbot-cli</code>，再由它创建 Koishi App、拉取 YesImBot v4 源码并构建。</p>
+<h3 id="11-launcher">1.1 安装 Launcher<a class="headerlink" href="#11-launcher" title="Permanent link">&para;</a></h3>
+<p>根据你的系统选择一条命令：</p>
+<p>Linux / WSL / macOS：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/YesWeAreBot/launcher/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>yesimbot-cli<span class="w"> </span>init
 </span></code></pre></div>
+<p>Windows PowerShell：</p>
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">irm </span><span class="n">https</span><span class="p">://</span><span class="n">raw</span><span class="p">.</span><span class="n">githubusercontent</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">YesWeAreBot</span><span class="p">/</span><span class="n">launcher</span><span class="p">/</span><span class="n">main</span><span class="p">/</span><span class="n">install</span><span class="p">.</span><span class="n">ps1</span> <span class="p">|</span> <span class="nb">iex</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">yesimbot-cli</span> <span class="n">init</span>
 </span></code></pre></div>
-<p><code>yesimbot-cli init</code> 会创建 Koishi App，并从 GitHub <code>dev</code> 分支接入 YesImBot v4 源码。</p>
-<p>YesImBot 需要一个数据库来保存聊天记录和频道信息。Launcher 创建的 Koishi App 自带 SQLite，默认无需额外设置；需要 MySQL/PostgreSQL 时再在 Koishi App 中配置。</p>
-<h2 id="2">2. 安装一个模型服务插件<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
-<p>YesImBot 本身不连接任何模型公司。接入源码后，在 Koishi 控制台的插件列表里启用一个模型服务插件，告诉机器人可以调用谁的 API。</p>
-<p>最常用的是 OpenAI：</p>
-<p>如果你用其他模型服务商，可以启用对应插件：</p>
+<p>安装完成后可以运行 <code>yesimbot-cli --help</code> 验证。</p>
+<h3 id="12-koishi-app">1.2 创建或接入 Koishi App<a class="headerlink" href="#12-koishi-app" title="Permanent link">&para;</a></h3>
+<p>第一次使用，直接运行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>yesimbot-cli<span class="w"> </span>init
+</span></code></pre></div>
+<p>已经有 Koishi App，传入它的目录：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>yesimbot-cli<span class="w"> </span>init<span class="w"> </span>/path/to/koishi-app
+</span></code></pre></div>
+<p><code>init</code> 会完成这些事：</p>
+<ul>
+<li>没有 App 时下载 Koishi 模板；</li>
+<li>从 GitHub <code>dev</code> 分支拉取 YesImBot v4 源码；</li>
+<li>构建插件并写入 workspace 依赖；</li>
+<li>结束后询问是否立即启动。</li>
+</ul>
+<p>数据库不需要单独准备：Launcher 创建的 Koishi App 自带 SQLite，默认直接使用；需要 MySQL/PostgreSQL 时再在 Koishi App 中配置。</p>
+<h2 id="2">2. 启用一个模型服务插件<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>YesImBot 本身不连接任何模型公司。接入源码并启动后，在 Koishi 控制台的插件列表里启用一个模型服务插件，告诉机器人可以调用谁的 API。</p>
+<p>最常用的是 OpenAI；其他服务商可以启用对应插件：</p>
 <table>
 <thead>
 <tr>
@@ -1736,20 +1799,20 @@
 </ol>
 <p>“允许响应的频道”的意思是：机器人只在这些频道里接收消息。默认情况下，如果没有添加频道，机器人不会回复任何人。</p>
 <p>如果你愿意直接编辑配置，最小示例是：</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">yesimbot</span><span class="p">:</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">chatModel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai:gpt-4o</span><span class="w">  </span><span class="c1"># 选择模型</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">allowedChannels</span><span class="p">:</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">onebot</span><span class="w">      </span><span class="c1"># 平台</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">      </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123456&quot;</span><span class="w">   </span><span class="c1"># 频道 ID</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">yesimbot</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">chatModel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai:gpt-4o</span><span class="w">  </span><span class="c1"># 选择模型</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">allowedChannels</span><span class="p">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">onebot</span><span class="w">      </span><span class="c1"># 平台</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123456&quot;</span><span class="w">   </span><span class="c1"># 频道 ID</span>
 </span></code></pre></div>
 <p>想测试时也可以先放行所有频道，但正式使用时不建议这样：</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">allowedChannels</span><span class="p">:</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">allowedChannels</span><span class="p">:</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">channelId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
 </span></code></pre></div>
 <h2 id="4">4. 验证是否成功<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p>在允许的频道里 @ 机器人：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>@Athena 你好
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>@Athena 你好
 </span></code></pre></div>
 <p>机器人回复，说明基础配置已经成功。</p>
 <p>默认情况下：</p>
