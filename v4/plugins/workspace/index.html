@@ -52,6 +52,8 @@
     
       <link rel="stylesheet" href="../../assets/extra.css">
     
+      <link rel="stylesheet" href="../../assets/config-form/config-form.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -1690,6 +1692,7 @@
 <h2 id="_3">安装和启用<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 <code>koishi-plugin-yesimbot-workspace</code>。</p>
 <h2 id="_4">基本配置<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<div class="config-preview">
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">yesimbot-workspace</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">bash</span><span class="p">:</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sandbox</span><span class="w">         </span><span class="c1"># 沙箱模式，不会直接操作宿主机</span>
@@ -1705,6 +1708,7 @@
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">skillPaths</span><span class="p">:</span>
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./skills</span><span class="w">           </span><span class="c1"># 技能文件目录</span>
 </span></code></pre></div>
+</div>
 <p>简单理解：</p>
 <ul>
 <li><code>cwd</code>：机器人在沙箱里的默认目录。</li>
@@ -1813,6 +1817,8 @@
     
     
       <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../assets/config-form/config-form.js"></script>
       
         <script src="../../assets/extra.js"></script>
       

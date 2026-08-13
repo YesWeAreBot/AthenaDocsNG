@@ -52,6 +52,8 @@
     
       <link rel="stylesheet" href="../../assets/extra.css">
     
+      <link rel="stylesheet" href="../../assets/config-form/config-form.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -1794,11 +1796,13 @@
 <p><code>models.json</code> 里的键必须是完整的“Provider ID:模型”格式。写错会被忽略，并在启动日志里出现警告。</p>
 </div>
 <h3 id="_5">控制图片预算<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="config-preview">
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">imageInput</span><span class="p">:</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">maxCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w">            </span><span class="c1"># 最多同时读取 3 张图片</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">maxBytesPerImage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5242880</span><span class="w">   </span><span class="c1"># 单张图片最大 5MB</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">maxTotalBytes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10485760</span><span class="w">     </span><span class="c1"># 本轮图片总共最大 10MB</span>
 </span></code></pre></div>
+</div>
 <h2 id="_6">修改模型后<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>模型、图片能力和相关配置会在频道开始时被固定下来。修改后建议重启 Koishi，让新设置完整生效。</p>
 
@@ -1892,6 +1896,8 @@
     
     
       <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../assets/config-form/config-form.js"></script>
       
         <script src="../../assets/extra.js"></script>
       

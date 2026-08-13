@@ -52,6 +52,8 @@
     
       <link rel="stylesheet" href="../../assets/extra.css">
     
+      <link rel="stylesheet" href="../../assets/config-form/config-form.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -1664,6 +1666,7 @@
 <p>OneBot 工具给机器人提供 QQ/OneBot 平台上的操作能力，例如读取合并转发、设置精华、表态、OCR 识别图片、群管理操作等。</p>
 <h2 id="_2">安装和启用<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 <code>koishi-plugin-yesimbot-onebot-utils</code>，然后在插件配置里勾选需要的工具：</p>
+<div class="config-preview">
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">yesimbot-onebot-utils</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">enabledTools</span><span class="p">:</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">onebot_get_forward_message</span><span class="w">   </span><span class="c1"># 读取合并转发</span>
@@ -1672,6 +1675,7 @@
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">attachImageSummary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">        </span><span class="c1"># 动画表情是否附带 summary</span>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">maxForwardPageChars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6000</span><span class="w">       </span><span class="c1"># 合并转发每页最大字符数</span>
 </span></code></pre></div>
+</div>
 <h2 id="_3">可用工具<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>onebot_get_forward_message
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>onebot_send_forward_message
@@ -1777,6 +1781,8 @@
     
     
       <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../assets/config-form/config-form.js"></script>
       
         <script src="../../assets/extra.js"></script>
       

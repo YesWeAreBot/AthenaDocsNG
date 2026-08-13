@@ -52,6 +52,8 @@
     
       <link rel="stylesheet" href="../../assets/extra.css">
     
+      <link rel="stylesheet" href="../../assets/config-form/config-form.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -1688,12 +1690,14 @@
 </ol>
 <p>不替换人格设定，只补充"怎么说"的参考，和 PERSONA.md 互不冲突。</p>
 <h2 id="_4">安装和配置<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>在插件市场安装 <code>koishi-plugin-yesimbot-chat-learning</code>。</p>
+<p>当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 <code>koishi-plugin-yesimbot-chat-learning</code>。</p>
+<div class="config-preview">
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">yesimbot-chat-learning</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">maxExamples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span><span class="w">              </span><span class="c1"># 每轮最多注入几个示例对话段</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">maxMessagesPerExample</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">    </span><span class="c1"># 每段最多几条消息</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">maxHistoryAgeDays</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span><span class="w">       </span><span class="c1"># 只学习最近多少天的对话</span>
 </span></code></pre></div>
+</div>
 <h2 id="_5">配置项说明<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1818,6 +1822,8 @@
     
     
       <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../assets/config-form/config-form.js"></script>
       
         <script src="../../assets/extra.js"></script>
       

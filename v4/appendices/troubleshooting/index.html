@@ -52,6 +52,8 @@
     
       <link rel="stylesheet" href="../../assets/extra.css">
     
+      <link rel="stylesheet" href="../../assets/config-form/config-form.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -1697,9 +1699,11 @@
 <h1 id="_1">故障排查<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>这个页面按“现象”来组织，方便你快速找到对应检查项。开始前建议先打开 Koishi 控制台，观察启动和运行时日志。</p>
 <h2 id="_2">开启详细日志<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="config-preview">
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">yesimbot</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">logLevel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 </span></code></pre></div>
+</div>
 <p>在 Koishi 中还可以把模型服务插件或其他插件日志调到 debug。</p>
 <h2 id="_3">模型调用失败<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>检查：</p>
@@ -1821,6 +1825,8 @@
     
     
       <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../assets/config-form/config-form.js"></script>
       
         <script src="../../assets/extra.js"></script>
       
