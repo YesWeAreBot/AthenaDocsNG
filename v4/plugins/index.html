@@ -1717,7 +1717,7 @@
 <table>
 <thead>
 <tr>
-<th>服务商</th>
+<th>预置 Provider</th>
 <th>包名</th>
 </tr>
 </thead>
@@ -1740,6 +1740,9 @@
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>预置 Provider 不绑定具体厂商。OpenAI Provider 可改 <code>baseURL</code> 接任意 OpenAI-compatible API；Provider 支持克隆多开，每个实例的 <code>id</code> 必须唯一。</p>
+</blockquote>
 <h2 id="_3">安装方式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ol>
 <li>安装 Launcher，并运行 <code>yesimbot-cli init</code> 接入 v4 源码。</li>
@@ -1751,7 +1754,7 @@
 <p>大部分插件安装后立即对当前频道生效。修改模型或插件配置后，如果机器人没有马上变化，重启 Koishi 通常是最直接的解决方式。</p>
 <div class="admonition tip">
 <p class="admonition-title">插件可以克隆</p>
-<p>模型服务插件和 Will 策略插件是可复用、可克隆的。在 Koishi 插件列表里点击右键选择“克隆”，就可以用不同配置创建多个实例，并通过 Koishi 过滤器应用到不同频道或用户。</p>
+<p>模型服务插件和 Will 策略插件是可复用、可克隆的。在 Koishi 插件列表里点击右键选择“克隆”，就可以用不同配置创建多个实例；模型服务插件的每个实例必须保证 <code>id</code> 唯一。</p>
 </div>
 
 

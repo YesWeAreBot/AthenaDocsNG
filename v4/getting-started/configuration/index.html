@@ -1697,11 +1697,12 @@
 <h1 id="_1">基础配置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>这个页面介绍 YesImBot 最常用的几项设置。完整字段表放在<a href="../../reference/configuration/">配置参考</a>，这里只讲大多数人会碰到的内容。</p>
 <h2 id="_2">聊天模型<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>聊天模型决定机器人用哪一个模型来思考。它由两部分组成，写法是“服务商:模型”，例如：</p>
+<p>聊天模型决定机器人用哪一个模型来思考。它由两部分组成，写法是“Provider ID:模型”，例如：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>openai:gpt-4o
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>deepseek:deepseek-v4-pro
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>google:gemini-2.5-pro
 </span></code></pre></div>
+<p>Provider ID 是模型服务插件实例里的 <code>id</code>，不一定是厂商名；改 <code>baseURL</code> 可以接任意兼容 API，克隆 Provider 时只要保证 <code>id</code> 唯一。</p>
 <p>你不需要记住每个 ID。在 Koishi 控制台的 <code>yesimbot</code> 配置里，一般可以直接从下拉列表选择。</p>
 <h2 id="_3">允许响应的频道<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>“允许响应的频道”决定机器人能在哪里说话。默认情况下，列表是空的，也就是机器人不会接收任何频道消息。</p>

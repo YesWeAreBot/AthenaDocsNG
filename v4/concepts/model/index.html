@@ -1727,9 +1727,9 @@
 <h1 id="_1">模型服务<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>这个页面讲机器人如何选择和使用模型。</p>
 <h2 id="_2">一句话解释<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>YesImBot 不内置任何模型公司。它通过“模型服务插件”连接 OpenAI、Anthropic、DeepSeek、Google 等服务商。插件负责注册模型，配置负责选择用哪个模型。</p>
+<p>YesImBot 不内置任何模型公司。它通过“模型服务插件”连接模型 API；仓库预置了 OpenAI-compatible、Anthropic、DeepSeek、Google 等 Provider。Provider 不是厂商绑定，可以通过 <code>baseURL</code> 接任意兼容 API，也可以克隆多开。</p>
 <h2 id="id">模型 ID<a class="headerlink" href="#id" title="Permanent link">&para;</a></h2>
-<p>每个模型有一个完整 ID，写法是“服务商:模型”：</p>
+<p>每个模型有一个完整 ID，写法是“Provider ID:模型”。Provider ID 是 Provider 实例配置里的 <code>id</code>，不一定是厂商名：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>openai:gpt-4o
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>anthropic:claude-sonnet-4-6
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>deepseek:deepseek-v4-pro
@@ -1791,7 +1791,7 @@
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">模型 ID 不能写错</p>
-<p><code>models.json</code> 里的键必须是完整的“服务商:模型”格式。写错会被忽略，并在启动日志里出现警告。</p>
+<p><code>models.json</code> 里的键必须是完整的“Provider ID:模型”格式。写错会被忽略，并在启动日志里出现警告。</p>
 </div>
 <h3 id="_5">控制图片预算<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">imageInput</span><span class="p">:</span>

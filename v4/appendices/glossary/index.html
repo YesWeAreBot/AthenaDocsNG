@@ -1893,7 +1893,7 @@
 <h2 id="messenger">Messenger<a class="headerlink" href="#messenger" title="Permanent link">&para;</a></h2>
 <p>Core 的消息入口与出口。注册 Koishi 中间件接收平台消息，处理白名单检查、Translator 选择、回复投递和节奏控制。</p>
 <h2 id="_2">模型服务插件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>连接 OpenAI、Anthropic、DeepSeek、Google 等服务商的 Provider 插件。通过 <code>ctx.yesimbot.model.register()</code> 注册。</p>
+<p>连接模型 API 的 Provider 插件。仓库预置 OpenAI-compatible、Anthropic、DeepSeek、Google 等接入；通过 <code>baseURL</code> 可接任意兼容 API，也支持克隆多开。通过 <code>ctx.yesimbot.model.register()</code> 注册。</p>
 <h2 id="platformtranslator-translator">PlatformTranslator / Translator<a class="headerlink" href="#platformtranslator-translator" title="Permanent link">&para;</a></h2>
 <p>把不同平台消息转成统一格式的接入层。通过 <code>ctx.yesimbot.messenger.use()</code> 注册。</p>
 <h2 id="resourcereader">ResourceReader<a class="headerlink" href="#resourcereader" title="Permanent link">&para;</a></h2>

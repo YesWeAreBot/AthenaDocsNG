@@ -1731,7 +1731,7 @@
 <ul>
 <li><strong>Koishi</strong>：机器人框架，相当于机器人运行的家。</li>
 <li><strong>Koishi 控制台</strong>：管理和配置机器人插件的地方。</li>
-<li><strong>模型服务插件</strong>：负责连接 OpenAI、Anthropic、DeepSeek 或 Google 的插件。机器人用哪个模型，由它决定。</li>
+<li><strong>模型服务插件（Provider）</strong>：负责连接模型 API 的插件。仓库提供预置 Provider，也可以通过 <code>baseURL</code> 接任意兼容 API，并支持克隆多开。</li>
 </ul>
 <h2 id="1-yesimbot">1. 安装 YesImBot<a class="headerlink" href="#1-yesimbot" title="Permanent link">&para;</a></h2>
 <p>v4 尚未发布到 npm 或 Koishi 插件市场，所以这一步使用官方 Launcher 从源码接入。Launcher 会先安装命令行工具 <code>yesimbot-cli</code>，再由它创建 Koishi App、拉取 YesImBot v4 源码并构建。</p>
@@ -1761,11 +1761,11 @@
 <p>数据库不需要单独准备：Launcher 创建的 Koishi App 自带 SQLite，默认直接使用；需要 MySQL/PostgreSQL 时再在 Koishi App 中配置。</p>
 <h2 id="2">2. 启用一个模型服务插件<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p>YesImBot 本身不连接任何模型公司。接入源码并启动后，在 Koishi 控制台的插件列表里启用一个模型服务插件，告诉机器人可以调用谁的 API。</p>
-<p>最常用的是 OpenAI；其他服务商可以启用对应插件：</p>
+<p>最常用的是 OpenAI；其他预置 Provider 可以启用对应插件：</p>
 <table>
 <thead>
 <tr>
-<th>服务商</th>
+<th>预置 Provider</th>
 <th>插件</th>
 </tr>
 </thead>
@@ -1788,6 +1788,7 @@
 </tr>
 </tbody>
 </table>
+<p>这些不是“只能使用这些厂商”。OpenAI Provider 可以改 <code>baseURL</code> 接任意 OpenAI-compatible API；Provider 也可以在 Koishi 插件列表右键克隆多开，只需保证每个实例的 <code>id</code> 唯一。</p>
 <h2 id="3">3. 在控制台里完成配置<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <p>接入并启动后，进入 Koishi 的“插件配置”页面：</p>
 <ol>
