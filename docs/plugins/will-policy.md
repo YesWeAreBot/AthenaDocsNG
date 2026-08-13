@@ -2,6 +2,8 @@
 
 包名：`koishi-plugin-yesimbot-will-policy`
 
+当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 `koishi-plugin-yesimbot-will-policy`。
+
 ## 这个插件解决什么问题
 
 默认的 Will 规则只有私聊、@ 和群聊普通消息三个开关。Will 策略插件可以让你按更多条件控制机器人什么时候说话，例如：

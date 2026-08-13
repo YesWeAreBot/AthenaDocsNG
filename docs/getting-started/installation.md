@@ -4,33 +4,40 @@
 
 ## 需要准备什么
 
-- 一个已经能运行的 Koishi 实例，版本 4.18 或更高。
 - Node.js 18 或更高版本。
-- Koishi 数据库服务，例如 SQLite、MySQL 或 PostgreSQL。
+- Git（Launcher 接入源码时需要）。
+- 数据库：Launcher 创建的 Koishi App 自带 SQLite，默认无需单独安装；如需 MySQL/PostgreSQL，在 Koishi App 中配置即可。
 - 一个能访问模型 API 的网络环境。
+- 可选：一个已有 Koishi App；没有的话 Launcher 会创建新的。
 
-## 方式一：在插件市场安装（推荐）
+## 当前 v4 安装状态
 
-1. 打开 Koishi 控制台。
-2. 进入“插件市场”。
-3. 搜索 `yesimbot`。
-4. 安装 `koishi-plugin-yesimbot`。
-5. 按需安装模型服务插件和功能插件。
+!!! warning "尚未发布到 npm / 插件市场"
+    目前 v4 还没有上架 npm，也没有进入 Koishi 插件市场。请不要使用 `yarn add koishi-plugin-yesimbot` 或在插件市场搜索安装；这些方式现在拿不到 v4。
 
-这个方式不需要接触命令行，适合大多数用户。
+## 方式一：使用 Launcher 安装（推荐）
 
-## 方式二：命令行安装
-
-如果你已经熟悉 Koishi 项目，可以在项目目录运行：
+YesImBot Launcher 会从 GitHub Release 安装 `yesimbot-cli`，然后由 `yesimbot-cli init` 创建或接入 Koishi App，并从 GitHub `dev` 分支拉取 YesImBot 源码、构建并写入 workspace 配置。
 
 ```bash
-yarn add koishi-plugin-yesimbot
-yarn add @yesimbot/koishi-plugin-provider-openai
+# Linux / WSL / macOS
+curl -fsSL https://raw.githubusercontent.com/YesWeAreBot/launcher/main/install.sh | sh
+yesimbot-cli init          # 结束后按提示选择是否立即启动
+# 以后需要再次启动时：
+yesimbot-cli start --daemon
 ```
 
-然后在 `koishi.yml` 或 Koishi 控制台里启用插件。
+```powershell
+# Windows PowerShell
+irm https://raw.githubusercontent.com/YesWeAreBot/launcher/main/install.ps1 | iex
+yesimbot-cli init          # 结束后按提示选择是否立即启动
+# 以后需要再次启动时：
+yesimbot-cli start --daemon
+```
 
-## 方式三：接入当前 dev 源码
+`init` 默认创建 `./yesimbot-app`；传入目录可以创建到指定位置，也可以接入已有 Koishi App。安装完成后，Koishi 控制台里会包含 `yesimbot`、模型服务插件和功能插件，按需启用即可。
+
+## 方式二：手动接入当前 dev 源码
 
 这个方式只推荐给开发者或想要提前体验最新代码的人。普通用户不需要这样做。
 
@@ -53,7 +60,7 @@ yarn koishi:start
 
 ## 安装功能插件
 
-YesImBot 的功能插件可以按需安装，例如：
+接入源码后，YesImBot 的功能插件可以按需启用，例如：
 
 - 联网搜索
 - 文件和工作区操作
@@ -62,6 +69,6 @@ YesImBot 的功能插件可以按需安装，例如：
 - 贴纸管理
 - OneBot 群管理工具
 
-安装方式和其他 Koishi 插件一样：在插件市场搜索、安装，然后在插件配置页打开开关。不需要写代码。
+当前 v4 功能插件没有上架插件市场，不需要逐个执行 `yarn add`。通过 Launcher 接入源码后，直接在 Koishi 控制台的插件列表里启用对应插件，然后在插件配置页填写设置。
 
 完整列表见[插件总览](../plugins/index.md)。

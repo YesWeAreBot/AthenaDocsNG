@@ -12,7 +12,7 @@
 
 ## 安装和配置
 
-在插件市场安装 `koishi-plugin-yesimbot-memos-client`，然后填写：
+当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 `koishi-plugin-yesimbot-memos-client`，然后填写：
 
 ```yaml
 yesimbot-memos-client:

@@ -78,12 +78,15 @@ YesImBot 让 AI 不再只是"会回答的工具"，而是能理解自己身处�
 ## 快速开始
 
 <ol class="steps-list">
-<li>在 Koishi 插件市场安装 <code>koishi-plugin-yesimbot</code>。</li>
-<li>安装一个模型服务插件，填写 API Key。</li>
-<li>选择聊天模型，添加允许响应的频道。</li>
+<li>安装 Launcher 并运行 <code>yesimbot-cli init</code> 接入 v4。</li>
+<li>在 Koishi 控制台启用一个模型服务插件，并填写 API Key。</li>
+<li>在配置里选择聊天模型，并添加允许响应的频道。</li>
 </ol>
 
 详细步骤见[快速开始](getting-started/quick-start.md)。
+
+!!! warning "尚未上架"
+    目前 v4 还未发布到 npm，也未上架 Koishi 插件市场；请使用 Launcher 或源码方式安装。
 
 ## 使用前先理解
 

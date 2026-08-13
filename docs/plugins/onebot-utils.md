@@ -8,7 +8,7 @@ OneBot 工具给机器人提供 QQ/OneBot 平台上的操作能力，例如读�
 
 ## 安装和启用
 
-在插件市场安装 `koishi-plugin-yesimbot-onebot-utils`，然后在插件配置里勾选需要的工具：
+当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 `koishi-plugin-yesimbot-onebot-utils`，然后在插件配置里勾选需要的工具：
 
 ```yaml
 yesimbot-onebot-utils:

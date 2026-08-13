@@ -2,37 +2,39 @@
 
 这个页面是给第一次使用 YesImBot 的人看的。目标只有一个：让机器人能在 Koishi 里回复你。
 
-你不需要写代码。下面所有操作都能在 Koishi 控制台里完成；命令行安装只是给喜欢用终端的人准备的替代方式。
+你不需要写插件代码。安装阶段会用到一条 Launcher 命令，之后的大部分配置都在 Koishi 控制台里完成。
 
 ## 先认识三个名字
 
 - **Koishi**：机器人框架，相当于机器人运行的家。
-- **插件市场**：Koishi 控制台里安装插件的地方，类似手机应用商店。
+- **Koishi 控制台**：管理和配置机器人插件的地方。
 - **模型服务插件**：负责连接 OpenAI、Anthropic、DeepSeek 或 Google 的插件。机器人用哪个模型，由它决定。
 
-## 1. 安装核心插件
+## 1. 安装 YesImBot
 
-打开 Koishi 控制台，进入“插件市场”，搜索 `koishi-plugin-yesimbot`，点击安装。
-
-如果喜欢命令行，也可以这样做：
+目前 v4 还没有上架 npm 或 Koishi 插件市场，请先安装 Launcher：
 
 ```bash
-yarn add koishi-plugin-yesimbot
+curl -fsSL https://raw.githubusercontent.com/YesWeAreBot/launcher/main/install.sh | sh
+yesimbot-cli init
 ```
 
-YesImBot 需要一个数据库来保存聊天记录和频道信息。Koishi 默认项目一般已经配置好 SQLite，所以多数情况下你不需要额外设置。
+```powershell
+irm https://raw.githubusercontent.com/YesWeAreBot/launcher/main/install.ps1 | iex
+yesimbot-cli init
+```
+
+`yesimbot-cli init` 会创建 Koishi App，并从 GitHub `dev` 分支接入 YesImBot v4 源码。
+
+YesImBot 需要一个数据库来保存聊天记录和频道信息。Launcher 创建的 Koishi App 自带 SQLite，默认无需额外设置；需要 MySQL/PostgreSQL 时再在 Koishi App 中配置。
 
 ## 2. 安装一个模型服务插件
 
-YesImBot 本身不连接任何模型公司。你还得安装一个模型服务插件，告诉机器人可以调用谁的 API。
+YesImBot 本身不连接任何模型公司。接入源码后，在 Koishi 控制台的插件列表里启用一个模型服务插件，告诉机器人可以调用谁的 API。
 
 最常用的是 OpenAI：
 
-```bash
-yarn add @yesimbot/koishi-plugin-provider-openai
-```
-
-如果你用其他模型服务商，也可以在插件市场搜索：
+如果你用其他模型服务商，可以启用对应插件：
 
 | 服务商 | 插件 |
 | --- | --- |
@@ -43,7 +45,7 @@ yarn add @yesimbot/koishi-plugin-provider-openai
 
 ## 3. 在控制台里完成配置
 
-安装完成后，进入 Koishi 的“插件配置”页面：
+接入并启动后，进入 Koishi 的“插件配置”页面：
 
 1. 启用 `yesimbot`。
 2. 启用模型服务插件，并填写 API Key。
@@ -89,5 +91,5 @@ allowedChannels:
 
 如果你希望机器人像群友一样自然参与群聊，不建议只把 `group` 改成 `trigger`。更好的做法是安装 [Will 策略插件](../plugins/will-policy.md)，并使用 `willingness` 引擎，让机器人按关键词、引用、图片和意愿值判断是否加入。
 
-!!! tip "想直接用开发版源码？"
-这通常是给开发者用的。普通用户不需要。如果你确实需要，可以看[安装指南](installation.md)里的 dev 接入说明。
+!!! tip "Launcher 接入的就是当前 dev 源码"
+    Launcher 的 `init` 默认从 GitHub `dev` 分支拉取 v4，因此普通用户不需要额外手工 clone。更完整的安装说明见[安装指南](installation.md)。

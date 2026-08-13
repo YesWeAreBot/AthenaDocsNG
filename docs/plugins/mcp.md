@@ -12,7 +12,7 @@ MCP 是一种连接外部工具服务的协议。安装 MCP 客户端后，机�
 
 ## 安装和配置
 
-在插件市场安装 `koishi-plugin-yesimbot-mcp-client`，然后在配置里添加服务器：
+当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 `koishi-plugin-yesimbot-mcp-client`，然后在配置里添加服务器：
 
 ```yaml
 yesimbot-mcp-client:

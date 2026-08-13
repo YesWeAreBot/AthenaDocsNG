@@ -15,7 +15,7 @@
 
 ## 安装和启用
 
-在 Koishi 插件市场安装 `koishi-plugin-yesimbot-workspace`，然后在插件配置页打开开关。
+当前 v4 未上架插件市场；通过 Launcher 接入源码后，在 Koishi 插件列表启用 `koishi-plugin-yesimbot-workspace`。
 
 ## 基本配置
 
