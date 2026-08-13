@@ -143,8 +143,32 @@
   background: var(--yb-teal);
   border-radius: 10px;
   color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 1.2rem;
+  min-height: 220px;
+  overflow: hidden;
   padding: 2.6rem 2.2rem 2rem;
+  position: relative;
+}
+
+.home-hero__content {
+  max-width: 720px;
+  position: relative;
+  z-index: 1;
+}
+
+.home-hero__logo {
+  color: #ffffff;
+  height: 280px;
+  opacity: .08;
+  pointer-events: none;
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 280px;
 }
 
 .home-hero h1,
@@ -162,6 +186,14 @@
   line-height: 1.65;
   margin: 0;
   opacity: .92;
+}
+
+.home-hero__desc {
+  margin-top: .4rem;
+}
+
+.home-hero__desc .version-badge {
+  margin-left: .45rem;
 }
 
 .pillar-grid {
@@ -385,6 +417,13 @@
 @media screen and (max-width: 760px) {
   .home-hero {
     padding: 1.5rem 1.2rem;
+  }
+
+  .home-hero__logo {
+    height: 180px;
+    opacity: .06;
+    right: -30px;
+    width: 180px;
   }
 
   .home-hero h1,
