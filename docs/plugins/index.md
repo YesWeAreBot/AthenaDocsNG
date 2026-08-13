@@ -23,12 +23,14 @@
 
 ## 模型服务插件
 
-| 服务商 | 包名 |
+| 预置 Provider | 包名 |
 | --- | --- |
 | OpenAI | `@yesimbot/koishi-plugin-provider-openai` |
 | Anthropic | `@yesimbot/koishi-plugin-provider-anthropic` |
 | DeepSeek | `@yesimbot/koishi-plugin-provider-deepseek` |
 | Google | `@yesimbot/koishi-plugin-provider-google` |
+
+> 预置 Provider 不绑定具体厂商。OpenAI Provider 可改 `baseURL` 接任意 OpenAI-compatible API；Provider 支持克隆多开，每个实例的 `id` 必须唯一。
 
 ## 安装方式
 
@@ -42,4 +44,4 @@
 大部分插件安装后立即对当前频道生效。修改模型或插件配置后，如果机器人没有马上变化，重启 Koishi 通常是最直接的解决方式。
 
 !!! tip "插件可以克隆"
-    模型服务插件和 Will 策略插件是可复用、可克隆的。在 Koishi 插件列表里点击右键选择“克隆”，就可以用不同配置创建多个实例，并通过 Koishi 过滤器应用到不同频道或用户。
+    模型服务插件和 Will 策略插件是可复用、可克隆的。在 Koishi 插件列表里点击右键选择“克隆”，就可以用不同配置创建多个实例；模型服务插件的每个实例必须保证 `id` 唯一。

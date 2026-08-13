@@ -4,13 +4,15 @@
 
 ## 聊天模型
 
-聊天模型决定机器人用哪一个模型来思考。它由两部分组成，写法是“服务商:模型”，例如：
+聊天模型决定机器人用哪一个模型来思考。它由两部分组成，写法是“Provider ID:模型”，例如：
 
 ```text
 openai:gpt-4o
 deepseek:deepseek-v4-pro
 google:gemini-2.5-pro
 ```
+
+Provider ID 是模型服务插件实例里的 `id`，不一定是厂商名；改 `baseURL` 可以接任意兼容 API，克隆 Provider 时只要保证 `id` 唯一。
 
 你不需要记住每个 ID。在 Koishi 控制台的 `yesimbot` 配置里，一般可以直接从下拉列表选择。
 

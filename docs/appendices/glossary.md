@@ -40,7 +40,7 @@ Core 的消息入口与出口。注册 Koishi 中间件接收平台消息，处�
 
 ## 模型服务插件
 
-连接 OpenAI、Anthropic、DeepSeek、Google 等服务商的 Provider 插件。通过 `ctx.yesimbot.model.register()` 注册。
+连接模型 API 的 Provider 插件。仓库预置 OpenAI-compatible、Anthropic、DeepSeek、Google 等接入；通过 `baseURL` 可接任意兼容 API，也支持克隆多开。通过 `ctx.yesimbot.model.register()` 注册。
 
 ## PlatformTranslator / Translator
 

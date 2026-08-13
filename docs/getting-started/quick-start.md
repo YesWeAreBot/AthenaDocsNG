@@ -8,7 +8,7 @@
 
 - **Koishi**：机器人框架，相当于机器人运行的家。
 - **Koishi 控制台**：管理和配置机器人插件的地方。
-- **模型服务插件**：负责连接 OpenAI、Anthropic、DeepSeek 或 Google 的插件。机器人用哪个模型，由它决定。
+- **模型服务插件（Provider）**：负责连接模型 API 的插件。仓库提供预置 Provider，也可以通过 `baseURL` 接任意兼容 API，并支持克隆多开。
 
 ## 1. 安装 YesImBot
 
@@ -59,14 +59,16 @@ yesimbot-cli init /path/to/koishi-app
 
 YesImBot 本身不连接任何模型公司。接入源码并启动后，在 Koishi 控制台的插件列表里启用一个模型服务插件，告诉机器人可以调用谁的 API。
 
-最常用的是 OpenAI；其他服务商可以启用对应插件：
+最常用的是 OpenAI；其他预置 Provider 可以启用对应插件：
 
-| 服务商 | 插件 |
+| 预置 Provider | 插件 |
 | --- | --- |
 | OpenAI | `@yesimbot/koishi-plugin-provider-openai` |
 | Anthropic | `@yesimbot/koishi-plugin-provider-anthropic` |
 | DeepSeek | `@yesimbot/koishi-plugin-provider-deepseek` |
 | Google | `@yesimbot/koishi-plugin-provider-google` |
+
+这些不是“只能使用这些厂商”。OpenAI Provider 可以改 `baseURL` 接任意 OpenAI-compatible API；Provider 也可以在 Koishi 插件列表右键克隆多开，只需保证每个实例的 `id` 唯一。
 
 ## 3. 在控制台里完成配置
 

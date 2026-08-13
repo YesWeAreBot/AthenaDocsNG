@@ -4,11 +4,11 @@
 
 ## 一句话解释
 
-YesImBot 不内置任何模型公司。它通过“模型服务插件”连接 OpenAI、Anthropic、DeepSeek、Google 等服务商。插件负责注册模型，配置负责选择用哪个模型。
+YesImBot 不内置任何模型公司。它通过“模型服务插件”连接模型 API；仓库预置了 OpenAI-compatible、Anthropic、DeepSeek、Google 等 Provider。Provider 不是厂商绑定，可以通过 `baseURL` 接任意兼容 API，也可以克隆多开。
 
 ## 模型 ID
 
-每个模型有一个完整 ID，写法是“服务商:模型”：
+每个模型有一个完整 ID，写法是“Provider ID:模型”。Provider ID 是 Provider 实例配置里的 `id`，不一定是厂商名：
 
 ```text
 openai:gpt-4o
@@ -81,7 +81,7 @@ google:gemini-2.5-pro
 5. 确认 `imageInput` 没有设为 `false`。
 
 !!! warning "模型 ID 不能写错"
-    `models.json` 里的键必须是完整的“服务商:模型”格式。写错会被忽略，并在启动日志里出现警告。
+    `models.json` 里的键必须是完整的“Provider ID:模型”格式。写错会被忽略，并在启动日志里出现警告。
 
 ### 控制图片预算
 
